@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="100mm"
+   height="42.845509mm"
+   viewBox="0 0 100 42.845509"
+   version="1.1"
+   id="svg896">
+  <defs
+     id="defs890">
+    <rect
+       x="6.0476189"
+       y="111.125"
+       width="186.72025"
+       height="64.255951"
+       id="rect902" />
+    <rect
+       x="6.0476189"
+       y="111.125"
+       width="186.72025"
+       height="64.255951"
+       id="rect913" />
+  </defs>
+  <metadata
+     id="metadata893">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-54.321429,-23.178435)">
+    <text
+       xml:space="preserve"
+       id="text900"
+       style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:0;font-family:sans-serif;text-align:center;letter-spacing:1.76213px;white-space:pre;shape-inside:url(#rect902);fill:#000000;fill-opacity:1;stroke:#c0c0c0;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+       x="1.0058284e-07"
+       y="0"
+       transform="matrix(0.99975583,0,0,1.0000029,46.692885,-97.299806)"><tspan
+         x="6.046875"
+         y="161.97998"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:1.25;font-family:Impact;-inkscape-font-specification:Impact;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#c0c0c0;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">FirSt</tspan></tspan></text>
+  </g>
+</svg>
