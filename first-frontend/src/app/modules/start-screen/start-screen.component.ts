@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-screen',
   templateUrl: './start-screen.component.html',
   styleUrls: ['./start-screen.component.scss']
 })
-export class StartScreenComponent implements OnInit {
+export class StartScreenComponent {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  goToDashboard() {
+    this.router.navigateByUrl('/dashboard')
   }
-
 }

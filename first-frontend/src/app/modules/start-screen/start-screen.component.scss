@@ -1,11 +1,38 @@
 #app-start-screen {
-  background: rgb(252,3,0);
-  background: linear-gradient(90deg, rgba(252,3,0,0.75) 0%, rgba(237,133,0,0.75) 22%, rgba(198,174,5,0.75) 50%, rgba(9,106,176,0.75) 100%);
+  background: rgb(252, 3, 0);
+  background: linear-gradient(90deg, rgba(252, 3, 0, 0.75) 0%, rgba(237, 133, 0, 0.75) 22%, rgba(198, 174, 5, 0.75) 50%, rgba(9, 106, 176, 0.75) 100%);
   height: 100vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 img {
   width: 25vw;
   margin: 5vh;
+}
+
+button {
+  width: 25vw;
+  border-radius: 1vw;
+  font-size: 5vw;
+  color: #ffffff;
+  background-color: black;
+  appearance: none;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
