@@ -18,12 +18,13 @@ button {
   width: 25vw;
   border-radius: 1vw;
   font-size: 5vw;
-  color: #ffffff;
+  font-family: Impact, sans-serif;
+  color: white;
   background-color: black;
   appearance: none;
   border: 2px solid black;
   cursor: pointer;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 200ms cubic-bezier(.23, 1, 0.32, 1);
   user-select: none;
 }
 
