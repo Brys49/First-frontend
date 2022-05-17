@@ -1,12 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@use './variables' as v;
+@use 'variables' as v;
 
 * {
-  font-family: v.$mainfont;
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  height: 100vh;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Impact, "Helvetica Neue", sans-serif; }
