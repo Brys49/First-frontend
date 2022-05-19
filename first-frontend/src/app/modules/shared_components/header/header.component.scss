@@ -1,14 +1,10 @@
-@use '../../../../variables' as v;
-
 mat-toolbar {
   height: 10vh;
-  background-color: v.$maincolor;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 0.3vh solid black;
   min-width: 720px;
-  color: white;
 }
 
 img {
@@ -25,11 +21,6 @@ h1 {
   font-size: 4vh;
   font-weight: 900;
   cursor: pointer;
-}
-
-span {
-  display: inline-block;
-  color: v.$thirdcolor;
 }
 
 div {
@@ -49,36 +40,11 @@ div {
   justify-content: flex-end;
 }
 
-button {
-  height: 50%;
-  padding: 1%;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  background-color: transparent;
-  appearance: none;
-  border: 2px solid white;
-  border-radius: 10%;
-  cursor: pointer;
-  transition: all 200ms cubic-bezier(.23, 1, 0.32, 1);
-  user-select: none;
-
-  mat-icon {
-    font-size: 5vh;
-    height: 5vh;
-    width: 5vh;
-    color: white;
-  }
+mat-icon {
+  font-size: 5vh;
+  height: 5vh;
+  width: 5vh;
 }
 
-button:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
 
-button:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
