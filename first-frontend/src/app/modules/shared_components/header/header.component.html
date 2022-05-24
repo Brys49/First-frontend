@@ -1,16 +1,30 @@
 <mat-toolbar color="primary">
   <div id="menu-button-container">
-    <button mat-button>
+    <button mat-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="assets/logo/logo_text.svg" alt="FirSt Logo">
   </div>
-
   <h1 (click)="goToDashboard()">Ochotnicza Straż Pożarna w Ceradzu Dolnym</h1>
-
   <div id="notification-button-container">
     <button mat-button>
       <mat-icon>notification_important</mat-icon>
     </button>
   </div>
 </mat-toolbar>
+<mat-sidenav-container
+  (backdropClick)="sidenav.toggle()"
+  [hasBackdrop]="true">
+  <mat-sidenav
+    #sidenav
+    (keydown.escape)="sidenav.toggle()"
+    disableClose
+    [fixedInViewport]="true"
+    [fixedTopGap]="0"
+    [fixedBottomGap]="0">
+    <mat-nav-list>
+      #Space for links
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content></mat-sidenav-content>
+</mat-sidenav-container>

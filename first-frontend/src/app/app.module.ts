@@ -16,12 +16,12 @@ import { MaterialModule } from './material.module';
     DashboardComponent,
     HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
