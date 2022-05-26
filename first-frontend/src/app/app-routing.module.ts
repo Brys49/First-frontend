@@ -1,21 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StartScreenComponent } from './modules/start-screen/start-screen.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { StartScreenComponent } from './components/start-screen/start-screen.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/start',
-    pathMatch: 'full'
-  },
   {
     path: 'start',
     component: StartScreenComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home/dashboard',
+  },
+  {
+    path: '**',
+    redirectTo: 'home/dashboard',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+
+    ]
   },
 
 ];

@@ -11,6 +11,6 @@ export class StartScreenComponent {
   constructor(private router: Router) { }
 
   goToDashboard() {
-    this.router.navigateByUrl('/dashboard')
+    this.router.navigateByUrl('/home/dashboard')
   }
 }
