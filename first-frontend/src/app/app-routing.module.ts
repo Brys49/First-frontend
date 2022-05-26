@@ -1,33 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StartScreenComponent } from './components/start-screen/start-screen.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HomeComponent } from './components/home/home.component';
+
 
 const routes: Routes = [
   {
-    path: 'start',
-    component: StartScreenComponent
-  },
-  {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home/dashboard',
+    redirectTo: 'home',
   },
+  { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
   {
     path: '**',
-    redirectTo: 'home/dashboard',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-
-    ]
+    redirectTo: 'home',
   },
 
 ];
