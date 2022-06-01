@@ -3,9 +3,10 @@
     <button mat-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
     </button>
-    <img id="toolbar-logo" src="assets/logo/logo_text.svg" alt="FirSt Logo">
   </div>
-  <h1 (click)="goToDashboard()">Ochotnicza Straż Pożarna w Ceradzu Dolnym</h1>
+  <div id="header-container">
+    <h1 (click)="goToDashboard()">Ochotnicza Straż Pożarna w Ceradzu Dolnym</h1>
+  </div>
   <div id="notification-button-container">
     <button mat-button>
       <mat-icon>notification_important</mat-icon>
@@ -23,7 +24,10 @@
     [fixedTopGap]="0"
     [fixedBottomGap]="0">
 
-    <img id="sidenav-logo" src="assets/logo/logov2.svg" alt="FirSt Logo">
+    <div id="sidenav-logo-container">
+      <img id="sidenav-logo" src="assets/logo/logov2.svg" alt="FirSt Logo">
+    </div>
+
     <mat-nav-list>
       <mat-list-item (click)="sidenav.toggle()">
         <a routerLink="/home/members">Members
