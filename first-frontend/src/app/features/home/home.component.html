@@ -3,7 +3,7 @@
     <button mat-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
     </button>
-    <img src="assets/logo/logo_text.svg" alt="FirSt Logo">
+    <img id="toolbar-logo" src="assets/logo/logo_text.svg" alt="FirSt Logo">
   </div>
   <h1 (click)="goToDashboard()">Ochotnicza Straż Pożarna w Ceradzu Dolnym</h1>
   <div id="notification-button-container">
@@ -22,8 +22,39 @@
     [fixedInViewport]="true"
     [fixedTopGap]="0"
     [fixedBottomGap]="0">
+
+    <img id="sidenav-logo" src="assets/logo/logov2.svg" alt="FirSt Logo">
     <mat-nav-list>
-      #Space for links
+      <mat-list-item (click)="sidenav.toggle()">
+        <a routerLink="/home/members">Members
+          <mat-icon>group</mat-icon>
+        </a>
+
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.toggle()">
+        <a routerLink="/home/garage">Garage
+          <mat-icon>garage</mat-icon>
+        </a>
+
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.toggle()">
+        <a routerLink="/home/equipment">Equipment
+          <mat-icon>fire_extinguisher</mat-icon>
+        </a>
+
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.toggle()">
+        <a routerLink="/home/call-outs">Call Outs
+          <mat-icon>notifications_active</mat-icon>
+        </a>
+
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.toggle()">
+        <a routerLink="/home/docs">Docs
+          <mat-icon>text_snippet</mat-icon>
+        </a>
+
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
