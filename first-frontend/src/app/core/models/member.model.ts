@@ -35,7 +35,7 @@ export class Member {
   }
 }
 
-export enum BloodType {
+export const enum BloodType {
   O_PLUS = "0+",
   O_MINUS = "0-",
   A_PLUS = "A+",

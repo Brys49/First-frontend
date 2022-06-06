@@ -22,7 +22,7 @@ export class CallOut {
   }
 }
 
-export enum CallOutType {
+export const enum CallOutType {
   FIRE,
   LOCAL_THREAT,
   TRAINING,

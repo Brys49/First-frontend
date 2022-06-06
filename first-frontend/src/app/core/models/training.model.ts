@@ -11,7 +11,7 @@ export class Training {
   }
 }
 
-export enum TrainingType {
+export const enum TrainingType {
   BASIC,
   QUALIFIED_FIRST_AID,
   TECHNICAL_RESCUE,
