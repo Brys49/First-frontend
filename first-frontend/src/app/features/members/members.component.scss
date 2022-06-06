@@ -1,6 +1,6 @@
 main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(7, 1fr);
   grid-column-gap: 0.5rem;
   grid-row-gap: 0.5rem;
@@ -30,7 +30,7 @@ div#members-list-container {
 }
 
 div#button-container {
-  grid-area: 1 / 4 / 2 / 5;
+  grid-area: 1 / 4 / 2 / 6;
 
   button {
     width: 100%;
@@ -40,5 +40,5 @@ div#button-container {
 }
 
 div#summary-container {
-  grid-area: 2 / 4 / 8 / 5;
+  grid-area: 2 / 4 / 8 / 6;
 }

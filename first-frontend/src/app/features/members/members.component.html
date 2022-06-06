@@ -2,14 +2,13 @@
   <div id="members-list-container">
     <h2>Lista członków</h2>
     <mat-list>
-      <mat-list-item>
-        <p>AAA</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>BBB</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>CCC</p>
+      <mat-list-item *ngFor="let member of membersService.members">
+        <h3 matLine>{{member.firstname}} {{member.lastname}}</h3>
+        <mat-icon *ngIf="member.isDriver">directions_car</mat-icon>
+        <p matLine>{{member.email}}</p>
+        <button mat-icon-button>
+          <mat-icon>info</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
   </div>
@@ -17,18 +16,18 @@
     <button mat-raised-button color="primary">Dodaj członka</button>
   </div>
   <div id="summary-container">
-      <h2>Podsumowanie</h2>
-      <mat-list>
-        <mat-list-item>
-          <p>111</p>
-        </mat-list-item>
-        <mat-list-item>
-          <p>222</p>
-        </mat-list-item>
-        <mat-list-item>
-          <p>333</p>
-        </mat-list-item>
-      </mat-list>
+    <h2>Podsumowanie</h2>
+    <mat-list>
+      <mat-list-item>
+        <p>111</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>222</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>333</p>
+      </mat-list-item>
+    </mat-list>
   </div>
 </main>
 
