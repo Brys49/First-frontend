@@ -16,7 +16,7 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private membersService: MembersService,
-    private location: Location
+    private location: Location,
   ) {
   }
 

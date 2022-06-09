@@ -29,7 +29,8 @@ import { MemberDetailComponent } from '../members/member-detail/member-detail.co
   imports: [
     CommonModule,
     SharedModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+
   ]
 })
 export class HomeModule { }

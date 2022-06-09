@@ -1,7 +1,53 @@
-<div *ngIf="member">
-  <h2>{{member.firstname | uppercase}} {{member.lastname | uppercase}} Details</h2>
-  <p>
-    Birthdate: {{member.birthdate}}
-  </p>
-  <button type="button" (click)="goBack()">go back</button>
-</div>
+<main *ngIf="member">
+  <div id="back-button-container">
+    <button mat-raised-button color="primary">
+      <mat-icon>
+        arrow_back
+      </mat-icon>
+    </button>
+  </div>
+  <div id="name-container">
+    <h1>{{member.firstname}} {{member.lastname}}</h1>
+  </div>
+  <div id="details-container">
+      <h2>Details: </h2>
+      <mat-list>
+        <mat-list-item>
+          <h3>Joining date: {{member.joiningDate | date:'mediumDate'}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>PESEL: {{member.pesel}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>Address: {{member.address}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>City: {{member.city}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>Periodic examinations expiry date: {{member.periodicExaminationsExpiryDate | date:'mediumDate'}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>Driver: {{member.isDriver}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>Birthdate: {{member.birthdate | date:'mediumDate'}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>Blood type: {{member.bloodType}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>E-mail: {{member.email}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>Phone number: {{member.phoneNumber}}</h3>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  <div id="trainings-container">
+    <h2>Trainings:</h2>
+  </div>
+  <div id="call-outs-container">
+    <h2>Call Outs</h2>
+  </div>
+</main>
