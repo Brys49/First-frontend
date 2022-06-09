@@ -7,6 +7,7 @@ import { MembersComponent } from '../members/members.component';
 import { EquipmentComponent } from '../equipment/equipment.component';
 import { DocsComponent } from '../docs/docs.component';
 import { CallOutsComponent } from '../call-outs/call-outs.component';
+import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'docs',
         component: DocsComponent
+      },
+      {
+        path: 'detail/:id',
+        component: MemberDetailComponent
       },
     ]
   },

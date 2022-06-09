@@ -1,0 +1,7 @@
+<div *ngIf="member">
+  <h2>{{member.firstname | uppercase}} {{member.lastname | uppercase}} Details</h2>
+  <p>
+    Birthdate: {{member.birthdate}}
+  </p>
+  <button type="button" (click)="goBack()">go back</button>
+</div>
