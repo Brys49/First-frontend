@@ -1,6 +1,6 @@
 <main *ngIf="member">
   <div id="back-button-container">
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="goBack()">
       <mat-icon>
         arrow_back
       </mat-icon>
@@ -10,40 +10,30 @@
     <h1>{{member.firstname}} {{member.lastname}}</h1>
   </div>
   <div id="details-container">
-      <h2>Details: </h2>
-      <mat-list>
-        <mat-list-item>
-          <h3>Joining date: {{member.joiningDate | date:'mediumDate'}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>PESEL: {{member.pesel}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>Address: {{member.address}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>City: {{member.city}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>Periodic examinations expiry date: {{member.periodicExaminationsExpiryDate | date:'mediumDate'}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>Driver: {{member.isDriver}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>Birthdate: {{member.birthdate | date:'mediumDate'}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>Blood type: {{member.bloodType}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>E-mail: {{member.email}}</h3>
-        </mat-list-item>
-        <mat-list-item>
-          <h3>Phone number: {{member.phoneNumber}}</h3>
-        </mat-list-item>
-      </mat-list>
-    </div>
+    <h2>Details: </h2>
+    <mat-list>
+      <mat-list-item>
+        <p>Driver:
+        </p>
+        <p>
+          <mat-icon *ngIf="member.isDriver; else elseBlock">done</mat-icon>
+          <ng-template #elseBlock>
+            <mat-icon>close</mat-icon>
+          </ng-template>
+        </p>
+        <button mat-icon-button class="editButton">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngFor="let k of listContentKeys">
+        <p>{{k}}</p>
+        <p>{{listContent.get(k)}}</p>
+        <button mat-icon-button class="editButton">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
   <div id="trainings-container">
     <h2>Trainings:</h2>
   </div>

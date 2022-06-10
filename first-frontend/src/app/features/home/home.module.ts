@@ -30,7 +30,6 @@ import { MemberDetailComponent } from '../members/member-detail/member-detail.co
     CommonModule,
     SharedModule,
     HomeRoutingModule,
-
   ]
 })
 export class HomeModule { }

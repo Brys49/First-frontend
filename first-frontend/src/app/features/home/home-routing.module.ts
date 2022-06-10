@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { GarageComponent } from '../garage/garage.component';
-import { MembersComponent } from '../members/members.component';
-import { EquipmentComponent } from '../equipment/equipment.component';
-import { DocsComponent } from '../docs/docs.component';
-import { CallOutsComponent } from '../call-outs/call-outs.component';
-import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from './home.component';
+import {DashboardComponent} from '../dashboard/dashboard.component';
+import {GarageComponent} from '../garage/garage.component';
+import {MembersComponent} from '../members/members.component';
+import {EquipmentComponent} from '../equipment/equipment.component';
+import {DocsComponent} from '../docs/docs.component';
+import {CallOutsComponent} from '../call-outs/call-outs.component';
+import {MemberDetailComponent} from '../members/member-detail/member-detail.component';
 
 const routes: Routes = [
   {
@@ -44,7 +44,7 @@ const routes: Routes = [
       },
       {
         path: 'detail/:id',
-        component: MemberDetailComponent
+        component: MemberDetailComponent,
       },
     ]
   },
