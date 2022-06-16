@@ -1,6 +1,6 @@
 <main>
   <div id="members-list-container">
-    <h2>Lista członków</h2>
+    <h2>Members list</h2>
     <mat-list>
       <mat-list-item *ngFor="let member of members">
         <h3 matLine>{{member.firstname}} {{member.lastname}}</h3>
@@ -13,10 +13,10 @@
     </mat-list>
   </div>
   <div id="button-container">
-    <button mat-raised-button color="primary">Dodaj członka</button>
+    <button mat-raised-button color="primary" (click)="openDialog()">Add member</button>
   </div>
   <div id="summary-container">
-    <h2>Podsumowanie</h2>
+    <h2>Summary</h2>
     <mat-list>
       <mat-list-item>
         <p>111</p>

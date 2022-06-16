@@ -19,4 +19,8 @@ export class MembersService {
     const member = MEMBERS.find(m => m.id === id)!;
     return of(member);
   }
+
+  addMember(data: any) {
+    console.log(data)
+  }
 }
