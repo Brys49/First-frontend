@@ -20,7 +20,7 @@ export class AddMemberDialogComponent implements OnInit {
       address: ['', Validators.required],
       city: ['', Validators.required],
       periodicExaminationsExpiryDate: ['', Validators.required],
-      isDriver: [false],
+      isDriver: ['false', Validators.required],
       birthdate: ['', Validators.required],
       bloodType: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,8 +33,12 @@ export class AddMemberDialogComponent implements OnInit {
   }
 
 
-  public onSubmit(value: any) {
-    this.dialogRef.close(value);
+  public save() {
+    this.dialogRef.close(this.formGroup.value);
+  }
+
+  public close() {
+    this.dialogRef.close();
   }
 
 }

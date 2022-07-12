@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from '../../core/services/members.service';
 import { Member } from '../../core/models/member.model';
-import { Subscription } from 'rxjs';
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -24,7 +23,9 @@ export class MembersComponent implements OnInit {
     const dialogRef = this.dialog.open(AddMemberDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
-      panelClass: 'add-member-dialog-panel'
+      panelClass: 'add-member-dialog-panel',
+      autoFocus: true,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(

@@ -7,9 +7,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -24,7 +25,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+
   ],
   exports: [
     MatToolbarModule,
@@ -37,7 +41,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+
   ]
 })
 export class MaterialModule {
