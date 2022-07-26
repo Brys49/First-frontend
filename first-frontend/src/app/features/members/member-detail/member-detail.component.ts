@@ -43,7 +43,6 @@ export class MemberDetailComponent implements OnInit {
     this.listContent.set("City: ", this.member?.city)
     this.listContent.set("Periodic examinations expiry date: ", this.member?.periodicExaminationsExpiryDate.toLocaleDateString())
     this.listContent.set("Birthdate: ", this.member?.birthdate.toLocaleDateString())
-    this.listContent.set("Blood type: ", this.member?.bloodType)
     this.listContent.set("E-mail: ", this.member?.email)
     this.listContent.set("Phone number: ", this.member?.phoneNumber)
     this.listContentKeys = Array.from(this.listContent.keys());

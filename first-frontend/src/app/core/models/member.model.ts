@@ -11,13 +11,12 @@ export class Member {
   periodicExaminationsExpiryDate: Date;
   isDriver: boolean;
   birthdate: Date;
-  bloodType: BloodType;
   email: string;
   phoneNumber: string;
   trainings: Training[];
 
 
-  constructor(id: number, firstname: string, lastname: string, joiningDate: Date, pesel: string, address: string, city: string, periodicExaminationsExpiryDate: Date, isDriver: boolean, birthdate: Date, bloodType: BloodType, email: string, phoneNumber: string, trainings: Training[]) {
+  constructor(id: number, firstname: string, lastname: string, joiningDate: Date, pesel: string, address: string, city: string, periodicExaminationsExpiryDate: Date, isDriver: boolean, birthdate: Date, email: string, phoneNumber: string, trainings: Training[]) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -28,20 +27,9 @@ export class Member {
     this.periodicExaminationsExpiryDate = periodicExaminationsExpiryDate;
     this.isDriver = isDriver;
     this.birthdate = birthdate;
-    this.bloodType = bloodType;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.trainings = trainings;
   }
 }
 
-export const enum BloodType {
-  O_PLUS = "0+",
-  O_MINUS = "0-",
-  A_PLUS = "A+",
-  A_MINUS = "A-",
-  B_PLUS = "B+",
-  B_MINUS = "B-",
-  AB_PLUS = "AB+",
-  AB_MINUS = "AB-",
-}

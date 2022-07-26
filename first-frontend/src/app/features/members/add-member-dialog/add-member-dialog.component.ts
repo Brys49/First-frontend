@@ -20,9 +20,8 @@ export class AddMemberDialogComponent implements OnInit {
       address: ['', Validators.required],
       city: ['', Validators.required],
       periodicExaminationsExpiryDate: ['', Validators.required],
-      isDriver: ['false', Validators.required],
+      isDriver: ['', Validators.required],
       birthdate: ['', Validators.required],
-      bloodType: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
 

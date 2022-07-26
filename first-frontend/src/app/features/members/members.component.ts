@@ -29,7 +29,7 @@ export class MembersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      data => this.membersService.addMember(data)
     );
   }
 
