@@ -21,11 +21,13 @@ div#call-outs-container {
   height: 100%;
   border: 0.2rem solid black;
   border-radius: 1rem;
+  overflow: auto;
 }
 
 h2 {
   text-align: center;
   margin: 0;
+  border-bottom: 0.2rem solid black;
 }
 
 div#name-container {
@@ -35,7 +37,6 @@ div#name-container {
 
 div#details-container {
   grid-area: 2 / 1 / 8 / 3;
-  overflow: auto;
 }
 
 div#trainings-container {
@@ -46,6 +47,11 @@ div#call-outs-container {
   grid-area: 4 / 3 / 8 / 5;
 }
 
+div#add-training-button-container {
+  text-align: center;
+  margin: 0.1rem 0;
+}
+
 p {
   width: 50%;
   display: flex;
@@ -53,13 +59,14 @@ p {
   margin: 0;
 }
 
+mat-list {
+  padding: 0;
+}
+
 mat-list-item {
   display: flex;
   justify-content: space-between;
-}
-
-mat-list-item:nth-of-type(2n - 1) {
-  background-color: #d3d3d3;
+  border-bottom: 0.1rem solid black;
 }
 
 .editButton {

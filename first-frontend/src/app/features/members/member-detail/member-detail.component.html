@@ -43,6 +43,16 @@
   </div>
   <div id="trainings-container">
     <h2>Trainings:</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let t of trainings">
+        {{t.type}}
+      </mat-list-item>
+    </mat-list>
+    <div id="add-training-button-container">
+      <button mat-raised-button color="primary" (click)="openDialog(this.member.id)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
   <div id="call-outs-container">
     <h2>Call Outs</h2>

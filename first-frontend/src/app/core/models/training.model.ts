@@ -11,20 +11,18 @@ export class Training {
   }
 }
 
-export const enum TrainingType {
-  BASIC,
-  QUALIFIED_FIRST_AID,
-  TECHNICAL_RESCUE,
-  ANTI_FLOOD_AND_WATER_RESCUE,
-  MAINTENANCE_DRIVER_RESCUE_EQUIPMENT,
-  LEADERS,
-  HEADERS,
-  COMMUNE_COMMANDER,
-  LIFT,
-  CHEM_ECO_RESCUE,
-  SEARCH_AND_RESCUE,
-  HIGH_ALTITUDE_RESCUE,
-  LADDER,
-  HELMSMAN,
-  SAWMAN
+export enum TrainingType {
+  BASIC= "Basic",
+  QUALIFIED_FIRST_AID = "Qualified first aid",
+  TECHNICAL_RESCUE = "Technical rescue",
+  WATER_RESCUE = "Water rescue",
+  DRIVER_RESCUE_EQUIPMENT_KEEPER = "Driver rescue equipment keeper",
+  LEADER = "Leader",
+  HEADER = "Header",
+  COMMUNE_COMMANDER = "Commune commander",
+  LIFT = "Lift",
+  CHEM_ECO_RESCUE = "Chem and eco rescue",
+  SEARCH_AND_RESCUE = "Search and rescue",
+  HIGH_ALTITUDE_RESCUE = "High altitude rescue",
+  LADDER = "Ladder"
 }

@@ -13,6 +13,7 @@ import { DocsComponent } from '../docs/docs.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
 import { AddMemberDialogComponent } from '../members/add-member-dialog/add-member-dialog.component';
+import { AddTrainingDialogComponent } from '../members/add-training-dialog/add-training-dialog.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AddMemberDialogComponent } from '../members/add-member-dialog/add-membe
     CallOutsComponent,
     DocsComponent,
     MemberDetailComponent,
-    AddMemberDialogComponent
+    AddMemberDialogComponent,
+    AddTrainingDialogComponent
   ],
   imports: [
     CommonModule,

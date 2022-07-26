@@ -1,0 +1,44 @@
+<div id="add-training-dialog">
+  <h1 mat-dialog-title>Add training</h1>
+
+  <mat-dialog-content id="details-container" [formGroup]="formGroup">
+    <div id="inputs-container">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Training date</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="trainingDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Expiration date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="expirationDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of trainingTypes" value="{{type}}">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true" (click)="close()">
+      Close
+    </button>
+    <button mat-raised-button [mat-dialog-close]="true" type="submit"
+            [disabled]="!formGroup.valid" (click)="save()">
+      Add training
+    </button>
+  </mat-dialog-actions>
+</div>

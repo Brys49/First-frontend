@@ -12,14 +12,14 @@ import { MatDialog } from '@angular/material/dialog';
 export class MembersComponent implements OnInit {
   public members: Member[] = [];
 
-  constructor(public membersService: MembersService, public dialog: MatDialog,) {
+  constructor(public membersService: MembersService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.getMembers();
   }
 
-  openDialog(): void {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(AddMemberDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',

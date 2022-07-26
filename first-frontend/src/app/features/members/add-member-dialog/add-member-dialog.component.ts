@@ -29,7 +29,7 @@ export class AddMemberDialogComponent implements OnInit {
       isDriver: ['', Validators.required],
       birthdate: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
     })
   }
 
@@ -37,7 +37,7 @@ export class AddMemberDialogComponent implements OnInit {
   }
 
 
-  public save() {
+  public save(): void {
     const member = new Member(
       0,
       this.formGroup.getRawValue().firstname,
@@ -57,7 +57,7 @@ export class AddMemberDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public close() {
+  public close(): void {
     this.dialogRef.close();
   }
 
