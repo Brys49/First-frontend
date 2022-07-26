@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {MembersService} from '../../../core/services/members.service';
-import {Member} from '../../../core/models/member.model';
+import { MembersService } from '../../../core/services/members.service';
+import { Member } from '../../../core/models/member.model';
 
 @Component({
   selector: 'app-member-detail',
@@ -17,9 +16,9 @@ export class MemberDetailComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private membersService: MembersService,
-    private location: Location,
   ) {
   }
 
@@ -33,6 +32,8 @@ export class MemberDetailComponent implements OnInit {
 
     if (this.member) {
       this.generateContent();
+    } else {
+      this.goBack();
     }
   }
 
@@ -49,6 +50,11 @@ export class MemberDetailComponent implements OnInit {
   }
 
   public goBack(): void {
-    this.location.back();
+    this.router.navigateByUrl('/home/members');
+  }
+
+  public deleteMember(id: number): void {
+    this.membersService.deleteMember(id);
+    this.goBack();
   }
 }

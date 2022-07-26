@@ -23,7 +23,15 @@ export class MembersService {
     return of(member);
   }
 
-  addMember(member: Member) {
+  addMember(member: Member): void {
     this.members.push(member);
+  }
+
+  deleteMember(id: number): void {
+    const index = this.members.map(x => {
+      return x.id;
+    }).indexOf(id);
+
+    this.members.splice(index, 1);
   }
 }

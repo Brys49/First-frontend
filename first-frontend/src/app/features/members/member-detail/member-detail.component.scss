@@ -11,6 +11,10 @@ main {
   justify-content: center;
 }
 
+div#delete-button-container {
+  text-align: end;
+}
+
 div#details-container,
 div#trainings-container,
 div#call-outs-container {

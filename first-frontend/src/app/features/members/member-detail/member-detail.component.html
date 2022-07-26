@@ -9,6 +9,13 @@
   <div id="name-container">
     <h1>{{member.firstname}} {{member.lastname}}</h1>
   </div>
+  <div id="delete-button-container">
+    <button mat-raised-button color="primary" (click)="deleteMember(member.id)">
+      <mat-icon>
+        delete
+      </mat-icon>
+    </button>
+  </div>
   <div id="details-container">
     <h2>Details: </h2>
     <mat-list>
