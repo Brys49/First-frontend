@@ -7,20 +7,23 @@ import { MEMBERS } from './mock-members';
   providedIn: 'root'
 })
 export class MembersService {
+  members: Member[] = [];
 
   constructor() {
+    this.members.push(MEMBERS[0]);
+    this.members.push(MEMBERS[1]);
   }
 
   getMembers(): Observable<Member[]> {
-    return of(MEMBERS);
+    return of(this.members);
   }
 
   getMember(id: number): Observable<Member> {
-    const member = MEMBERS.find(m => m.id === id)!;
+    const member = this.members.find(m => m.id === id)!;
     return of(member);
   }
 
-  addMember(data: any) {
-    console.log(data)
+  addMember(member: Member) {
+    this.members.push(member);
   }
 }

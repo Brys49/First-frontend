@@ -31,5 +31,7 @@ export class Member {
     this.phoneNumber = phoneNumber;
     this.trainings = trainings;
   }
+
+
 }
 
