@@ -23,7 +23,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Type</mat-label>
         <mat-select formControlName="type">
-          <mat-option *ngFor="let type of trainingTypes" value="{{type}}">
+          <mat-option *ngFor="let type of remainingTrainingTypes" value="{{type}}">
             {{type}}
           </mat-option>
         </mat-select>

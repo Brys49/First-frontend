@@ -12,13 +12,16 @@ import { MembersService } from '../../../core/services/members.service';
 export class AddTrainingDialogComponent implements OnInit {
   formGroup: FormGroup;
   maxDate: Date;
-  trainingTypes = Object.values(TrainingType);
+  memberId: number;
+  allTrainingTypes = Object.values(TrainingType);
+  remainingTrainingTypes: TrainingType[] = [];
 
   constructor(public dialogRef: MatDialogRef<AddTrainingDialogComponent>,
               private fb: FormBuilder,
               private membersService: MembersService,
               @Inject(MAT_DIALOG_DATA) private data: number) {
     this.maxDate = new Date();
+    this.memberId = Number(Object.values(this.data));
 
     this.formGroup = this.fb.group({
       trainingDate: ['', Validators.required],
@@ -28,6 +31,7 @@ export class AddTrainingDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadRemainingTrainingTypes();
   }
 
   public save(): void {
@@ -37,11 +41,24 @@ export class AddTrainingDialogComponent implements OnInit {
       this.formGroup.getRawValue().type,
     );
 
-    this.membersService.addTraining(Number(Object.values(this.data)), training);
+    this.membersService.addTraining(this.memberId, training);
     this.dialogRef.close();
   }
 
   public close(): void {
     this.dialogRef.close();
   }
+
+  private loadRemainingTrainingTypes(): void {
+    let memberTrainingTypes: TrainingType[] = [];
+    this.membersService.getMember(this.memberId).subscribe(
+      member => {
+        for (let training of member.trainings) {
+          memberTrainingTypes.push(training.type)
+        }
+      });
+
+    this.remainingTrainingTypes = this.allTrainingTypes.filter((type) => !memberTrainingTypes.includes(type));
+  }
+
 }

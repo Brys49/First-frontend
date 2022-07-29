@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Member } from '../models/member.model';
 import { Observable, of } from 'rxjs';
 import { MEMBERS } from './mock-members';
-import { Training } from '../models/training.model';
+import { Training, TrainingType } from '../models/training.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +39,9 @@ export class MembersService {
   addTraining(id: number, training: Training): void {
     this.getMember(id).subscribe(member => member.trainings.push(training));
   }
+
+  deleteTraining(id: number, type: TrainingType): void {
+    this.getMember(id).subscribe(
+      member => member.trainings.splice(member.trainings.findIndex(i => i.type === type), 1)
+    )};
 }

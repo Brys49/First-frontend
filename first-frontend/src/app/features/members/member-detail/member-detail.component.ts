@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MembersService } from '../../../core/services/members.service';
 import { Member } from '../../../core/models/member.model';
-import { Training } from '../../../core/models/training.model';
-import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
+import { Training, TrainingType } from '../../../core/models/training.model';
 import { AddTrainingDialogComponent } from '../add-training-dialog/add-training-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -15,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MemberDetailComponent implements OnInit {
   public member: Member | undefined;
+  private memberId: number = 0;
   public trainings: Training[] | undefined = [];
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];
@@ -29,12 +29,12 @@ export class MemberDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.memberId = Number(this.route.snapshot.paramMap.get('id'));
     this.getMember();
   }
 
   private getMember(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.membersService.getMember(id).subscribe(member => this.member = member);
+    this.membersService.getMember(this.memberId).subscribe(member => this.member = member);
 
     if (this.member) {
       this.generateContent();
@@ -81,5 +81,9 @@ export class MemberDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       x => console.log("Dialog closed")
     );
+  }
+
+  public deleteTraining(type: TrainingType): void {
+    this.membersService.deleteTraining(this.memberId, type);
   }
 }
