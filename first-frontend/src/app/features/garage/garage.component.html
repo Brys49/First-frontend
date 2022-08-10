@@ -1,1 +1,12 @@
-<p>garage works!</p>
+<main>
+  <div id="fire-trucks-container">
+    <div class="fire-truck" *ngFor="let ft of fireTrucks">
+        <h2>
+          {{ft.name}}
+        </h2>
+    </div>
+  </div>
+    <div id="button-container">
+      <button mat-raised-button color="primary" (click)="openDialog()">Add fire truck</button>
+    </div>
+</main>

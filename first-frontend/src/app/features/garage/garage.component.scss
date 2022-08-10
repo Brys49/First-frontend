@@ -1,0 +1,29 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+div#fire-trucks-container {
+  grid-area: 1 / 1 / 8 / 6;
+  display: flex;
+  max-height: 100%;
+  overflow: auto;
+}
+
+div.fire-truck {
+  margin: 1rem;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+

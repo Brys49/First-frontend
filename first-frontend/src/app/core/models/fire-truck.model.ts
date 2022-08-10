@@ -1,4 +1,5 @@
 export interface FireTruck {
+  id: number;
   name: string;
   price: number;
   vin: string;
