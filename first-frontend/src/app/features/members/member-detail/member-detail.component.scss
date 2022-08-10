@@ -11,9 +11,6 @@ main {
   justify-content: center;
 }
 
-div#delete-button-container {
-  text-align: end;
-}
 
 div#details-container,
 div#trainings-container,
@@ -33,6 +30,13 @@ h2 {
 div#name-container {
   grid-area: 1 / 2 / 2 / 4;
   text-align: center;
+}
+
+div#buttons-container {
+  grid-area: 1 / 4 / 2 / 5;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
 }
 
 div#details-container {
@@ -69,10 +73,26 @@ mat-list-item {
   border-bottom: 0.1rem solid black;
 }
 
-.editButton {
+.deleteButton {
   visibility: hidden;
 }
 
-mat-list-item:hover .editButton, .editButton:hover {
+mat-list-item:hover .deleteButton, .deleteButton:hover {
   visibility: visible;
 }
+
+mat-form-field {
+  display: block;
+  width: 100%;
+}
+
+div#edit-details-form {
+  margin: 1rem;
+  text-align: center;
+
+  button {
+    margin: 0 0.5rem;
+  }
+}
+
+

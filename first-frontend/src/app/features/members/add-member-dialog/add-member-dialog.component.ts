@@ -10,8 +10,8 @@ import { MembersService } from '../../../core/services/members.service';
   styleUrls: ['./add-member-dialog.component.scss']
 })
 export class AddMemberDialogComponent implements OnInit {
-  formGroup: FormGroup;
-  maxDate: Date;
+  public formGroup: FormGroup;
+  public maxDate: Date;
 
   constructor(public dialogRef: MatDialogRef<AddMemberDialogComponent>,
               private fb: FormBuilder,
@@ -38,21 +38,22 @@ export class AddMemberDialogComponent implements OnInit {
 
 
   public save(): void {
-    const member = new Member(
-      0,
-      this.formGroup.getRawValue().firstname,
-      this.formGroup.getRawValue().lastname,
-      this.formGroup.getRawValue().joiningDate,
-      this.formGroup.getRawValue().pesel,
-      this.formGroup.getRawValue().address,
-      this.formGroup.getRawValue().city,
-      this.formGroup.getRawValue().periodicExaminationsExpiryDate,
-      this.formGroup.getRawValue().isDriver,
-      this.formGroup.getRawValue().birthdate,
-      this.formGroup.getRawValue().email,
-      this.formGroup.getRawValue().phoneNumber,
-      []
-    );
+    const member: Member = {
+      id: 0,
+      firstname: this.formGroup.getRawValue().firstname,
+      lastname: this.formGroup.getRawValue().lastname,
+      isDriver: this.formGroup.getRawValue().isDriver,
+      joiningDate: this.formGroup.getRawValue().joiningDate,
+      pesel: this.formGroup.getRawValue().pesel,
+      address: this.formGroup.getRawValue().address,
+      city: this.formGroup.getRawValue().city,
+      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
+      birthdate: this.formGroup.getRawValue().birthdate,
+      email: this.formGroup.getRawValue().email,
+      phoneNumber: this.formGroup.getRawValue().phoneNumber,
+      trainings: []
+    };
+
     this.membersService.addMember(member);
     this.dialogRef.close();
   }

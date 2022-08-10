@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MembersService } from '../../../core/services/members.service';
 import { Member } from '../../../core/models/member.model';
-import { Training, TrainingType } from '../../../core/models/training.model';
+import { TrainingType } from '../../../core/models/training.model';
 import { AddTrainingDialogComponent } from '../add-training-dialog/add-training-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-member-detail',
@@ -13,19 +14,24 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./member-detail.component.scss']
 })
 export class MemberDetailComponent implements OnInit {
-  public member: Member | undefined;
   private memberId: number = 0;
-  public trainings: Training[] | undefined = [];
+  public member!: Member;
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];
+  public editMode: boolean = false;
+  public maxDate: Date;
+  public formGroup!: FormGroup;
 
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private membersService: MembersService,
+    private fb: FormBuilder,
     public dialog: MatDialog
   ) {
+    this.maxDate = new Date();
+
   }
 
   ngOnInit(): void {
@@ -44,17 +50,15 @@ export class MemberDetailComponent implements OnInit {
   }
 
   private generateContent(): void {
-    this.listContent.set("Joining date: ", this.member?.joiningDate.toLocaleDateString())
-    this.listContent.set("PESEL: ", this.member?.pesel)
-    this.listContent.set("Address: ", this.member?.address)
-    this.listContent.set("City: ", this.member?.city)
-    this.listContent.set("Periodic examinations expiry date: ", this.member?.periodicExaminationsExpiryDate.toLocaleDateString())
-    this.listContent.set("Birthdate: ", this.member?.birthdate.toLocaleDateString())
-    this.listContent.set("E-mail: ", this.member?.email)
-    this.listContent.set("Phone number: ", this.member?.phoneNumber)
+    this.listContent.set("Joining date: ", this.member.joiningDate.toLocaleDateString())
+    this.listContent.set("PESEL: ", this.member.pesel)
+    this.listContent.set("Address: ", this.member.address)
+    this.listContent.set("City: ", this.member.city)
+    this.listContent.set("Periodic examinations expiry date: ", this.member.periodicExaminationsExpiryDate.toLocaleDateString())
+    this.listContent.set("Birthdate: ", this.member.birthdate.toLocaleDateString())
+    this.listContent.set("E-mail: ", this.member.email)
+    this.listContent.set("Phone number: ", this.member.phoneNumber)
     this.listContentKeys = Array.from(this.listContent.keys());
-
-    this.trainings = this.member?.trainings;
   }
 
   public goBack(): void {
@@ -78,12 +82,53 @@ export class MemberDetailComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(
-      x => console.log("Dialog closed")
-    );
+    dialogRef.afterClosed().subscribe();
   }
 
   public deleteTraining(type: TrainingType): void {
     this.membersService.deleteTraining(this.memberId, type);
+  }
+
+  public edit(): void {
+    this.formGroup = this.fb.group({
+      isDriver: [this.member.isDriver, Validators.required],
+      joiningDate: [this.member.joiningDate, Validators.required],
+      pesel: [this.member.pesel, [Validators.required, Validators.pattern('^\\d{11}$')]],
+      address: [this.member.address, [Validators.required, Validators.maxLength(240)]],
+      city: [this.member.city, [Validators.required, Validators.maxLength(120)]],
+      periodicExaminationsExpiryDate: [this.member.periodicExaminationsExpiryDate, Validators.required],
+      birthdate: [this.member.birthdate, Validators.required],
+      email: [this.member.email, [Validators.required, Validators.email]],
+      phoneNumber: [this.member.phoneNumber, [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
+    })
+
+    this.editMode = !this.editMode;
+  }
+
+  public save(): void {
+    this.editMode = false;
+    const updatedMember: Member = {
+      id: this.memberId,
+      firstname: this.member.firstname,
+      lastname: this.member.lastname,
+      isDriver: this.formGroup.getRawValue().isDriver,
+      joiningDate: this.formGroup.getRawValue().joiningDate,
+      pesel: this.formGroup.getRawValue().pesel,
+      address: this.formGroup.getRawValue().address,
+      city: this.formGroup.getRawValue().city,
+      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
+      birthdate: this.formGroup.getRawValue().birthdate,
+      email: this.formGroup.getRawValue().email,
+      phoneNumber: this.formGroup.getRawValue().phoneNumber,
+      trainings: this.member.trainings
+    };
+
+    this.membersService.deleteMember(this.memberId);
+    this.membersService.addMember(updatedMember);
+    this.ngOnInit();
+  }
+
+  public close(): void {
+    this.editMode = false;
   }
 }

@@ -35,11 +35,11 @@ export class AddTrainingDialogComponent implements OnInit {
   }
 
   public save(): void {
-    const training = new Training(
-      this.formGroup.getRawValue().trainingDate,
-      this.formGroup.getRawValue().expirationDate,
-      this.formGroup.getRawValue().type,
-    );
+    const training: Training = {
+      trainingDate: this.formGroup.getRawValue().trainingDate,
+      expirationDate: this.formGroup.getRawValue().expirationDate,
+      type: this.formGroup.getRawValue().type
+    };
 
     this.membersService.addTraining(this.memberId, training);
     this.dialogRef.close();
