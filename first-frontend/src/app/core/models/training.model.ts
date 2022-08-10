@@ -1,14 +1,8 @@
-export class Training {
+export interface Training {
   trainingDate: Date;
   expirationDate: Date;
   type: TrainingType;
 
-
-  constructor(trainingDate: Date, expirationDate: Date, type: TrainingType) {
-    this.trainingDate = trainingDate;
-    this.expirationDate = expirationDate;
-    this.type = type;
-  }
 }
 
 export enum TrainingType {
