@@ -1,0 +1,98 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+
+div#details-container,
+div#trainings-container,
+div#call-outs-container {
+  height: 100%;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+  overflow: auto;
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  border-bottom: 0.2rem solid black;
+}
+
+div#name-container {
+  grid-area: 1 / 2 / 2 / 4;
+  text-align: center;
+}
+
+div#buttons-container {
+  grid-area: 1 / 4 / 2 / 5;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+div#details-container {
+  grid-area: 2 / 1 / 8 / 3;
+}
+
+div#trainings-container {
+  grid-area: 2 / 3 / 4 / 5;
+}
+
+div#call-outs-container {
+  grid-area: 4 / 3 / 8 / 5;
+}
+
+div#add-training-button-container {
+  text-align: center;
+  margin: 0.1rem 0;
+}
+
+p {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+mat-list {
+  padding: 0;
+}
+
+mat-list-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid black;
+}
+
+.deleteButton {
+  visibility: hidden;
+}
+
+mat-list-item:hover .deleteButton, .deleteButton:hover {
+  visibility: visible;
+}
+
+mat-form-field {
+  display: block;
+  width: 100%;
+}
+
+div#edit-details-form {
+  margin: 1rem;
+  text-align: center;
+
+  button {
+    margin: 0 0.5rem;
+  }
+}
+
+

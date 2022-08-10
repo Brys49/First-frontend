@@ -30,7 +30,7 @@ $first-frontend-theme: mat.define-light-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($first-frontend-theme);
+@include mat.all-component-colors($first-frontend-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -49,3 +49,25 @@ body {
   min-width: 600px;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #9b2423 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #9b2423;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}

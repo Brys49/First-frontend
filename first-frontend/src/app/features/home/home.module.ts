@@ -11,6 +11,9 @@ import { CallOutsComponent } from '../call-outs/call-outs.component';
 import { EquipmentComponent } from '../equipment/equipment.component';
 import { DocsComponent } from '../docs/docs.component';
 import { SharedModule } from '../../shared/shared.module';
+import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
+import { AddMemberDialogComponent } from '../members/add-member-dialog/add-member-dialog.component';
+import { AddTrainingDialogComponent } from '../members/add-training-dialog/add-training-dialog.component';
 
 
 @NgModule({
@@ -22,12 +25,15 @@ import { SharedModule } from '../../shared/shared.module';
     GarageComponent,
     EquipmentComponent,
     CallOutsComponent,
-    DocsComponent
+    DocsComponent,
+    MemberDetailComponent,
+    AddMemberDialogComponent,
+    AddTrainingDialogComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ]
 })
 export class HomeModule { }
