@@ -12,6 +12,7 @@ export class FireTrucksService {
   constructor() {
     this.fireTrucks.push(FIRE_TRUCKS[0]);
     this.fireTrucks.push(FIRE_TRUCKS[1]);
+    this.fireTrucks.push(FIRE_TRUCKS[2]);
   }
 
   getFireTrucks(): Observable<FireTruck[]> {

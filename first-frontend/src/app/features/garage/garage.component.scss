@@ -4,8 +4,6 @@ main {
   grid-template-rows: repeat(7, 1fr);
   grid-column-gap: 0.5rem;
   grid-row-gap: 0.5rem;
-  width: 100%;
-  height: 100%;
   padding: 1rem;
   align-items: center;
   justify-content: center;
@@ -14,16 +12,39 @@ main {
 div#fire-trucks-container {
   grid-area: 1 / 1 / 8 / 6;
   display: flex;
-  max-height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
   overflow: auto;
 }
 
 div.fire-truck {
-  margin: 1rem;
   border: 0.2rem solid black;
   border-radius: 1rem;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 45%;
+  min-width: 30%;
 }
+
+div.fire-truck-img {
+
+  img {
+    max-width: 100%;
+    padding: 1rem;
+    border-radius: 2rem;
+  }
+}
+
+div#button-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 2rem;
+}
+
+
 
 
