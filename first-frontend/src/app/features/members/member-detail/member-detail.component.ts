@@ -6,7 +6,7 @@ import { Member } from '../../../core/models/member.model';
 import { TrainingType } from '../../../core/models/training.model';
 import { AddTrainingDialogComponent } from '../add-training-dialog/add-training-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-member-detail',
@@ -27,7 +27,7 @@ export class MemberDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private membersService: MembersService,
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     public dialog: MatDialog
   ) {
     this.maxDate = new Date();

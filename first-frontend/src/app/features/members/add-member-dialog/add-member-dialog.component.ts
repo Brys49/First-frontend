@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Member } from '../../../core/models/member.model';
 import { MembersService } from '../../../core/services/members.service';
 
@@ -14,7 +14,7 @@ export class AddMemberDialogComponent implements OnInit {
   public maxDate: Date;
 
   constructor(public dialogRef: MatDialogRef<AddMemberDialogComponent>,
-              private fb: FormBuilder,
+              private fb: NonNullableFormBuilder,
               private membersService: MembersService) {
     this.maxDate = new Date();
 
