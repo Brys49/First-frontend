@@ -12,6 +12,7 @@ import {MemberDetailComponent} from '../members/member-detail/member-detail.comp
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     redirectTo: 'dashboard'
   },
   {
