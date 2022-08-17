@@ -6,7 +6,7 @@
         <h3 matLine>{{member.firstname}} {{member.lastname}}</h3>
         <mat-icon *ngIf="member.isDriver">directions_car</mat-icon>
         <p matLine>{{member.email}}</p>
-        <button mat-icon-button routerLink="/home/detail/{{member.id}}">
+        <button mat-icon-button routerLink="/home/members/detail/{{member.id}}">
           <mat-icon>info</mat-icon>
         </button>
       </mat-list-item>

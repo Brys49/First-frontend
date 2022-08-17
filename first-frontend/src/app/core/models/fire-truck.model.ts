@@ -10,5 +10,5 @@ export interface FireTruck {
   numberOfSeats: number;
   mileage: number;
   parameters: Map<string, string>;
-
+  equipment: number[];
 }

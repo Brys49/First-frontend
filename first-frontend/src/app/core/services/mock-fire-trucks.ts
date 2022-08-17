@@ -12,7 +12,8 @@ export const FIRE_TRUCKS: FireTruck[] = [
     horsepower: 160,
     numberOfSeats: 6,
     mileage: 25978,
-    parameters: new Map<string, string>()
+    parameters: new Map<string, string>(),
+    equipment: []
 
   },
   {
@@ -26,7 +27,8 @@ export const FIRE_TRUCKS: FireTruck[] = [
     horsepower: 240,
     numberOfSeats: 6,
     mileage: 15663,
-    parameters: new Map<string, string>()
+    parameters: new Map<string, string>(),
+    equipment: []
 
   },
   {
@@ -40,7 +42,8 @@ export const FIRE_TRUCKS: FireTruck[] = [
     horsepower: 190,
     numberOfSeats: 3,
     mileage: 8700,
-    parameters: new Map<string, string>()
+    parameters: new Map<string, string>(),
+    equipment: []
 
   }
 ]

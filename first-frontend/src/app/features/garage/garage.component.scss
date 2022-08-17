@@ -45,6 +45,26 @@ div#button-container {
   margin: 2rem;
 }
 
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    mat-icon {
+      transform: translateX(0.2rem);
+    }
+  }
+}
+
 
 
 

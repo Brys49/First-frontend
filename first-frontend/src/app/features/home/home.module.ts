@@ -14,6 +14,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
 import { AddMemberDialogComponent } from '../members/add-member-dialog/add-member-dialog.component';
 import { AddTrainingDialogComponent } from '../members/add-training-dialog/add-training-dialog.component';
+import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck-detail.component';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { AddTrainingDialogComponent } from '../members/add-training-dialog/add-t
     DocsComponent,
     MemberDetailComponent,
     AddMemberDialogComponent,
-    AddTrainingDialogComponent
+    AddTrainingDialogComponent,
+    FireTruckDetailComponent,
+
   ],
   imports: [
     CommonModule,
