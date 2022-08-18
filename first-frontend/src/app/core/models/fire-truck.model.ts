@@ -1,6 +1,7 @@
 export interface FireTruck {
   id: number;
   name: string;
+  image: File | null,
   price: number;
   vin: string;
   productionYear: number;
@@ -11,4 +12,5 @@ export interface FireTruck {
   mileage: number;
   parameters: Map<string, string>;
   equipment: number[];
+  imgUrl: string;
 }

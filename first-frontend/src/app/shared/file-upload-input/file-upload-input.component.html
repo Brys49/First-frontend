@@ -1,0 +1,7 @@
+<div>
+  <button type="button" mat-raised-button (click)="fileInput.click()">
+    <span>Selected image: </span>
+    <span>{{file ? file.name : 'none' }}</span>
+  </button>
+  <input hidden class="file-input" type="file" #fileInput>
+</div>

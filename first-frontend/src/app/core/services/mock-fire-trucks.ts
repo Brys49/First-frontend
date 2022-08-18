@@ -4,8 +4,9 @@ export const FIRE_TRUCKS: FireTruck[] = [
   {
     id: 1,
     name: "Iveco Daily",
+    image: null,
     price: 60000,
-    vin: "https://www.psszczesniak.pl/wp-content/uploads/2021/01/lekki-samochod-ratowniczo-gasniczy-iveco-daily-65c17-1.jpg?v=1612114630",
+    vin: "4V4NC9GH37N429261",
     productionYear: 1999,
     operationalNumber: "597P07",
     type: "GLBARt",
@@ -13,14 +14,15 @@ export const FIRE_TRUCKS: FireTruck[] = [
     numberOfSeats: 6,
     mileage: 25978,
     parameters: new Map<string, string>([["Water tank: ", "800L"], ["Rapid intervention fire hose length:", "40m"]]),
-    equipment: []
-
+    equipment: [],
+    imgUrl: "assets/mock-images/iveco.jpg"
   },
   {
     id: 2,
     name: "Jelcz 442",
+    image: null,
     price: 30000,
-    vin: "https://img.czerwonesamochody.com/data/media/141/369c73_2.jpg",
+    vin: "1N4AA5AP2CC846794",
     productionYear: 1998,
     operationalNumber: "597P11",
     type: "GCBA",
@@ -28,14 +30,15 @@ export const FIRE_TRUCKS: FireTruck[] = [
     numberOfSeats: 6,
     mileage: 15663,
     parameters: new Map<string, string>(),
-    equipment: []
-
+    equipment: [],
+    imgUrl: "assets/mock-images/jelcz.jpg"
   },
   {
     id: 3,
     name: "Iveco Magirus",
+    image: null,
     price: 45000,
-    vin: "https://straz.lomianki.pl/dokumenty/zalaczniki/7/7-22322.jpg",
+    vin: "5NPEC4AC4DH717880",
     productionYear: 1997,
     operationalNumber: "597P13",
     type: "SD30",
@@ -43,7 +46,7 @@ export const FIRE_TRUCKS: FireTruck[] = [
     numberOfSeats: 3,
     mileage: 8700,
     parameters: new Map<string, string>(),
-    equipment: []
-
+    equipment: [],
+    imgUrl: "assets/mock-images/magirus.jpg"
   }
 ]
