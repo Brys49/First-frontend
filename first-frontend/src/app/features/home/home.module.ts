@@ -15,6 +15,7 @@ import { MemberDetailComponent } from '../members/member-detail/member-detail.co
 import { AddMemberDialogComponent } from '../members/add-member-dialog/add-member-dialog.component';
 import { AddTrainingDialogComponent } from '../members/add-training-dialog/add-training-dialog.component';
 import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck-detail.component';
+import { AddFireTruckDialogComponent } from '../garage/add-fire-truck-dialog/add-fire-truck-dialog.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck
     AddMemberDialogComponent,
     AddTrainingDialogComponent,
     FireTruckDetailComponent,
+    AddFireTruckDialogComponent,
 
   ],
   imports: [

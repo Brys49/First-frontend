@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FireTruck } from '../../core/models/fire-truck.model';
 import { FireTrucksService } from '../../core/services/fire-trucks.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddFireTruckDialogComponent } from './add-fire-truck-dialog/add-fire-truck-dialog.component';
 
 @Component({
   selector: 'app-garage',
@@ -10,7 +12,7 @@ import { FireTrucksService } from '../../core/services/fire-trucks.service';
 export class GarageComponent implements OnInit {
   public fireTrucks: FireTruck[] = [];
 
-  constructor(public fireTrucksService: FireTrucksService) {
+  constructor(public fireTrucksService: FireTrucksService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -18,7 +20,15 @@ export class GarageComponent implements OnInit {
   }
 
   public openDialog(): void {
+    const dialogRef = this.dialog.open(AddFireTruckDialogComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'add-fire-truck-dialog-panel',
+      autoFocus: true,
+      disableClose: true
+    });
 
+    dialogRef.afterClosed().subscribe();
   }
 
   private getFireTrucks(): void {

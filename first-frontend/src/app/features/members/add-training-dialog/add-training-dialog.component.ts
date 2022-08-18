@@ -10,16 +10,18 @@ import { MembersService } from '../../../core/services/members.service';
   styleUrls: ['./add-training-dialog.component.scss']
 })
 export class AddTrainingDialogComponent implements OnInit {
-  formGroup: FormGroup;
-  maxDate: Date;
-  memberId: number;
+  formGroup!: FormGroup;
+  maxDate!: Date;
+  memberId!: number;
   allTrainingTypes = Object.values(TrainingType);
   remainingTrainingTypes: TrainingType[] = [];
 
   constructor(public dialogRef: MatDialogRef<AddTrainingDialogComponent>,
               private fb: NonNullableFormBuilder,
               private membersService: MembersService,
-              @Inject(MAT_DIALOG_DATA) private data: number) {
+              @Inject(MAT_DIALOG_DATA) private data: number) {}
+
+  ngOnInit(): void {
     this.maxDate = new Date();
     this.memberId = Number(Object.values(this.data));
 
@@ -28,9 +30,6 @@ export class AddTrainingDialogComponent implements OnInit {
       expirationDate: [''],
       type: ['', Validators.required]
     })
-  }
-
-  ngOnInit(): void {
     this.loadRemainingTrainingTypes();
   }
 

@@ -12,7 +12,7 @@ export const FIRE_TRUCKS: FireTruck[] = [
     horsepower: 160,
     numberOfSeats: 6,
     mileage: 25978,
-    parameters: new Map<string, string>(),
+    parameters: new Map<string, string>([["Water tank: ", "800L"], ["Rapid intervention fire hose length:", "40m"]]),
     equipment: []
 
   },

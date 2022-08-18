@@ -19,7 +19,7 @@ export class MemberDetailComponent implements OnInit {
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];
   public editMode: boolean = false;
-  public maxDate: Date;
+  public maxDate!: Date;
   public formGroup!: FormGroup;
 
 
@@ -30,11 +30,10 @@ export class MemberDetailComponent implements OnInit {
     private fb: NonNullableFormBuilder,
     public dialog: MatDialog
   ) {
-    this.maxDate = new Date();
-
   }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
     this.memberId = Number(this.route.snapshot.paramMap.get('id'));
     this.getMember();
   }
