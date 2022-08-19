@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FireTruck } from 'src/app/core/models/fire-truck.model';
 import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
@@ -15,6 +15,9 @@ export class AddFireTruckDialogComponent implements OnInit {
   public selectableYears: number[] = [];
   public maxDate!: Date;
   public maxYear!: number;
+  public paramInputs: Map<string, string> = new Map;
+  public paramInputsKeys: string[] = [];
+  private parametersCounter: number = 0;
 
   constructor(public dialogRef: MatDialogRef<AddFireTruckDialogComponent>,
               private fb: NonNullableFormBuilder,
@@ -44,6 +47,16 @@ export class AddFireTruckDialogComponent implements OnInit {
   }
 
   public save(): void {
+    const parameters = new Map<string, string>();
+    for (let i = 0; i < this.parametersCounter; i++) {
+      const keyName = "paramKey" + i;
+      const parameter = this.formGroup.get(keyName)?.value;
+      const valueName = "paramValue" + i;
+      const value = this.formGroup.get(valueName)?.value;
+
+      parameters.set(parameter, value);
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(this.formGroup.getRawValue().image);
     reader.onload = (_event) => {
@@ -59,7 +72,7 @@ export class AddFireTruckDialogComponent implements OnInit {
         horsepower: this.formGroup.getRawValue().horsepower,
         numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
         mileage: this.formGroup.getRawValue().mileage,
-        parameters: new Map<string, string>(),
+        parameters: parameters,
         equipment: [],
         imgUrl: reader.result ? reader.result.toString() : ""
       };
@@ -70,6 +83,21 @@ export class AddFireTruckDialogComponent implements OnInit {
 
   public close(): void {
     this.dialogRef.close();
+  }
+
+  public addParameter(): void {
+    const keyName = "paramKey" + this.parametersCounter;
+    const valueName = "paramValue" + this.parametersCounter;
+    this.parametersCounter += 1;
+    this.formGroup.addControl(
+      keyName, new FormControl('', [Validators.required, Validators.minLength(3)])
+    );
+    this.formGroup.addControl(
+      valueName, new FormControl('', [Validators.required, Validators.minLength(3)])
+    )
+
+    this.paramInputs.set(keyName, valueName);
+    this.paramInputsKeys = Array.from(this.paramInputs.keys());
   }
 
 }
