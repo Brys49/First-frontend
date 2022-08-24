@@ -99,7 +99,7 @@ export class MemberDetailComponent implements OnInit {
       birthdate: [this.member.birthdate, Validators.required],
       email: [this.member.email, [Validators.required, Validators.email]],
       phoneNumber: [this.member.phoneNumber, [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
-    })
+    });
 
     this.editMode = !this.editMode;
   }

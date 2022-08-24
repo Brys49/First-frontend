@@ -3,7 +3,7 @@
     <div class="fire-truck" *ngFor="let ft of fireTrucks">
       <h2>
         <a routerLink="/home/garage/detail/{{ft.id}}">
-          {{ft.name}}
+          {{ft.name}} - {{ft.operationalNumber}}
           <mat-icon color="primary">navigate_next</mat-icon>
         </a>
       </h2>
