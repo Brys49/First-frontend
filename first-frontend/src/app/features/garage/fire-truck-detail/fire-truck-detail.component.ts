@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FireTruck} from 'src/app/core/models/fire-truck.model';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FireTrucksService} from 'src/app/core/services/fire-trucks.service';
-import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FireTruck } from 'src/app/core/models/fire-truck.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-fire-truck-detail',
@@ -107,6 +107,22 @@ export class FireTruckDetailComponent implements OnInit {
     }
 
     this.editMode = !this.editMode;
+  }
+
+  public addParameter(): void {
+    let parametersCounter = this.paramInputsKeys.length;
+
+    const keyName = "paramKey" + parametersCounter;
+    const valueName = "paramValue" + parametersCounter;
+    this.formGroup.addControl(
+      keyName, new FormControl('', [Validators.required, Validators.minLength(3)])
+    );
+    this.formGroup.addControl(
+      valueName, new FormControl('', [Validators.required, Validators.minLength(1)])
+    );
+
+    this.paramInputs.set(keyName, valueName);
+    this.paramInputsKeys = Array.from(this.paramInputs.keys());
   }
 
   public save(): void {

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material/dialog';
-import {FireTruck} from 'src/app/core/models/fire-truck.model';
-import {FireTrucksService} from 'src/app/core/services/fire-trucks.service';
-import {requiredFileType} from 'src/app/shared/file-upload-input/file-upload-input.component';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FireTruck } from 'src/app/core/models/fire-truck.model';
+import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
+import { requiredFileType } from 'src/app/shared/file-upload-input/file-upload-input.component';
 
 @Component({
   selector: 'app-add-fire-truck-dialog',
