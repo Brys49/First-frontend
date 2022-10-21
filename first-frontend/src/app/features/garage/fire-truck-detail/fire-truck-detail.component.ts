@@ -11,6 +11,8 @@ import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@ang
 })
 export class FireTruckDetailComponent implements OnInit {
   private fireTruckId: number = 0;
+  private tempParamInputs: Map<string, string> = new Map;
+  private tempParamInputsKeys: string[] = [];
   public fireTruck!: FireTruck;
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];
@@ -54,14 +56,14 @@ export class FireTruckDetailComponent implements OnInit {
 
   private generateContent(): void {
     this.listContent.clear();
-    this.listContent.set("Price: ", this.fireTruck.price);
-    this.listContent.set("VIN: ", this.fireTruck.vin);
-    this.listContent.set("Production year: ", this.fireTruck.productionYear);
-    this.listContent.set("Operational number: ", this.fireTruck.operationalNumber);
-    this.listContent.set("Type: ", this.fireTruck.type);
-    this.listContent.set("Horsepower: ", this.fireTruck.horsepower);
-    this.listContent.set("Number of seats: ", this.fireTruck.numberOfSeats);
-    this.listContent.set("Mileage: ", this.fireTruck.mileage);
+    this.listContent.set("Price", this.fireTruck.price);
+    this.listContent.set("VIN", this.fireTruck.vin);
+    this.listContent.set("Production year", this.fireTruck.productionYear);
+    this.listContent.set("Operational number", this.fireTruck.operationalNumber);
+    this.listContent.set("Type", this.fireTruck.type);
+    this.listContent.set("Horsepower", this.fireTruck.horsepower);
+    this.listContent.set("Number of seats", this.fireTruck.numberOfSeats);
+    this.listContent.set("Mileage", this.fireTruck.mileage);
     for (let paramKey of this.fireTruck.parameters.keys()) {
       this.listContent.set(paramKey, this.fireTruck.parameters.get(paramKey));
     }
@@ -78,6 +80,15 @@ export class FireTruckDetailComponent implements OnInit {
   }
 
   public edit(): void {
+    if (this.editMode) {
+      this.close();
+      return;
+    } else {
+      this.editMode = true;
+      this.tempParamInputs = new Map(this.paramInputs);
+      this.tempParamInputsKeys = this.paramInputsKeys.slice();
+    }
+
     this.formGroup = this.fb.group({
       price: [this.fireTruck.price, [Validators.required, Validators.min(0)]],
       vin: [this.fireTruck.vin, [Validators.required, Validators.pattern("^[A-HJ-NPR-Za-hj-npr-z\\d]{8}[\\dX][A-HJ-NPR-Za-hj-npr-z\\d]{2}\\d{6}$")]],
@@ -106,7 +117,6 @@ export class FireTruckDetailComponent implements OnInit {
       this.paramInputsKeys = Array.from(this.paramInputs.keys());
     }
 
-    this.editMode = !this.editMode;
   }
 
   public addParameter(): void {
@@ -114,6 +124,7 @@ export class FireTruckDetailComponent implements OnInit {
 
     const keyName = "paramKey" + parametersCounter;
     const valueName = "paramValue" + parametersCounter;
+
     this.formGroup.addControl(
       keyName, new FormControl('', [Validators.required, Validators.minLength(3)])
     );
@@ -162,5 +173,7 @@ export class FireTruckDetailComponent implements OnInit {
 
   public close(): void {
     this.editMode = false;
+    this.paramInputs = new Map(this.tempParamInputs);
+    this.paramInputsKeys = this.tempParamInputsKeys.slice();
   }
 }

@@ -29,7 +29,7 @@
     <h2>Details: </h2>
     <mat-list *ngIf="!editMode; else editForm">
       <mat-list-item *ngFor="let k of listContentKeys">
-        <p>{{k}}</p>
+        <p>{{k}}: </p>
         <p>{{listContent.get(k)}}</p>
       </mat-list-item>
     </mat-list>
