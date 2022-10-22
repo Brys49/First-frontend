@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MembersService } from '../../core/services/members.service';
 import { Member } from '../../core/models/member.model';
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-members',
@@ -28,9 +28,7 @@ export class MembersComponent implements OnInit {
       disableClose: true
     });
 
-    dialogRef.afterClosed().subscribe(
-      x => console.log("Dialog closed")
-    );
+    dialogRef.afterClosed().subscribe();
   }
 
   private getMembers(): void {

@@ -1,1 +1,18 @@
-<p>garage works!</p>
+<main>
+  <div id="fire-trucks-container">
+    <div class="fire-truck" *ngFor="let ft of fireTrucks">
+      <h2>
+        <a routerLink="/home/garage/detail/{{ft.id}}">
+          {{ft.name}} - {{ft.operationalNumber}}
+          <mat-icon color="primary">navigate_next</mat-icon>
+        </a>
+      </h2>
+      <div class="fire-truck-img">
+        <img [src]="ft.imgUrl" alt="fire-truck">
+      </div>
+    </div>
+  </div>
+  <div id="button-container">
+    <button mat-raised-button color="primary" (click)="openDialog()">Add fire truck</button>
+  </div>
+</main>

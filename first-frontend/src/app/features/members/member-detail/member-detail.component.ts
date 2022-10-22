@@ -6,7 +6,7 @@ import { Member } from '../../../core/models/member.model';
 import { TrainingType } from '../../../core/models/training.model';
 import { AddTrainingDialogComponent } from '../add-training-dialog/add-training-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-member-detail',
@@ -19,7 +19,7 @@ export class MemberDetailComponent implements OnInit {
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];
   public editMode: boolean = false;
-  public maxDate: Date;
+  public maxDate!: Date;
   public formGroup!: FormGroup;
 
 
@@ -27,14 +27,13 @@ export class MemberDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private membersService: MembersService,
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     public dialog: MatDialog
   ) {
-    this.maxDate = new Date();
-
   }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
     this.memberId = Number(this.route.snapshot.paramMap.get('id'));
     this.getMember();
   }
@@ -50,14 +49,14 @@ export class MemberDetailComponent implements OnInit {
   }
 
   private generateContent(): void {
-    this.listContent.set("Joining date: ", this.member.joiningDate.toLocaleDateString())
-    this.listContent.set("PESEL: ", this.member.pesel)
-    this.listContent.set("Address: ", this.member.address)
-    this.listContent.set("City: ", this.member.city)
-    this.listContent.set("Periodic examinations expiry date: ", this.member.periodicExaminationsExpiryDate.toLocaleDateString())
-    this.listContent.set("Birthdate: ", this.member.birthdate.toLocaleDateString())
-    this.listContent.set("E-mail: ", this.member.email)
-    this.listContent.set("Phone number: ", this.member.phoneNumber)
+    this.listContent.set("Joining date: ", this.member.joiningDate.toLocaleDateString());
+    this.listContent.set("PESEL: ", this.member.pesel);
+    this.listContent.set("Address: ", this.member.address);
+    this.listContent.set("City: ", this.member.city);
+    this.listContent.set("Periodic examinations expiry date: ", this.member.periodicExaminationsExpiryDate.toLocaleDateString());
+    this.listContent.set("Birthdate: ", this.member.birthdate.toLocaleDateString());
+    this.listContent.set("E-mail: ", this.member.email);
+    this.listContent.set("Phone number: ", this.member.phoneNumber);
     this.listContentKeys = Array.from(this.listContent.keys());
   }
 
@@ -100,7 +99,7 @@ export class MemberDetailComponent implements OnInit {
       birthdate: [this.member.birthdate, Validators.required],
       email: [this.member.email, [Validators.required, Validators.email]],
       phoneNumber: [this.member.phoneNumber, [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
-    })
+    });
 
     this.editMode = !this.editMode;
   }

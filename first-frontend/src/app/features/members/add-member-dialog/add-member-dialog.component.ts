@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Member } from '../../../core/models/member.model';
 import { MembersService } from '../../../core/services/members.service';
 
@@ -10,12 +10,15 @@ import { MembersService } from '../../../core/services/members.service';
   styleUrls: ['./add-member-dialog.component.scss']
 })
 export class AddMemberDialogComponent implements OnInit {
-  public formGroup: FormGroup;
-  public maxDate: Date;
+  public formGroup!: FormGroup;
+  public maxDate!: Date;
 
   constructor(public dialogRef: MatDialogRef<AddMemberDialogComponent>,
-              private fb: FormBuilder,
+              private fb: NonNullableFormBuilder,
               private membersService: MembersService) {
+  }
+
+  ngOnInit(): void {
     this.maxDate = new Date();
 
     this.formGroup = this.fb.group({
@@ -31,9 +34,6 @@ export class AddMemberDialogComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
     })
-  }
-
-  ngOnInit(): void {
   }
 
 
