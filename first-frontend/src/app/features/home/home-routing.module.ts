@@ -9,6 +9,7 @@ import { DocsComponent } from '../docs/docs.component';
 import { CallOutsComponent } from '../call-outs/call-outs.component';
 import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
 import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck-detail.component';
+import { EquipmentDetailComponent } from '../equipment/equipment-detail/equipment-detail.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'garage/detail/:id',
         component: FireTruckDetailComponent,
+      },
+      {
+        path: 'equipment/detail/:id',
+        component: EquipmentDetailComponent,
       },
     ]
   },

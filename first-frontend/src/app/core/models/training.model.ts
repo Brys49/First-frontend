@@ -6,7 +6,7 @@ export interface Training {
 }
 
 export enum TrainingType {
-  BASIC= "Basic",
+  BASIC = "Basic",
   QUALIFIED_FIRST_AID = "Qualified first aid",
   TECHNICAL_RESCUE = "Technical rescue",
   WATER_RESCUE = "Water rescue",
