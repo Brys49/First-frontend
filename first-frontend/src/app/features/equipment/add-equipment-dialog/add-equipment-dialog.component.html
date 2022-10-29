@@ -1,0 +1,48 @@
+<div id="add-equipment-dialog">
+  <h1 mat-dialog-title>Add equipment</h1>
+
+  <mat-dialog-content id="details-container" [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" formControlName="price">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Serial number</mat-label>
+      <input matInput formControlName="serialNumber">
+    </mat-form-field>
+
+    <div class="equipment-params" *ngFor="let param of paramInputsKeys">
+      <mat-form-field appearance="outline">
+        <mat-label>Parameter</mat-label>
+        <input matInput formControlName="{{param}}">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Value</mat-label>
+        <input matInput formControlName="{{paramInputs.get(param)}}">
+      </mat-form-field>
+    </div>
+
+    <div id="add-param-button-container">
+      <button mat-raised-button color="primary" (click)="addParameter()">
+        Add more parameters
+      </button>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true" (click)="close()">
+      Close
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit"
+            [disabled]="!formGroup.valid" (click)="save()">
+      Add equipment
+    </button>
+  </mat-dialog-actions>
+</div>
