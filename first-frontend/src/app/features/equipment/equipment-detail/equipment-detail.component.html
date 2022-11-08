@@ -1,1 +1,37 @@
-<p>equipment-detail works!</p>
+<main *ngIf="equipment">
+  <div id="back-button-container">
+    <button mat-raised-button color="primary" (click)="goBack()">
+      <mat-icon>
+        arrow_back
+      </mat-icon>
+    </button>
+  </div>
+  <div id="name-container">
+    <h1>{{equipment.name}}</h1>
+  </div>
+  <div id="buttons-container">
+    <div id="edit-button-container">
+      <button mat-raised-button color="primary">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+    </div>
+    <div id="delete-button-container">
+      <button mat-raised-button color="primary" (click)="deleteEquipment(equipment.id)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <div id="details-container">
+    <h2>Details: </h2>
+    <mat-list>
+      <mat-list-item *ngFor="let k of listContentKeys">
+        <p>{{k}}: </p>
+        <p>{{listContent.get(k)}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</main>
