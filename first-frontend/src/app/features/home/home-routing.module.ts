@@ -53,10 +53,6 @@ const routes: Routes = [
         path: 'garage/detail/:id',
         component: FireTruckDetailComponent,
       },
-      {
-        path: 'equipment/detail/:id',
-        component: EquipmentDetailComponent,
-      },
     ]
   },
   {

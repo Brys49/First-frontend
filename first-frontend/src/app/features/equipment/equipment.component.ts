@@ -11,6 +11,7 @@ import { AddEquipmentDialogComponent } from './add-equipment-dialog/add-equipmen
 })
 export class EquipmentComponent implements OnInit {
   public equipment: Equipment[] = [];
+  public equipmentDetailId: number = 0;
 
   constructor(public equipmentService: EquipmentService, public dialog: MatDialog) {}
 
@@ -30,9 +31,14 @@ export class EquipmentComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
+  public showDetails(id: number): void {
+    this.equipmentDetailId = id
+  }
+
   private getEquipment(): void {
     this.equipmentService.getAllEquipment()
       .subscribe(equipment => this.equipment = equipment);
   }
+
 
 }

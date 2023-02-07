@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Equipment } from 'src/app/core/models/equipment.model';
 import { EquipmentService } from 'src/app/core/services/equipment.service';
 
@@ -8,21 +7,23 @@ import { EquipmentService } from 'src/app/core/services/equipment.service';
   templateUrl: './equipment-detail.component.html',
   styleUrls: ['./equipment-detail.component.scss']
 })
-export class EquipmentDetailComponent implements OnInit {
-  private equipmentId: number = 0;
+export class EquipmentDetailComponent implements OnInit, OnChanges {
+  @Input() public equipmentId: number = 0;
   public equipment!: Equipment;
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private equipmentService: EquipmentService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.equipmentId = Number(this.route.snapshot.paramMap.get('id'));
     this.getEquipment();
+  }
+
+  ngOnChanges(): void {
+    this.getEquipment()
   }
 
   private getEquipment(): void {
@@ -30,8 +31,6 @@ export class EquipmentDetailComponent implements OnInit {
 
     if (this.equipment) {
       this.generateContent();
-    } else {
-      this.goBack();
     }
   }
 
@@ -45,13 +44,9 @@ export class EquipmentDetailComponent implements OnInit {
     this.listContentKeys = Array.from(this.listContent.keys());
   }
 
-  public goBack(): void {
-    this.router.navigateByUrl('/home/equipment');
-  }
-
   public deleteEquipment(id: number): void {
     this.equipmentService.deleteEquipment(id);
-    this.goBack();
+    this.ngOnInit()
   }
 
 }

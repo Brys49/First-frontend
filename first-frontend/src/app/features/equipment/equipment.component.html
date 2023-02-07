@@ -5,7 +5,7 @@
       <mat-list-item *ngFor="let e of equipment">
         <h3 matLine>{{e.name}}</h3>
         <p matLine>{{e.serialNumber}}</p>
-        <button mat-icon-button routerLink="/home/equipment/detail/{{e.id}}">
+        <button mat-icon-button (click)="showDetails(e.id)">
           <mat-icon>info</mat-icon>
         </button>
       </mat-list-item>
@@ -15,18 +15,7 @@
     <button mat-raised-button color="primary" (click)="openDialog()">Add equipment</button>
   </div>
   <div id="summary-container">
-    <h2>Summary</h2>
-    <mat-list>
-      <mat-list-item>
-        <p>111</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>222</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>333</p>
-      </mat-list-item>
-    </mat-list>
+    <app-equipment-detail [equipmentId]="equipmentDetailId"></app-equipment-detail>
   </div>
 </main>
 
