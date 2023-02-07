@@ -35,14 +35,17 @@ export class AddFireTruckDialogComponent implements OnInit {
     this.formGroup = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(120)]],
       image: [null, [Validators.required, requiredFileType('png')]],
-      price: [0, [Validators.required, Validators.min(0)]],
       vin: ['', [Validators.required, Validators.pattern("^[A-HJ-NPR-Za-hj-npr-z\\d]{8}[\\dX][A-HJ-NPR-Za-hj-npr-z\\d]{2}\\d{6}$")]],
       productionYear: [this.maxYear, [Validators.required]],
+      licensePlate: ['', Validators.required],
       operationalNumber: ['', [Validators.required, Validators.pattern("^[0-9]{3}[A-GK-PRSTWZ]\\d{2}$")]],
       type: ['', [Validators.required, Validators.pattern("^[A-z\\d]{2,8}")]],
+      totalWeight: [0, [Validators.required, Validators.min(1)]],
       horsepower: [0, [Validators.required, Validators.min(1)]],
       numberOfSeats: [0, [Validators.required, Validators.min(1)]],
-      mileage: [0, [Validators.required, Validators.min(0)]]
+      mileage: [0, [Validators.required, Validators.min(0)]],
+      technicalReviewExpiryDate: ['', Validators.required],
+      insuranceExpiryDate: ['', Validators.required]
     })
   }
 
@@ -64,14 +67,17 @@ export class AddFireTruckDialogComponent implements OnInit {
         id: 0,
         name: this.formGroup.getRawValue().name,
         image: this.formGroup.getRawValue().image,
-        price: this.formGroup.getRawValue().price,
         vin: this.formGroup.getRawValue().vin,
         productionYear: this.formGroup.getRawValue().productionYear,
+        licensePlate: this.formGroup.getRawValue().licensePlate,
         operationalNumber: this.formGroup.getRawValue().operationalNumber,
         type: this.formGroup.getRawValue().type,
+        totalWeight: this.formGroup.getRawValue().totalWeight,
         horsepower: this.formGroup.getRawValue().horsepower,
         numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
         mileage: this.formGroup.getRawValue().mileage,
+        technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
+        insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
         parameters: parameters,
         equipment: [],
         imgUrl: reader.result ? reader.result.toString() : ""

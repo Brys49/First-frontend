@@ -38,7 +38,7 @@ export class EquipmentDetailComponent implements OnInit {
   private generateContent(): void {
     this.listContent.clear();
     this.listContent.set("Serial number", this.equipment.serialNumber);
-    this.listContent.set("Price", this.equipment.price);
+    this.listContent.set("Storage location", this.equipment.storageLocation);
     for (let paramKey of this.equipment.parameters.keys()) {
       this.listContent.set(paramKey, this.equipment.parameters.get(paramKey));
     }

@@ -23,8 +23,8 @@ export class AddEquipmentDialogComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(120)]],
-      price: [0, [Validators.required, Validators.min(0)]],
-      serialNumber: ['', [Validators.required, Validators.maxLength(120)]]
+      serialNumber: ['', [Validators.required, Validators.maxLength(120)]],
+      storageLocation: ['', [Validators.required, Validators.maxLength(120)]],
     })
   }
 
@@ -42,8 +42,8 @@ export class AddEquipmentDialogComponent implements OnInit {
     const equipment: Equipment = {
       id: 0,
       name: this.formGroup.getRawValue().name,
-      price: this.formGroup.getRawValue().price,
       serialNumber: this.formGroup.getRawValue().serialNumber,
+      storageLocation: this.formGroup.getRawValue().storageLocation,
       parameters: parameters
     };
 

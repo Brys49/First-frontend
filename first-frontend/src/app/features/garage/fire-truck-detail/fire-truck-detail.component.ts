@@ -56,14 +56,17 @@ export class FireTruckDetailComponent implements OnInit {
 
   private generateContent(): void {
     this.listContent.clear();
-    this.listContent.set("Price", this.fireTruck.price);
     this.listContent.set("VIN", this.fireTruck.vin);
     this.listContent.set("Production year", this.fireTruck.productionYear);
+    this.listContent.set("License plate", this.fireTruck.licensePlate);
     this.listContent.set("Operational number", this.fireTruck.operationalNumber);
     this.listContent.set("Type", this.fireTruck.type);
+    this.listContent.set("Total weight", this.fireTruck.totalWeight);
     this.listContent.set("Horsepower", this.fireTruck.horsepower);
     this.listContent.set("Number of seats", this.fireTruck.numberOfSeats);
     this.listContent.set("Mileage", this.fireTruck.mileage);
+    this.listContent.set("Technical review expiry date", this.fireTruck.technicalReviewExpiryDate.toLocaleDateString());
+    this.listContent.set("Insurance expiry date", this.fireTruck.insuranceExpiryDate.toLocaleDateString());
     for (let paramKey of this.fireTruck.parameters.keys()) {
       this.listContent.set(paramKey, this.fireTruck.parameters.get(paramKey));
     }
@@ -90,14 +93,17 @@ export class FireTruckDetailComponent implements OnInit {
     }
 
     this.formGroup = this.fb.group({
-      price: [this.fireTruck.price, [Validators.required, Validators.min(0)]],
       vin: [this.fireTruck.vin, [Validators.required, Validators.pattern("^[A-HJ-NPR-Za-hj-npr-z\\d]{8}[\\dX][A-HJ-NPR-Za-hj-npr-z\\d]{2}\\d{6}$")]],
       productionYear: [this.fireTruck.productionYear, [Validators.required]],
+      licensePlate: [this.fireTruck.licensePlate, Validators.required],
       operationalNumber: [this.fireTruck.operationalNumber, [Validators.required, Validators.pattern("^[0-9]{3}[A-GK-PRSTWZ]\\d{2}$")]],
       type: [this.fireTruck.type, [Validators.required, Validators.pattern("^[A-z\\d]{2,8}")]],
+      totalWeight: [this.fireTruck.totalWeight, [Validators.required, Validators.min(1)]],
       horsepower: [this.fireTruck.horsepower, [Validators.required, Validators.min(1)]],
       numberOfSeats: [this.fireTruck.numberOfSeats, [Validators.required, Validators.min(1)]],
-      mileage: [this.fireTruck.mileage, [Validators.required, Validators.min(0)]]
+      mileage: [this.fireTruck.mileage, [Validators.required, Validators.min(0)]],
+      technicalReviewExpiryDate: [this.fireTruck.technicalReviewExpiryDate, Validators.required],
+      insuranceExpiryDate: [this.fireTruck.insuranceExpiryDate, Validators.required]
     });
 
     let parametersCounter = 0;
@@ -153,14 +159,17 @@ export class FireTruckDetailComponent implements OnInit {
       id: this.fireTruckId,
       name: this.fireTruck.name,
       image: this.fireTruck.image,
-      price: this.formGroup.getRawValue().price,
       vin: this.formGroup.getRawValue().vin,
       productionYear: this.formGroup.getRawValue().productionYear,
+      licensePlate: this.formGroup.getRawValue().licensePlate,
       operationalNumber: this.formGroup.getRawValue().operationalNumber,
       type: this.formGroup.getRawValue().type,
+      totalWeight: this.formGroup.getRawValue().totalWeight,
       horsepower: this.formGroup.getRawValue().horsepower,
       numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
       mileage: this.formGroup.getRawValue().mileage,
+      technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
+      insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
       parameters: parameters,
       equipment: this.fireTruck.equipment,
       imgUrl: this.fireTruck.imgUrl

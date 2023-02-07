@@ -15,16 +15,21 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Joining Date</mat-label>
-        <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="joiningDate">
+        <mat-label>Birthdate</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="birthdate">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>PESEL</mat-label>
-        <input matInput formControlName="pesel">
+        <mat-label>Birthplace</mat-label>
+        <input matInput formControlName="birthplace">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID Number</mat-label>
+        <input matInput formControlName="idNumber">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -33,16 +38,29 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <input matInput formControlName="city">
+        <mat-label>Joining Date</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="joiningDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <input matInput formControlName="role">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="email" formControlName="phoneNumber">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Periodic Examinations Expiry Date</mat-label>
-        <input matInput [matDatepicker]="picker2" formControlName="periodicExaminationsExpiryDate">
+        <input matInput [matDatepicker]="picker3" formControlName="periodicExaminationsExpiryDate">
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -52,25 +70,6 @@
           <mat-option [value]="false">No</mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Birthdate</mat-label>
-        <input matInput [max]="maxDate" [matDatepicker]="picker3" formControlName="birthdate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-        <mat-datepicker #picker3></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>E-mail</mat-label>
-        <input matInput type="email" formControlName="email">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Phone Number</mat-label>
-        <input matInput type="email" formControlName="phoneNumber">
-      </mat-form-field>
-
     </div>
   </mat-dialog-content>
 

@@ -8,13 +8,13 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Price</mat-label>
-      <input matInput type="number" formControlName="price">
+      <mat-label>Serial number</mat-label>
+      <input matInput formControlName="serialNumber">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Serial number</mat-label>
-      <input matInput formControlName="serialNumber">
+      <mat-label>Storage Location</mat-label>
+      <input matInput formControlName="storageLocation">
     </mat-form-field>
 
     <div class="equipment-params" *ngFor="let param of paramInputsKeys">

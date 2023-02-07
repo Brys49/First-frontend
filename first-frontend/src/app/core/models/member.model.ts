@@ -4,15 +4,15 @@ export interface Member {
   id: number;
   firstname: string;
   lastname: string;
-  isDriver: boolean;
-  joiningDate: Date;
-  pesel: string;
-  address: string;
-  city: string;
-  periodicExaminationsExpiryDate: Date;
   birthdate: Date;
-  email: string;
+  birthplace: string;
+  idNumber: string;
+  address: string;
+  joiningDate: Date;
+  role: string;
   phoneNumber: string;
+  periodicExaminationsExpiryDate: Date;
+  isDriver: boolean;
   trainings: Training[];
 
 }

@@ -5,6 +5,11 @@
     <div id="inputs-container">
 
       <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
         <mat-label>Training date</mat-label>
         <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="trainingDate" required>
         <mat-hint>MM/DD/YYYY</mat-hint>
