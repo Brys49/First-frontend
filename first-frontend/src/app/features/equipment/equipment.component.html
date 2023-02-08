@@ -1,6 +1,6 @@
 <main>
   <div id="equipment-list-container">
-    <h2>Equipment list</h2>
+    <h2 (click)="showDetails(0)">Equipment list</h2>
     <mat-list>
       <mat-list-item *ngFor="let e of equipment">
         <h3 matLine>{{e.name}}</h3>
