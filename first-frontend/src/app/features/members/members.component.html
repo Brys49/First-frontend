@@ -4,7 +4,12 @@
     <mat-list>
       <mat-list-item *ngFor="let member of members">
         <h3 matLine>{{member.firstname}} {{member.lastname}}</h3>
-        <mat-icon *ngIf="member.isDriver">directions_car</mat-icon>
+        <div id="member-trainings-icons">
+          <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[0])">local_fire_department</mat-icon>
+          <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[1])">health_and_safety</mat-icon>
+          <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[2])">stars</mat-icon>
+          <mat-icon *ngIf="member.isDriver">directions_car</mat-icon>
+        </div>
         <p matLine>{{member.phoneNumber}}</p>
         <button mat-icon-button routerLink="/home/members/detail/{{member.id}}">
           <mat-icon>info</mat-icon>

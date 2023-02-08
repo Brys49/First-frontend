@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MembersService } from '../../core/services/members.service';
 import { Member } from '../../core/models/member.model';
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
+import { Training, TrainingType } from '../../core/models/training.model';
 
 @Component({
   selector: 'app-members',
@@ -11,6 +12,7 @@ import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.
 })
 export class MembersComponent implements OnInit {
   public members: Member[] = [];
+  public trainingTypes = Object.values(TrainingType)
 
   constructor(public membersService: MembersService, public dialog: MatDialog) {
   }
@@ -29,6 +31,10 @@ export class MembersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe();
+  }
+
+  public checkTrainingIcon(trainings: Training[], type: string): boolean {
+    return trainings.some(t => t.type === type)
   }
 
   private getMembers(): void {

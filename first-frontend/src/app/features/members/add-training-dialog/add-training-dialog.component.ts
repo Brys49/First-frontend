@@ -10,11 +10,11 @@ import { MembersService } from '../../../core/services/members.service';
   styleUrls: ['./add-training-dialog.component.scss']
 })
 export class AddTrainingDialogComponent implements OnInit {
-  formGroup!: FormGroup;
-  maxDate!: Date;
-  memberId!: number;
-  allTrainingTypes = Object.values(TrainingType);
-  remainingTrainingTypes: TrainingType[] = [];
+  private memberId!: number;
+  private allTrainingTypes = Object.values(TrainingType);
+  public formGroup!: FormGroup;
+  public maxDate!: Date;
+  public remainingTrainingTypes: TrainingType[] = [];
 
   constructor(public dialogRef: MatDialogRef<AddTrainingDialogComponent>,
               private fb: NonNullableFormBuilder,
