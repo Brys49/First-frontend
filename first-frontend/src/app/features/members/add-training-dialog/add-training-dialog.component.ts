@@ -26,6 +26,7 @@ export class AddTrainingDialogComponent implements OnInit {
     this.memberId = Number(Object.values(this.data));
 
     this.formGroup = this.fb.group({
+      id: ['', Validators.required],
       trainingDate: ['', Validators.required],
       expirationDate: [''],
       type: ['', Validators.required]
@@ -35,6 +36,7 @@ export class AddTrainingDialogComponent implements OnInit {
 
   public save(): void {
     const training: Training = {
+      id: this.formGroup.getRawValue().id,
       trainingDate: this.formGroup.getRawValue().trainingDate,
       expirationDate: this.formGroup.getRawValue().expirationDate,
       type: this.formGroup.getRawValue().type

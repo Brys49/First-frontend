@@ -16,7 +16,8 @@ import { AddMemberDialogComponent } from '../members/add-member-dialog/add-membe
 import { AddTrainingDialogComponent } from '../members/add-training-dialog/add-training-dialog.component';
 import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck-detail.component';
 import { AddFireTruckDialogComponent } from '../garage/add-fire-truck-dialog/add-fire-truck-dialog.component';
-
+import { EquipmentDetailComponent } from '../equipment/equipment-detail/equipment-detail.component';
+import { AddEquipmentDialogComponent } from '../equipment/add-equipment-dialog/add-equipment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,8 @@ import { AddFireTruckDialogComponent } from '../garage/add-fire-truck-dialog/add
     AddTrainingDialogComponent,
     FireTruckDetailComponent,
     AddFireTruckDialogComponent,
+    EquipmentDetailComponent,
+    AddEquipmentDialogComponent,
 
   ],
   imports: [
@@ -41,4 +44,5 @@ import { AddFireTruckDialogComponent } from '../garage/add-fire-truck-dialog/add
     HomeRoutingModule,
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+}

@@ -1,0 +1,44 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+div{
+  height: 100%;
+}
+
+h2 {
+  text-align: center;
+}
+
+div#equipment-list-container,
+div#summary-container {
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+}
+
+div#equipment-list-container {
+  grid-area: 1 / 1 / 8 / 4;
+}
+
+div#button-container {
+  grid-area: 1 / 4 / 2 / 6;
+
+  button {
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+  }
+}
+
+div#summary-container {
+  grid-area: 2 / 4 / 8 / 6;
+}

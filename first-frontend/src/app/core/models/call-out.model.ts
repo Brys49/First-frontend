@@ -2,8 +2,9 @@ import { Member } from './member.model';
 import { FireTruck } from './fire-truck.model';
 
 export interface CallOut {
-  start: Date;
-  end: Date;
+  alarmDate: Date;
+  departureDate: Date;
+  returnDate: Date;
   type: CallOutType;
   location: string;
   details: string;
@@ -17,5 +18,6 @@ export const enum CallOutType {
   LOCAL_THREAT,
   TRAINING,
   FALSE_ALARM,
-  SECURE_REGION
+  SECURE_REGION,
+  PRACTICE
 }

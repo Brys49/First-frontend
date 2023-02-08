@@ -49,14 +49,14 @@ export class MemberDetailComponent implements OnInit {
   }
 
   private generateContent(): void {
-    this.listContent.set("Joining date: ", this.member.joiningDate.toLocaleDateString());
-    this.listContent.set("PESEL: ", this.member.pesel);
-    this.listContent.set("Address: ", this.member.address);
-    this.listContent.set("City: ", this.member.city);
-    this.listContent.set("Periodic examinations expiry date: ", this.member.periodicExaminationsExpiryDate.toLocaleDateString());
     this.listContent.set("Birthdate: ", this.member.birthdate.toLocaleDateString());
-    this.listContent.set("E-mail: ", this.member.email);
+    this.listContent.set("Birthplace: ", this.member.birthplace);
+    this.listContent.set("ID Number: ", this.member.idNumber);
+    this.listContent.set("Address: ", this.member.address);
+    this.listContent.set("Joining date: ", this.member.joiningDate.toLocaleDateString());
+    this.listContent.set("Role: ", this.member.role);
     this.listContent.set("Phone number: ", this.member.phoneNumber);
+    this.listContent.set("Periodic Examinations Expiry Date: ", this.member.periodicExaminationsExpiryDate.toLocaleDateString());
     this.listContentKeys = Array.from(this.listContent.keys());
   }
 
@@ -90,15 +90,15 @@ export class MemberDetailComponent implements OnInit {
 
   public edit(): void {
     this.formGroup = this.fb.group({
-      isDriver: [this.member.isDriver, Validators.required],
-      joiningDate: [this.member.joiningDate, Validators.required],
-      pesel: [this.member.pesel, [Validators.required, Validators.pattern('^\\d{11}$')]],
-      address: [this.member.address, [Validators.required, Validators.maxLength(240)]],
-      city: [this.member.city, [Validators.required, Validators.maxLength(120)]],
-      periodicExaminationsExpiryDate: [this.member.periodicExaminationsExpiryDate, Validators.required],
       birthdate: [this.member.birthdate, Validators.required],
-      email: [this.member.email, [Validators.required, Validators.email]],
-      phoneNumber: [this.member.phoneNumber, [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
+      birthplace: [this.member.birthplace, [Validators.required, Validators.maxLength(240)]],
+      idNumber: [this.member.idNumber, [Validators.required, Validators.maxLength(120)]],
+      address: [this.member.address, [Validators.required, Validators.maxLength(240)]],
+      joiningDate: [this.member.joiningDate, Validators.required],
+      role: [this.member.role, [Validators.required, Validators.maxLength(120)]],
+      phoneNumber: [this.member.phoneNumber, [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]],
+      periodicExaminationsExpiryDate: [this.member.periodicExaminationsExpiryDate, Validators.required],
+      isDriver: [this.member.isDriver, Validators.required],
     });
 
     this.editMode = !this.editMode;
@@ -110,15 +110,15 @@ export class MemberDetailComponent implements OnInit {
       id: this.memberId,
       firstname: this.member.firstname,
       lastname: this.member.lastname,
-      isDriver: this.formGroup.getRawValue().isDriver,
-      joiningDate: this.formGroup.getRawValue().joiningDate,
-      pesel: this.formGroup.getRawValue().pesel,
-      address: this.formGroup.getRawValue().address,
-      city: this.formGroup.getRawValue().city,
-      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
       birthdate: this.formGroup.getRawValue().birthdate,
-      email: this.formGroup.getRawValue().email,
+      birthplace: this.formGroup.getRawValue().birthplace,
+      idNumber: this.formGroup.getRawValue().idNumber,
+      address: this.formGroup.getRawValue().address,
+      joiningDate: this.formGroup.getRawValue().joiningDate,
+      role: this.formGroup.getRawValue().role,
       phoneNumber: this.formGroup.getRawValue().phoneNumber,
+      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
+      isDriver: this.formGroup.getRawValue().isDriver,
       trainings: this.member.trainings
     };
 

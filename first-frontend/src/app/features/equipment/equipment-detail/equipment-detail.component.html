@@ -1,0 +1,67 @@
+<main *ngIf="equipment">
+  <div id="name-container">
+    <div>
+      <h1>{{equipment.name}}</h1>
+    </div>
+    <div>
+      <button mat-icon-button color="primary" (click)="edit()">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="deleteEquipment(equipment.id)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <div id="details-container">
+    <mat-list *ngIf="!editMode; else editForm">
+      <mat-list-item *ngFor="let k of listContentKeys">
+        <p>{{k}}: </p>
+        <p>{{listContent.get(k)}}</p>
+      </mat-list-item>
+    </mat-list>
+    <ng-template #editForm>
+      <div id="edit-details-form" [formGroup]="formGroup">
+        <div id="inputs-container">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Serial number</mat-label>
+            <input matInput formControlName="serialNumber">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Storage Location</mat-label>
+            <input matInput formControlName="storageLocation">
+          </mat-form-field>
+
+          <div class="equipment-params" *ngFor="let param of paramInputsKeys">
+            <mat-form-field appearance="outline">
+              <mat-label>Parameter</mat-label>
+              <input matInput formControlName="{{param}}">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Value</mat-label>
+              <input matInput formControlName="{{paramInputs.get(param)}}">
+            </mat-form-field>
+          </div>
+
+          <div id="add-param-button-container">
+            <button mat-raised-button color="primary" (click)="addParameter()">
+              Add more parameters
+            </button>
+          </div>
+        </div>
+        <button mat-raised-button (click)="close()">
+          Close
+        </button>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!formGroup.valid" (click)="save()">
+          Save
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</main>

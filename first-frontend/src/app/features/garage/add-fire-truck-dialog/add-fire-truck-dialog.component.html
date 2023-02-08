@@ -14,11 +14,6 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Price</mat-label>
-      <input matInput type="number" formControlName="price">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
       <mat-label>VIN</mat-label>
       <input matInput formControlName="vin">
     </mat-form-field>
@@ -33,6 +28,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
+      <mat-label>License plate</mat-label>
+      <input matInput formControlName="licensePlate">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
       <mat-label>Operational number</mat-label>
       <input matInput formControlName="operationalNumber">
     </mat-form-field>
@@ -40,6 +40,11 @@
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
       <input matInput formControlName="type">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Total weight</mat-label>
+      <input matInput type="number" formControlName="totalWeight">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -55,6 +60,22 @@
     <mat-form-field appearance="outline">
       <mat-label>Mileage</mat-label>
       <input matInput type="number" formControlName="mileage">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Technical review expiry date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="technicalReviewExpiryDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Insurance expiry date</mat-label>
+      <input matInput [matDatepicker]="picker2" formControlName="insuranceExpiryDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 
     <div class="fire-truck-params" *ngFor="let param of paramInputsKeys">

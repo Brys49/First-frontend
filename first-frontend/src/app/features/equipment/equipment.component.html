@@ -1,1 +1,21 @@
-<p>equipment works!</p>
+<main>
+  <div id="equipment-list-container">
+    <h2 (click)="showDetails(0)">Equipment list</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let e of equipment">
+        <h3 matLine>{{e.name}}</h3>
+        <p matLine>{{e.serialNumber}}</p>
+        <button mat-icon-button (click)="showDetails(e.id)">
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div id="button-container">
+    <button mat-raised-button color="primary" (click)="openDialog()">Add equipment</button>
+  </div>
+  <div id="summary-container">
+    <app-equipment-detail [equipmentId]="equipmentDetailId"></app-equipment-detail>
+  </div>
+</main>
+

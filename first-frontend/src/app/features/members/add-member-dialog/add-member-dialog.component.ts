@@ -24,15 +24,15 @@ export class AddMemberDialogComponent implements OnInit {
     this.formGroup = this.fb.group({
       firstname: ['', [Validators.required, Validators.maxLength(120)]],
       lastname: ['', [Validators.required, Validators.maxLength(120)]],
-      joiningDate: ['', Validators.required],
-      pesel: ['', [Validators.required, Validators.pattern('^\\d{11}$')]],
+      birthdate: ['', Validators.required],
+      birthplace: ['', [Validators.required, Validators.maxLength(120)]],
+      idNumber: ['', [Validators.required, Validators.maxLength(120)]],
       address: ['', [Validators.required, Validators.maxLength(240)]],
-      city: ['', [Validators.required, Validators.maxLength(120)]],
+      joiningDate: ['', Validators.required],
+      role: ['', [Validators.required, Validators.maxLength(120)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]],
       periodicExaminationsExpiryDate: ['', Validators.required],
       isDriver: ['', Validators.required],
-      birthdate: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]]
     })
   }
 
@@ -42,15 +42,15 @@ export class AddMemberDialogComponent implements OnInit {
       id: 0,
       firstname: this.formGroup.getRawValue().firstname,
       lastname: this.formGroup.getRawValue().lastname,
-      isDriver: this.formGroup.getRawValue().isDriver,
-      joiningDate: this.formGroup.getRawValue().joiningDate,
-      pesel: this.formGroup.getRawValue().pesel,
-      address: this.formGroup.getRawValue().address,
-      city: this.formGroup.getRawValue().city,
-      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
       birthdate: this.formGroup.getRawValue().birthdate,
-      email: this.formGroup.getRawValue().email,
+      birthplace: this.formGroup.getRawValue().birthplace,
+      idNumber: this.formGroup.getRawValue().idNumber,
+      address: this.formGroup.getRawValue().address,
+      joiningDate: this.formGroup.getRawValue().joiningDate,
+      role: this.formGroup.getRawValue().role,
       phoneNumber: this.formGroup.getRawValue().phoneNumber,
+      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
+      isDriver: this.formGroup.getRawValue().isDriver,
       trainings: []
     };
 

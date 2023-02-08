@@ -1,6 +1,7 @@
 export interface Equipment {
+  id: number;
   name: string;
-  price: number;
   serialNumber: string;
-
+  storageLocation: string;
+  parameters: Map<string, string>;
 }
