@@ -1,0 +1,15 @@
+mat-list-item {
+  min-width: 500px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid black;
+
+  div {
+    text-align: end;
+    width: 100%;
+  }
+}
+
+
+

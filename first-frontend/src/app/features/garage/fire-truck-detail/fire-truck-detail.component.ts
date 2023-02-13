@@ -10,9 +10,9 @@ import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@ang
   styleUrls: ['./fire-truck-detail.component.scss']
 })
 export class FireTruckDetailComponent implements OnInit {
-  private fireTruckId: number = 0;
   private tempParamInputs: Map<string, string> = new Map;
   private tempParamInputsKeys: string[] = [];
+  public fireTruckId: number = 0;
   public fireTruck!: FireTruck;
   public listContent: Map<string, any> = new Map();
   public listContentKeys: string[] = [];

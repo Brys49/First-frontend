@@ -18,6 +18,8 @@ import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck
 import { AddFireTruckDialogComponent } from '../garage/add-fire-truck-dialog/add-fire-truck-dialog.component';
 import { EquipmentDetailComponent } from '../equipment/equipment-detail/equipment-detail.component';
 import { AddEquipmentDialogComponent } from '../equipment/add-equipment-dialog/add-equipment-dialog.component';
+import { FireTruckEquipmentComponent } from '../garage/fire-truck-detail/fire-truck-equipment/fire-truck-equipment.component';
+import { AddEquipmentToFireTruckDialogComponent } from '../garage/fire-truck-detail/add-equipment-to-fire-truck-dialog/add-equipment-to-fire-truck-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { AddEquipmentDialogComponent } from '../equipment/add-equipment-dialog/a
     AddFireTruckDialogComponent,
     EquipmentDetailComponent,
     AddEquipmentDialogComponent,
+    FireTruckEquipmentComponent,
+    AddEquipmentToFireTruckDialogComponent,
 
   ],
   imports: [
