@@ -1,34 +1,44 @@
 <h2>Details: </h2>
 <mat-list>
   <mat-list-item>
-    <p>Birthdate:</p> <p>{{member.birthdate | date}}</p>
+    <p>Birthdate:</p>
+    <p>{{member.birthdate | date}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>Birthplace:</p> <p>{{member.birthplace}}</p>
+    <p>Birthplace:</p>
+    <p>{{member.birthplace}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>ID number:</p> <p>{{member.idNumber}}</p>
+    <p>ID number:</p>
+    <p>{{member.idNumber}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>Address:</p> <p>{{member.address}}</p>
+    <p>Address:</p>
+    <p>{{member.address}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>Joining date:</p> <p>{{member.joiningDate | date}}</p>
+    <p>Joining date:</p>
+    <p>{{member.joiningDate | date}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>Role:</p> <p>{{member.role}}</p>
+    <p>Role:</p>
+    <p>{{member.role}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>Phone number:</p> <p>{{member.phoneNumber}}</p>
+    <p>Phone number:</p>
+    <p>{{member.phoneNumber}}</p>
   </mat-list-item>
   <mat-list-item>
-    <p>Periodic examinations expiry date:</p> <p>{{member.periodicExaminationsExpiryDate | date}}</p>
+    <p>Periodic examinations expiry date:</p>
+    <p>{{member.periodicExaminationsExpiryDate | date}}</p>
   </mat-list-item>
   <mat-list-item>
     <p>Driver:</p>
     <p>
       <mat-icon *ngIf="member.isDriver; else notDriver">done</mat-icon>
-      <ng-template #notDriver><mat-icon>close</mat-icon></ng-template>
+      <ng-template #notDriver>
+        <mat-icon>close</mat-icon>
+      </ng-template>
     </p>
   </mat-list-item>
 </mat-list>

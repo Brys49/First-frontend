@@ -32,13 +32,13 @@ export class MembersListComponent implements OnInit, OnDestroy {
     this.memberIdToDisplayEvent.emit(id);
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+  }
+
   private getMembers(): void {
     this.membersService.getMembers().pipe(
       takeUntil(this._destroy$)
     ).subscribe(members => this.members = members);
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 }

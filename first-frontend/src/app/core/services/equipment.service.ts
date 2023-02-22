@@ -25,6 +25,12 @@ export class EquipmentService {
   }
 
   addEquipment(equipment: Equipment): void {
+    equipment.id = (this.equipment.length + 2) * 2;
+    this.equipment.push(equipment);
+  }
+
+  updateEquipment(equipment: Equipment): void {
+    this.deleteEquipment(equipment.id);
     this.equipment.push(equipment);
   }
 

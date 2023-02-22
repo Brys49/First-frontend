@@ -1,21 +1,20 @@
 <main>
-  <div id="equipment-list-container">
-    <h2 (click)="showDetails(0)">Equipment list</h2>
-    <mat-list>
-      <mat-list-item *ngFor="let e of equipment">
-        <h3 matLine>{{e.name}}</h3>
-        <p matLine>{{e.serialNumber}}</p>
-        <button mat-icon-button (click)="showDetails(e.id)">
-          <mat-icon>info</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-list>
+  <div class="list-container">
+    <app-equipment-list (equipmentIdToDisplayEvent)="showDetails($event)" ></app-equipment-list>
   </div>
-  <div id="button-container">
-    <button mat-raised-button color="primary" (click)="openDialog()">Add equipment</button>
-  </div>
-  <div id="summary-container">
-    <app-equipment-detail [equipmentId]="equipmentDetailId"></app-equipment-detail>
+  <div class="details-container">
+    <div *ngIf="displaySummary; else equipmentDetail">
+      <h2>Summary:</h2>
+      <p>Available soon</p>
+    </div>
+    <ng-template #equipmentDetail>
+      <app-equipment-detail *ngIf="selectedEquipmentId"
+                         (displaySummaryEvent)="displaySummaryToggle($event)"
+                         [equipmentId]="selectedEquipmentId">
+      </app-equipment-detail>
+    </ng-template>
   </div>
 </main>
-
+<div class="button-container">
+  <button mat-raised-button color="primary" (click)="openDialog()">Add equipment</button>
+</div>

@@ -30,7 +30,7 @@ export class MembersService {
   }
 
   updateMember(member: Member): void {
-    this.deleteMember(member.id)
+    this.deleteMember(member.id);
     this.members.push(member);
   }
 
@@ -49,5 +49,6 @@ export class MembersService {
   deleteTraining(id: number, type: TrainingType): void {
     this.getMember(id).subscribe(
       member => member.trainings.splice(member.trainings.findIndex(i => i.type === type), 1)
-    )};
+    )
+  };
 }

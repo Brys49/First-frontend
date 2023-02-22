@@ -1,5 +1,5 @@
 <div id="add-equipment-dialog">
-  <h1 mat-dialog-title>Add equipment</h1>
+  <h1 mat-dialog-title>{{title}}</h1>
 
   <mat-dialog-content id="details-container" [formGroup]="formGroup">
     <mat-form-field appearance="outline">
@@ -17,15 +17,19 @@
       <input matInput formControlName="storageLocation">
     </mat-form-field>
 
-    <div class="equipment-params" *ngFor="let param of paramInputsKeys">
-      <mat-form-field appearance="outline">
-        <mat-label>Parameter</mat-label>
-        <input matInput formControlName="{{param}}">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Value</mat-label>
-        <input matInput formControlName="{{paramInputs.get(param)}}">
-      </mat-form-field>
+    <div formArrayName="parameters">
+      <div *ngFor="let param of parameters.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field appearance="outline">
+            <mat-label>Parameter</mat-label>
+            <input matInput formControlName="pName">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Value</mat-label>
+            <input matInput formControlName="pValue">
+          </mat-form-field>
+        </div>
+      </div>
     </div>
 
     <div id="add-param-button-container">
@@ -42,7 +46,7 @@
     </button>
     <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit"
             [disabled]="!formGroup.valid" (click)="save()">
-      Add equipment
+      {{title}}
     </button>
   </mat-dialog-actions>
 </div>
