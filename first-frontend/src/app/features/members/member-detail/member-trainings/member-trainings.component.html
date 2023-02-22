@@ -1,0 +1,28 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Trainings:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item *ngFor="let t of member.trainings">
+        <p>{{t.type}}</p>
+        <p>{{t.id}}</p>
+        <p>Date: {{t.trainingDate | date: 'dd.MM.YYYY'}}</p>
+        <p [style.visibility]="t.expirationDate? 'visible': 'hidden'">Exp.
+          date: {{t.expirationDate | date: 'dd.MM.YYYY'}}</p>
+        <button mat-icon-button class="deleteButton" (click)="deleteTraining(t.type)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button color="primary" (click)="openDialog(this.member.id)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

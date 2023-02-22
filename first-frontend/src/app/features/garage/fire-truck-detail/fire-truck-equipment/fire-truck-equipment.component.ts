@@ -3,7 +3,7 @@ import { FireTrucksService } from '../../../../core/services/fire-trucks.service
 import { Equipment } from '../../../../core/models/equipment.model';
 import { EquipmentService } from '../../../../core/services/equipment.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddTrainingDialogComponent } from '../../../members/add-training-dialog/add-training-dialog.component';
+import { AddTrainingDialogComponent } from '../../../members/member-detail/add-training-dialog/add-training-dialog.component';
 import {
   AddEquipmentToFireTruckDialogComponent
 } from '../add-equipment-to-fire-truck-dialog/add-equipment-to-fire-truck-dialog.component';

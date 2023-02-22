@@ -1,38 +1,21 @@
 <main>
-  <div id="members-list-container">
-    <h2>Members list</h2>
-    <mat-list>
-      <mat-list-item *ngFor="let member of members">
-        <h3 matLine>{{member.firstname}} {{member.lastname}}</h3>
-        <div id="member-trainings-icons">
-          <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[0])">local_fire_department</mat-icon>
-          <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[1])">health_and_safety</mat-icon>
-          <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[2])">stars</mat-icon>
-          <mat-icon *ngIf="member.isDriver">directions_car</mat-icon>
-        </div>
-        <p matLine>{{member.phoneNumber}}</p>
-        <button mat-icon-button routerLink="/home/members/detail/{{member.id}}">
-          <mat-icon>info</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-list>
+  <div class="list-container">
+    <app-members-list (memberIdToDisplayEvent)="showDetails($event)" ></app-members-list>
   </div>
-  <div id="button-container">
-    <button mat-raised-button color="primary" (click)="openDialog()">Add member</button>
-  </div>
-  <div id="summary-container">
-    <h2>Summary</h2>
-    <mat-list>
-      <mat-list-item>
-        <p>111</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>222</p>
-      </mat-list-item>
-      <mat-list-item>
-        <p>333</p>
-      </mat-list-item>
-    </mat-list>
+  <div class="details-container">
+    <div *ngIf="displaySummary; else memberDetail">
+      <h2>Summary:</h2>
+      <p>Available soon</p>
+    </div>
+    <ng-template #memberDetail>
+      <app-member-detail *ngIf="selectedMemberId"
+                         (displaySummaryEvent)="displaySummaryToggle($event)"
+                         [memberId]="selectedMemberId">
+      </app-member-detail>
+    </ng-template>
   </div>
 </main>
+<div class="button-container">
+  <button mat-raised-button color="primary" (click)="openDialog()">Add member</button>
+</div>
 

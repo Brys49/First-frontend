@@ -1,141 +1,36 @@
-<main *ngIf="member">
-  <div id="back-button-container">
-    <button mat-raised-button color="primary" (click)="goBack()">
-      <mat-icon>
-        arrow_back
-      </mat-icon>
-    </button>
-  </div>
-  <div id="name-container">
-    <h1>{{member.firstname}} {{member.lastname}}</h1>
-  </div>
-  <div id="buttons-container">
-    <div id="edit-button-container">
-      <button mat-raised-button color="primary" (click)="edit()">
+<main>
+  <div class="name-container">
+    <div>
+        <button mat-icon-button color="primary" (click)="goBack()">
+          <mat-icon>
+            arrow_back
+          </mat-icon>
+        </button>
+      <h1>
+        {{member.firstname}} {{member.lastname}}
+      </h1>
+    </div>
+    <div>
+      <button mat-icon-button color="primary" (click)="edit()">
         <mat-icon>
           edit
         </mat-icon>
       </button>
-    </div>
-    <div id="delete-button-container">
-      <button mat-raised-button color="primary" (click)="deleteMember(member.id)">
+      <button mat-icon-button color="primary" (click)="deleteMember(member.id)">
         <mat-icon>
           delete
         </mat-icon>
       </button>
     </div>
   </div>
-  <div id="details-container">
-    <h2>Details: </h2>
-    <mat-list *ngIf="!editMode; else editForm">
-      <mat-list-item>
-        <p>Driver:
-        </p>
-        <p>
-          <mat-icon *ngIf="member.isDriver; else elseBlock">done</mat-icon>
-          <ng-template #elseBlock>
-            <mat-icon>close</mat-icon>
-          </ng-template>
-        </p>
-      </mat-list-item>
-      <mat-list-item *ngFor="let k of listContentKeys">
-        <p>{{k}}</p>
-        <p>{{listContent.get(k)}}</p>
-      </mat-list-item>
-    </mat-list>
-    <ng-template #editForm>
-      <div id="edit-details-form" [formGroup]="formGroup">
-        <div id="inputs-container">
-
-          <mat-form-field appearance="outline">
-            <mat-label>Birthdate</mat-label>
-            <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="birthdate">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Birthplace</mat-label>
-            <input matInput formControlName="birthplace">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>ID number</mat-label>
-            <input matInput formControlName="idNumber">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Joining date</mat-label>
-            <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="joiningDate">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Role</mat-label>
-            <input matInput formControlName="role">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Phone number</mat-label>
-            <input matInput type="email" formControlName="phoneNumber">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Periodic examinations expiry date</mat-label>
-            <input matInput [matDatepicker]="picker3" formControlName="periodicExaminationsExpiryDate">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-            <mat-datepicker #picker3></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Is driver?</mat-label>
-            <mat-select formControlName="isDriver">
-              <mat-option [value]="true">Yes</mat-option>
-              <mat-option [value]="false">No</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-        </div>
-        <button mat-raised-button (click)="close()">
-          Close
-        </button>
-        <button mat-raised-button color="primary" type="submit"
-                [disabled]="!formGroup.valid" (click)="save()">
-          Save
-        </button>
-      </div>
-
-    </ng-template>
+  <div class="details-list-container">
+    <app-member-detail-list [member]="member"></app-member-detail-list>
   </div>
   <div id="trainings-container">
-    <h2>Trainings:</h2>
-    <mat-list>
-      <mat-list-item *ngFor="let t of member.trainings">
-        <p>{{t.type}}</p>
-        <p>{{t.id}}</p>
-        <p>Date: {{t.trainingDate | date: 'dd.MM.YYYY'}}</p>
-        <p [style.visibility]="t.expirationDate? 'visible': 'hidden'">Exp. date: {{t.expirationDate | date: 'dd.MM.YYYY'}}</p>
-        <button mat-icon-button class="deleteButton" (click)="deleteTraining(t.type)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-list>
-    <div id="add-training-button-container">
-      <button mat-raised-button color="primary" (click)="openDialog(this.member.id)">
-        <mat-icon>add</mat-icon>
-      </button>
+    <app-member-trainings [member]="member"></app-member-trainings>
+  </div>
+    <div id="call-outs-container">
+      <h2>Call Outs:</h2>
+      <p>Available soon</p>
     </div>
-  </div>
-  <div id="call-outs-container">
-    <h2>Call Outs:</h2>
-  </div>
 </main>

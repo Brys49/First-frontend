@@ -7,9 +7,7 @@ import { MembersComponent } from '../members/members.component';
 import { EquipmentComponent } from '../equipment/equipment.component';
 import { DocsComponent } from '../docs/docs.component';
 import { CallOutsComponent } from '../call-outs/call-outs.component';
-import { MemberDetailComponent } from '../members/member-detail/member-detail.component';
 import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck-detail.component';
-import { EquipmentDetailComponent } from '../equipment/equipment-detail/equipment-detail.component';
 
 const routes: Routes = [
   {
@@ -44,10 +42,6 @@ const routes: Routes = [
       {
         path: 'docs',
         component: DocsComponent
-      },
-      {
-        path: 'members/detail/:id',
-        component: MemberDetailComponent,
       },
       {
         path: 'garage/detail/:id',

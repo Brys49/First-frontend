@@ -25,6 +25,12 @@ export class MembersService {
   }
 
   addMember(member: Member): void {
+    member.id = (this.members.length + 2) * 2;
+    this.members.push(member);
+  }
+
+  updateMember(member: Member): void {
+    this.deleteMember(member.id)
     this.members.push(member);
   }
 

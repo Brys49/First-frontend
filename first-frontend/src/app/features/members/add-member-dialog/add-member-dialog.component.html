@@ -1,5 +1,5 @@
 <div id="add-member-dialog">
-  <h1 mat-dialog-title>Add member</h1>
+  <h1 mat-dialog-title>{{title}}</h1>
 
   <mat-dialog-content id="details-container" [formGroup]="formGroup">
     <div id="inputs-container">
@@ -79,7 +79,7 @@
     </button>
     <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit"
             [disabled]="!formGroup.valid" (click)="save()">
-      Add member
+      {{title}}
     </button>
   </mat-dialog-actions>
 </div>

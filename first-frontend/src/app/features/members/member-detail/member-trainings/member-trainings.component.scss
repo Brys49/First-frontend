@@ -1,0 +1,7 @@
+.deleteButton {
+  visibility: hidden;
+}
+
+mat-list-item:hover .deleteButton, .deleteButton:hover {
+  visibility: visible;
+}
