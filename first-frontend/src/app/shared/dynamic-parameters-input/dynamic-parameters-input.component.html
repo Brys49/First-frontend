@@ -1,0 +1,25 @@
+<div [formGroup]="formGroup">
+  <div formArrayName="parameters">
+    <div *ngFor="let param of parameters.controls; let i = index">
+      <div [formGroupName]="i" class="parameter-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Parameter</mat-label>
+          <input matInput formControlName="pName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Value</mat-label>
+          <input matInput formControlName="pValue">
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="removeParameter(i)">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div id="add-param-button-container">
+      <button mat-raised-button color="primary" (click)="addParameter()">
+        Add more parameters
+      </button>
+    </div>
+  </div>
+</div>
+

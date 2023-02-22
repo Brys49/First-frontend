@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Equipment } from 'src/app/core/models/equipment.model';
 
@@ -14,8 +14,8 @@ export class AddEquipmentDialogComponent implements OnInit {
   public editMode = false;
   public title!: string;
 
-  get parameters() {
-    return this.formGroup.get('parameters') as FormArray;
+  get parametersData() {
+    return this.data.equipment.parameters;
   }
 
   constructor(public dialogRef: MatDialogRef<AddEquipmentDialogComponent>,
@@ -33,11 +33,6 @@ export class AddEquipmentDialogComponent implements OnInit {
       storageLocation: [this.data.equipment.storageLocation, [Validators.required, Validators.maxLength(120)]],
       parameters: this.fb.array([])
     })
-
-    for (const pName of this.data.equipment.parameters.keys()) {
-      const pValue = this.data.equipment.parameters.get(pName);
-      this.addParameter(pName, pValue)
-    }
   }
 
   public save(): void {
@@ -58,15 +53,6 @@ export class AddEquipmentDialogComponent implements OnInit {
 
   public close(): void {
     this.dialogRef.close(null);
-  }
-
-  public addParameter(name = "", value = ""): void {
-    this.parameters.push(
-      this.fb.group({
-        pName: [name, [Validators.required]],
-        pValue: [value, [Validators.required]],
-      })
-    )
   }
 
 }

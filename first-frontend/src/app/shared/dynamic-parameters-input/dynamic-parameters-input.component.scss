@@ -1,0 +1,15 @@
+div.parameter-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
