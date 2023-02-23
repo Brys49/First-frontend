@@ -7,7 +7,6 @@ import { MembersComponent } from '../members/members.component';
 import { EquipmentComponent } from '../equipment/equipment.component';
 import { DocsComponent } from '../docs/docs.component';
 import { CallOutsComponent } from '../call-outs/call-outs.component';
-import { FireTruckDetailComponent } from '../garage/fire-truck-detail/fire-truck-detail.component';
 
 const routes: Routes = [
   {
@@ -42,10 +41,6 @@ const routes: Routes = [
       {
         path: 'docs',
         component: DocsComponent
-      },
-      {
-        path: 'garage/detail/:id',
-        component: FireTruckDetailComponent,
       },
     ]
   },

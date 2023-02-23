@@ -1,44 +1,54 @@
-<h2>Details: </h2>
-<mat-list>
-  <mat-list-item>
-    <p>Birthdate:</p>
-    <p>{{member.birthdate | date}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Birthplace:</p>
-    <p>{{member.birthplace}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>ID number:</p>
-    <p>{{member.idNumber}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Address:</p>
-    <p>{{member.address}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Joining date:</p>
-    <p>{{member.joiningDate | date}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Role:</p>
-    <p>{{member.role}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Phone number:</p>
-    <p>{{member.phoneNumber}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Periodic examinations expiry date:</p>
-    <p>{{member.periodicExaminationsExpiryDate | date}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Driver:</p>
-    <p>
-      <mat-icon *ngIf="member.isDriver; else notDriver">done</mat-icon>
-      <ng-template #notDriver>
-        <mat-icon>close</mat-icon>
-      </ng-template>
-    </p>
-  </mat-list-item>
-</mat-list>
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Details:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <p>Birthdate:</p>
+        <p>{{member.birthdate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Birthplace:</p>
+        <p>{{member.birthplace}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>ID number:</p>
+        <p>{{member.idNumber}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Address:</p>
+        <p>{{member.address}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Joining date:</p>
+        <p>{{member.joiningDate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Role:</p>
+        <p>{{member.role}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Phone number:</p>
+        <p>{{member.phoneNumber}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Periodic examinations expiry date:</p>
+        <p>{{member.periodicExaminationsExpiryDate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Driver:</p>
+        <p>
+          <mat-icon *ngIf="member.isDriver; else notDriver">done</mat-icon>
+          <ng-template #notDriver>
+            <mat-icon>close</mat-icon>
+          </ng-template>
+        </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

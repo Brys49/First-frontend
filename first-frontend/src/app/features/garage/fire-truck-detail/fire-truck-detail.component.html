@@ -1,139 +1,71 @@
-<main *ngIf="fireTruck">
-  <div id="back-button-container">
-    <button mat-raised-button color="primary" (click)="goBack()">
-      <mat-icon>
-        arrow_back
-      </mat-icon>
-    </button>
-  </div>
-  <div id="name-container">
-    <h1>{{fireTruck.name}}</h1>
-  </div>
-  <div id="buttons-container">
-    <div id="edit-button-container">
-      <button mat-raised-button color="primary" (click)="edit()">
+<main>
+  <div class="name-container">
+    <div>
+      <button mat-icon-button color="primary" (click)="goBack()">
+        <mat-icon>
+          arrow_back
+        </mat-icon>
+      </button>
+      <h1>
+        {{fireTruck.name}}
+      </h1>
+    </div>
+    <div>
+      <button mat-icon-button color="primary" (click)="edit()">
         <mat-icon>
           edit
         </mat-icon>
       </button>
-    </div>
-    <div id="delete-button-container">
-      <button mat-raised-button color="primary" (click)="deleteFireTruck(fireTruck.id)">
+      <button mat-icon-button color="primary" (click)="deleteFireTruck(fireTruck.id)">
         <mat-icon>
           delete
         </mat-icon>
       </button>
     </div>
   </div>
-  <div id="details-container">
-    <h2>Details: </h2>
-    <mat-list *ngIf="!editMode; else editForm">
-      <mat-list-item *ngFor="let k of listContentKeys">
-        <p>{{k}}: </p>
-        <p>{{listContent.get(k)}}</p>
-      </mat-list-item>
-    </mat-list>
-    <ng-template #editForm>
-      <div id="edit-details-form" [formGroup]="formGroup">
-        <div id="inputs-container">
-
-          <mat-form-field appearance="outline">
-            <mat-label>VIN</mat-label>
-            <input matInput formControlName="vin">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Production year</mat-label>
-            <mat-select formControlName="productionYear">
-              <mat-option *ngFor="let year of selectableYears" [value]="year">
-                {{year}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>License plate</mat-label>
-            <input matInput formControlName="licensePlate">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Operational number</mat-label>
-            <input matInput formControlName="operationalNumber">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Type</mat-label>
-            <input matInput formControlName="type">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Total weight</mat-label>
-            <input matInput type="number" formControlName="totalWeight">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Horsepower</mat-label>
-            <input matInput type="number" formControlName="horsepower">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Number of seats</mat-label>
-            <input matInput type="number" formControlName="numberOfSeats">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Mileage</mat-label>
-            <input matInput type="number" formControlName="mileage">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Technical review expiry date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="technicalReviewExpiryDate">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Insurance expiry date</mat-label>
-            <input matInput [matDatepicker]="picker2" formControlName="insuranceExpiryDate">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-
-          <div class="fire-truck-params" *ngFor="let param of paramInputsKeys">
-            <mat-form-field appearance="outline">
-              <mat-label>Parameter</mat-label>
-              <input matInput formControlName="{{param}}">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Value</mat-label>
-              <input matInput formControlName="{{paramInputs.get(param)}}">
-            </mat-form-field>
-          </div>
-
-          <div id="add-param-button-container">
-            <button mat-raised-button color="primary" (click)="addParameter()">
-              Add more parameters
-            </button>
-          </div>
-        </div>
-        <button mat-raised-button (click)="close()">
-          Close
-        </button>
-        <button mat-raised-button color="primary" type="submit"
-                [disabled]="!formGroup.valid" (click)="save()">
-          Save
-        </button>
+  <div id="fire-truck-details-container">
+    <div id="details-column1" class="details-column">
+      <div class="details-list-container">
+        <app-fire-truck-detail-list [fireTruck]="fireTruck"></app-fire-truck-detail-list>
       </div>
-    </ng-template>
-  </div>
-  <div id="equipment-container">
-    <h2>Equipment:</h2>
-    <app-fire-truck-equipment [fireTruckId]="fireTruckId"></app-fire-truck-equipment>
-  </div>
-  <div id="call-outs-container">
-    <h2>Call Outs:</h2>
+      <div class="parameters-list-container">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Parameters:
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item *ngFor="let p of fireTruck.parameters | keyvalue">
+                <p>{{p.key}}:</p>
+                <p>{{p.value}}</p>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div id="details-column2" class="details-column">
+      <div id="equipment-container">
+        <app-fire-truck-equipment [fireTruckId]="fireTruckId"></app-fire-truck-equipment>
+      </div>
+      <div class="call-outs-container">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Call Outs:
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Available soon</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
   </div>
 </main>

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FireTruck } from 'src/app/core/models/fire-truck.model';
-import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
 import { requiredFileType } from 'src/app/shared/file-upload-input/file-upload-input.component';
 
 @Component({
@@ -12,98 +11,91 @@ import { requiredFileType } from 'src/app/shared/file-upload-input/file-upload-i
 })
 export class AddFireTruckDialogComponent implements OnInit {
   public formGroup!: FormGroup;
+  public editMode = false;
+  public title!: string;
   public selectableYears: number[] = [];
   public maxDate!: Date;
   public maxYear!: number;
-  public paramInputs: Map<string, string> = new Map;
-  public paramInputsKeys: string[] = [];
-  private parametersCounter: number = 0;
+
+  get parametersData() {
+    return this.data.fireTruck.parameters;
+  }
 
   constructor(public dialogRef: MatDialogRef<AddFireTruckDialogComponent>,
-              private fb: NonNullableFormBuilder,
-              private fireTrucksService: FireTrucksService) {
+              @Inject(MAT_DIALOG_DATA) private data: { fireTruck: FireTruck },
+              private fb: NonNullableFormBuilder) {
   }
 
   ngOnInit(): void {
+    this.editMode = this.data.fireTruck.id !== 0;
+    this.title = this.editMode ? "Edit fire truck" : "Add fire truck";
+
     this.maxDate = new Date();
     this.maxYear = this.maxDate.getFullYear();
 
-    for (let i = 1900; i <= this.maxDate.getFullYear(); i++) {
+    for (let i = this.maxDate.getFullYear(); i >= 1900; i--) {
       this.selectableYears.push(i);
     }
 
     this.formGroup = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(120)]],
-      image: [null, [Validators.required, requiredFileType('png')]],
-      vin: ['', [Validators.required, Validators.pattern("^[A-HJ-NPR-Za-hj-npr-z\\d]{8}[\\dX][A-HJ-NPR-Za-hj-npr-z\\d]{2}\\d{6}$")]],
-      productionYear: [this.maxYear, [Validators.required]],
-      licensePlate: ['', Validators.required],
-      operationalNumber: ['', [Validators.required, Validators.pattern("^[0-9]{3}[A-GK-PRSTWZ]\\d{2}$")]],
-      type: ['', [Validators.required, Validators.pattern("^[A-z\\d]{2,8}")]],
-      totalWeight: [0, [Validators.required, Validators.min(1)]],
-      horsepower: [0, [Validators.required, Validators.min(1)]],
-      numberOfSeats: [0, [Validators.required, Validators.min(1)]],
-      mileage: [0, [Validators.required, Validators.min(0)]],
-      technicalReviewExpiryDate: ['', Validators.required],
-      insuranceExpiryDate: ['', Validators.required]
+      name: [this.data.fireTruck.name, [Validators.required, Validators.maxLength(120)]],
+      image: [this.data.fireTruck.image, [requiredFileType('png')]],
+      vin: [this.data.fireTruck.vin, [Validators.required, Validators.pattern("^[A-HJ-NPR-Za-hj-npr-z\\d]{8}[\\dX][A-HJ-NPR-Za-hj-npr-z\\d]{2}\\d{6}$")]],
+      productionYear: [this.data.fireTruck.productionYear, [Validators.required]],
+      licensePlate: [this.data.fireTruck.licensePlate, Validators.required],
+      operationalNumber: [this.data.fireTruck.operationalNumber, [Validators.required, Validators.pattern("^[0-9]{3}[A-GK-PRSTWZ]\\d{2}$")]],
+      type: [this.data.fireTruck.type, [Validators.required, Validators.pattern("^[A-z\\d]{2,8}")]],
+      totalWeight: [this.data.fireTruck.totalWeight, [Validators.required, Validators.min(1)]],
+      horsepower: [this.data.fireTruck.horsepower, [Validators.required, Validators.min(1)]],
+      numberOfSeats: [this.data.fireTruck.numberOfSeats, [Validators.required, Validators.min(1)]],
+      mileage: [this.data.fireTruck.mileage, [Validators.required, Validators.min(0)]],
+      technicalReviewExpiryDate: [this.data.fireTruck.technicalReviewExpiryDate, Validators.required],
+      insuranceExpiryDate: [this.data.fireTruck.insuranceExpiryDate, Validators.required],
+      parameters: this.fb.array([])
     })
   }
 
   public save(): void {
-    const parameters = new Map<string, string>();
-    for (let i = 0; i < this.parametersCounter; i++) {
-      const keyName = "paramKey" + i;
-      const parameter = this.formGroup.get(keyName)?.value;
-      const valueName = "paramValue" + i;
-      const value = this.formGroup.get(valueName)?.value;
+    const parameters = new Map<string, string>(
+      this.formGroup.getRawValue().parameters
+        .map((i: { pName: string; pValue: string; }) => [i.pName, i.pValue]))
 
-      parameters.set(parameter, value);
-    }
+    const fireTruck: FireTruck = {
+      id: this.data.fireTruck.id,
+      name: this.formGroup.getRawValue().name,
+      image: this.data.fireTruck.image,
+      vin: this.formGroup.getRawValue().vin,
+      productionYear: this.formGroup.getRawValue().productionYear,
+      licensePlate: this.formGroup.getRawValue().licensePlate,
+      operationalNumber: this.formGroup.getRawValue().operationalNumber,
+      type: this.formGroup.getRawValue().type,
+      totalWeight: this.formGroup.getRawValue().totalWeight,
+      horsepower: this.formGroup.getRawValue().horsepower,
+      numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
+      mileage: this.formGroup.getRawValue().mileage,
+      technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
+      insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
+      parameters: parameters,
+      equipment: this.data.fireTruck.equipment,
+      imgUrl: this.data.fireTruck.imgUrl
+    };
 
-    const reader = new FileReader();
-    reader.readAsDataURL(this.formGroup.getRawValue().image);
-    reader.onload = (_event) => {
-      const fireTruck: FireTruck = {
-        id: 0,
-        name: this.formGroup.getRawValue().name,
-        image: this.formGroup.getRawValue().image,
-        vin: this.formGroup.getRawValue().vin,
-        productionYear: this.formGroup.getRawValue().productionYear,
-        licensePlate: this.formGroup.getRawValue().licensePlate,
-        operationalNumber: this.formGroup.getRawValue().operationalNumber,
-        type: this.formGroup.getRawValue().type,
-        totalWeight: this.formGroup.getRawValue().totalWeight,
-        horsepower: this.formGroup.getRawValue().horsepower,
-        numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
-        mileage: this.formGroup.getRawValue().mileage,
-        technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
-        insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
-        parameters: parameters,
-        equipment: [],
-        imgUrl: reader.result ? reader.result.toString() : ""
-      };
-      this.fireTrucksService.addFireTruck(fireTruck);
-      this.dialogRef.close();
+    if (this.formGroup.getRawValue().image) {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.formGroup.getRawValue().image);
+      reader.onload = (_event) => {
+        fireTruck.image = this.formGroup.getRawValue().image;
+        fireTruck.imgUrl = reader.result ? reader.result.toString() : '';
+
+        this.dialogRef.close(fireTruck);
+      }
+    } else {
+      this.dialogRef.close(fireTruck);
     }
   }
 
   public close(): void {
-    this.dialogRef.close();
-  }
-
-  public addParameter(): void {
-    const keyName = "paramKey" + this.parametersCounter;
-    const valueName = "paramValue" + this.parametersCounter;
-    this.parametersCounter += 1;
-    this.formGroup.addControl(
-      keyName, new FormControl('', [Validators.required, Validators.minLength(3)])
-    );
-    this.formGroup.addControl(
-      valueName, new FormControl('', [Validators.required, Validators.minLength(1)])
-    );
-
-    this.paramInputs.set(keyName, valueName);
-    this.paramInputsKeys = Array.from(this.paramInputs.keys());
+    this.dialogRef.close(null);
   }
 
 }

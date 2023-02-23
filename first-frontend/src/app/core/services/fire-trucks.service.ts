@@ -27,6 +27,12 @@ export class FireTrucksService {
   }
 
   addFireTruck(fireTruck: FireTruck): void {
+    fireTruck.id = (this.fireTrucks.length + 2) * 2;
+    this.fireTrucks.push(fireTruck);
+  }
+
+  updateFireTruck(fireTruck: FireTruck): void {
+    this.deleteFireTruck(fireTruck.id)
     this.fireTrucks.push(fireTruck);
   }
 

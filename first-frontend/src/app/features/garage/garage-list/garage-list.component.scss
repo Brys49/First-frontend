@@ -1,0 +1,41 @@
+div#garage-list{
+  display: flex;
+  flex-direction: column;
+}
+
+div.fire-truck {
+  border: 0.2rem solid black;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+div.fire-truck-img {
+  img {
+    max-width: 100%;
+    padding: 1rem;
+    border-radius: 2rem;
+  }
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    mat-icon {
+      transform: translateX(0.2rem);
+    }
+  }
+}

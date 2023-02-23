@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./member-detail.component.scss', '../../../shared/styles/feature-details.scss']
 })
 export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() public memberId!: number;
+  @Input() public memberId: number = 0;
   @Output() public displaySummaryEvent = new EventEmitter<boolean>();
   public member!: Member;
 

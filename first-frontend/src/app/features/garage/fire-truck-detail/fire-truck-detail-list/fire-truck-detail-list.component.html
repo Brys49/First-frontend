@@ -1,0 +1,57 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Details:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <p>VIN:</p>
+        <p>{{fireTruck.vin}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Production year:</p>
+        <p>{{fireTruck.productionYear}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>License plate:</p>
+        <p>{{fireTruck.licensePlate}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Operational number:</p>
+        <p>{{fireTruck.operationalNumber}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Type:</p>
+        <p>{{fireTruck.type}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Total weight:</p>
+        <p>{{fireTruck.totalWeight}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Horsepower:</p>
+        <p>{{fireTruck.horsepower}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Number of seats:</p>
+        <p>{{fireTruck.numberOfSeats}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Mileage:</p>
+        <p>{{fireTruck.mileage}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Technical review expiry date:</p>
+        <p>{{fireTruck.technicalReviewExpiryDate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Insurance expiry date:</p>
+        <p>{{fireTruck.insuranceExpiryDate | date}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

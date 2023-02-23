@@ -1,31 +1,7 @@
-main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
+.deleteButton {
+  visibility: hidden;
 }
 
-mat-list {
-  width: 100%;
-  padding: 0;
+mat-list-item:hover .deleteButton, .deleteButton:hover {
+  visibility: visible;
 }
-
-mat-list-item {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 0.1rem solid black;
-
-  div {
-    width: 100%;
-  }
-}
-
-div#add-equipment-button-container {
-  margin: 1rem 0;
-}
-
-
-
-

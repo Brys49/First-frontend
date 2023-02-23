@@ -1,16 +1,25 @@
-<main>
-  <mat-list>
-    <mat-list-item *ngFor="let e of fireTruckEquipment">
-      <div>{{e.name}}</div>
-      <div>{{e.serialNumber}}</div>
-      <button mat-icon-button (click)="removeEquipment(e.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-list-item>
-  </mat-list>
-  <div id="add-equipment-button-container">
-    <button mat-raised-button color="primary" (click)="openDialog()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-</main>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Equipment:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item *ngFor="let e of fireTruckEquipment">
+        <p>{{e.name}}</p>
+        <p>{{e.serialNumber}}</p>
+        <button mat-icon-button class="deleteButton" (click)="removeEquipment(e.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button color="primary" (click)="openDialog()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

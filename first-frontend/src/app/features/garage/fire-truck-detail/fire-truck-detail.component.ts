@@ -1,80 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FireTruck } from 'src/app/core/models/fire-truck.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
-import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { Subject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { takeUntil } from 'rxjs/operators';
+import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-truck-dialog.component';
 
 @Component({
   selector: 'app-fire-truck-detail',
   templateUrl: './fire-truck-detail.component.html',
-  styleUrls: ['./fire-truck-detail.component.scss']
+  styleUrls: ['./fire-truck-detail.component.scss', '../../../shared/styles/feature-details.scss',
+    '../../../shared/styles/lists.scss']
 })
-export class FireTruckDetailComponent implements OnInit {
-  private tempParamInputs: Map<string, string> = new Map;
-  private tempParamInputsKeys: string[] = [];
-  public fireTruckId: number = 0;
+export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() public fireTruckId: number = 0;
+  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
   public fireTruck!: FireTruck;
-  public listContent: Map<string, any> = new Map();
-  public listContentKeys: string[] = [];
-  public editMode: boolean = false;
-  public formGroup!: FormGroup;
-  public selectableYears: number[] = [];
-  public maxDate!: Date;
-  public maxYear!: number;
-  public paramInputs: Map<string, string> = new Map;
-  public paramInputsKeys: string[] = [];
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private fireTrucksService: FireTrucksService,
-              private fb: NonNullableFormBuilder) {
+  private _destroy$ = new Subject<void>();
+
+  constructor(public dialog: MatDialog,
+              private fireTrucksService: FireTrucksService) {
   }
 
   ngOnInit(): void {
-    this.maxDate = new Date();
-    this.maxYear = this.maxDate.getFullYear();
-
-    for (let i = 1900; i <= this.maxDate.getFullYear(); i++) {
-      this.selectableYears.push(i);
-    }
-
-    this.fireTruckId = Number(this.route.snapshot.paramMap.get('id'));
     this.getFireTruck();
   }
 
-  private getFireTruck(): void {
-    this.fireTrucksService.getFireTruck(this.fireTruckId).subscribe(
-      fireTruck => this.fireTruck = fireTruck
-    );
-
-    if (this.fireTruck) {
-      this.generateContent();
-    } else {
-      this.goBack();
-    }
-  }
-
-  private generateContent(): void {
-    this.listContent.clear();
-    this.listContent.set("VIN", this.fireTruck.vin);
-    this.listContent.set("Production year", this.fireTruck.productionYear);
-    this.listContent.set("License plate", this.fireTruck.licensePlate);
-    this.listContent.set("Operational number", this.fireTruck.operationalNumber);
-    this.listContent.set("Type", this.fireTruck.type);
-    this.listContent.set("Total weight", this.fireTruck.totalWeight);
-    this.listContent.set("Horsepower", this.fireTruck.horsepower);
-    this.listContent.set("Number of seats", this.fireTruck.numberOfSeats);
-    this.listContent.set("Mileage", this.fireTruck.mileage);
-    this.listContent.set("Technical review expiry date", this.fireTruck.technicalReviewExpiryDate.toLocaleDateString());
-    this.listContent.set("Insurance expiry date", this.fireTruck.insuranceExpiryDate.toLocaleDateString());
-    for (let paramKey of this.fireTruck.parameters.keys()) {
-      this.listContent.set(paramKey, this.fireTruck.parameters.get(paramKey));
-    }
-    this.listContentKeys = Array.from(this.listContent.keys());
+  ngOnChanges(): void {
+    this.getFireTruck();
   }
 
   public goBack(): void {
-    this.router.navigateByUrl('/home/garage');
+    this.displaySummaryEvent.emit(true)
   }
 
   public deleteFireTruck(id: number): void {
@@ -83,106 +41,34 @@ export class FireTruckDetailComponent implements OnInit {
   }
 
   public edit(): void {
-    if (this.editMode) {
-      this.close();
-      return;
-    } else {
-      this.editMode = true;
-      this.tempParamInputs = new Map(this.paramInputs);
-      this.tempParamInputsKeys = this.paramInputsKeys.slice();
-    }
-
-    this.formGroup = this.fb.group({
-      vin: [this.fireTruck.vin, [Validators.required, Validators.pattern("^[A-HJ-NPR-Za-hj-npr-z\\d]{8}[\\dX][A-HJ-NPR-Za-hj-npr-z\\d]{2}\\d{6}$")]],
-      productionYear: [this.fireTruck.productionYear, [Validators.required]],
-      licensePlate: [this.fireTruck.licensePlate, Validators.required],
-      operationalNumber: [this.fireTruck.operationalNumber, [Validators.required, Validators.pattern("^[0-9]{3}[A-GK-PRSTWZ]\\d{2}$")]],
-      type: [this.fireTruck.type, [Validators.required, Validators.pattern("^[A-z\\d]{2,8}")]],
-      totalWeight: [this.fireTruck.totalWeight, [Validators.required, Validators.min(1)]],
-      horsepower: [this.fireTruck.horsepower, [Validators.required, Validators.min(1)]],
-      numberOfSeats: [this.fireTruck.numberOfSeats, [Validators.required, Validators.min(1)]],
-      mileage: [this.fireTruck.mileage, [Validators.required, Validators.min(0)]],
-      technicalReviewExpiryDate: [this.fireTruck.technicalReviewExpiryDate, Validators.required],
-      insuranceExpiryDate: [this.fireTruck.insuranceExpiryDate, Validators.required]
+    const dialogRef = this.dialog.open(AddFireTruckDialogComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'add-fire-truck-dialog-panel',
+      autoFocus: true,
+      disableClose: true,
+      data: {fireTruck: this.fireTruck}
     });
 
-    let parametersCounter = 0;
-    this.paramInputs.clear();
-    for (let paramKey of this.fireTruck.parameters.keys()) {
-      const keyName = "paramKey" + parametersCounter;
-      const valueName = "paramValue" + parametersCounter;
-      parametersCounter += 1;
-      this.formGroup.addControl(
-        keyName, new FormControl(paramKey, [Validators.required, Validators.minLength(3)])
-      );
-      this.formGroup.addControl(
-        valueName, new FormControl(this.fireTruck.parameters.get(paramKey), [Validators.required, Validators.minLength(1)])
-      );
-
-      this.paramInputs.set(keyName, valueName);
-      this.paramInputsKeys = Array.from(this.paramInputs.keys());
-    }
-
+    dialogRef.afterClosed().pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(
+      fireTruck => {
+        if (fireTruck) {
+          this.fireTrucksService.updateFireTruck(fireTruck);
+          this.getFireTruck()
+        }
+      });
   }
 
-  public addParameter(): void {
-    let parametersCounter = this.paramInputsKeys.length;
+  ngOnDestroy(): void {
+    this._destroy$.next();
+  }
 
-    const keyName = "paramKey" + parametersCounter;
-    const valueName = "paramValue" + parametersCounter;
-
-    this.formGroup.addControl(
-      keyName, new FormControl('', [Validators.required, Validators.minLength(3)])
+  private getFireTruck(): void {
+    this.fireTrucksService.getFireTruck(this.fireTruckId).pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(fireTruck => this.fireTruck = fireTruck
     );
-    this.formGroup.addControl(
-      valueName, new FormControl('', [Validators.required, Validators.minLength(1)])
-    );
-
-    this.paramInputs.set(keyName, valueName);
-    this.paramInputsKeys = Array.from(this.paramInputs.keys());
-  }
-
-  public save(): void {
-    this.editMode = false;
-
-    const parameters = new Map<string, string>();
-    for (let i = 0; i < this.paramInputsKeys.length; i++) {
-      const keyName = "paramKey" + i;
-      const parameter = this.formGroup.get(keyName)?.value;
-      const valueName = "paramValue" + i;
-      const value = this.formGroup.get(valueName)?.value;
-
-      parameters.set(parameter, value);
-    }
-
-    const updatedFireTruck: FireTruck = {
-      id: this.fireTruckId,
-      name: this.fireTruck.name,
-      image: this.fireTruck.image,
-      vin: this.formGroup.getRawValue().vin,
-      productionYear: this.formGroup.getRawValue().productionYear,
-      licensePlate: this.formGroup.getRawValue().licensePlate,
-      operationalNumber: this.formGroup.getRawValue().operationalNumber,
-      type: this.formGroup.getRawValue().type,
-      totalWeight: this.formGroup.getRawValue().totalWeight,
-      horsepower: this.formGroup.getRawValue().horsepower,
-      numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
-      mileage: this.formGroup.getRawValue().mileage,
-      technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
-      insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
-      parameters: parameters,
-      equipment: this.fireTruck.equipment,
-      imgUrl: this.fireTruck.imgUrl
-    };
-
-    this.fireTrucksService.deleteFireTruck(this.fireTruckId);
-    this.fireTrucksService.addFireTruck(updatedFireTruck);
-    this.ngOnInit();
-  }
-
-  public close(): void {
-    this.editMode = false;
-    this.paramInputs = new Map(this.tempParamInputs);
-    this.paramInputsKeys = this.tempParamInputsKeys.slice();
   }
 }

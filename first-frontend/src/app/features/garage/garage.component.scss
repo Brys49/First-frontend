@@ -1,69 +1,14 @@
-main {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  grid-column-gap: 0.5rem;
-  grid-row-gap: 0.5rem;
-  padding: 1rem;
-  align-items: center;
-  justify-content: center;
+div#garage-list-container {
+  width: 30%;
 }
 
-div#fire-trucks-container {
-  grid-area: 1 / 1 / 8 / 6;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-around;
-  overflow: auto;
+div#garage-details-container {
+  width: 70%;
 }
 
-div.fire-truck {
-  border: 0.2rem solid black;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  width: 45%;
-  min-width: 30%;
-}
 
-div.fire-truck-img {
 
-  img {
-    max-width: 100%;
-    padding: 1rem;
-    border-radius: 2rem;
-  }
-}
 
-div#button-container {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 2rem;
-}
-
-h2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    text-decoration: none;
-  }
-
-  a:hover {
-    mat-icon {
-      transform: translateX(0.2rem);
-    }
-  }
-}
 
 
 

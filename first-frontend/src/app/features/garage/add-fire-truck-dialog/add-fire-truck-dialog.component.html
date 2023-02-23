@@ -1,5 +1,5 @@
 <div id="add-fire-truck-dialog">
-  <h1 mat-dialog-title>Add fire truck</h1>
+  <h1 mat-dialog-title>{{title}}</h1>
 
   <mat-dialog-content id="details-container" [formGroup]="formGroup">
     <mat-form-field appearance="outline">
@@ -78,23 +78,9 @@
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 
-    <div class="fire-truck-params" *ngFor="let param of paramInputsKeys">
-      <mat-form-field appearance="outline">
-        <mat-label>Parameter</mat-label>
-        <input matInput formControlName="{{param}}">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Value</mat-label>
-        <input matInput formControlName="{{paramInputs.get(param)}}">
-      </mat-form-field>
-    </div>
-
-    <div id="add-param-button-container">
-      <button mat-raised-button color="primary" (click)="addParameter()">
-        Add more parameters
-      </button>
-    </div>
-
+    <app-dynamic-parameters-input [formGroup]="formGroup"
+                                  [parametersData]="parametersData">
+    </app-dynamic-parameters-input>
   </mat-dialog-content>
 
   <mat-dialog-actions>
@@ -103,7 +89,7 @@
     </button>
     <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit"
             [disabled]="!formGroup.valid" (click)="save()">
-      Add fire truck
+      {{title}}
     </button>
   </mat-dialog-actions>
 </div>

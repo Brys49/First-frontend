@@ -1,12 +1,21 @@
-<h2>Details: </h2>
-<mat-list>
-  <mat-list-item>
-    <p>Serial number:</p>
-    <p>{{equipment.serialNumber}}</p>
-  </mat-list-item>
-  <mat-list-item>
-    <p>Storage location:</p>
-    <p>{{equipment.storageLocation}}</p>
-  </mat-list-item>
-</mat-list>
-
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Details:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <p>Serial number:</p>
+        <p>{{equipment.serialNumber}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Storage location:</p>
+        <p>{{equipment.storageLocation}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>
