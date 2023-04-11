@@ -1,0 +1,33 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Details:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <p>Alarm date:</p>
+        <p>{{callOut.alarmDate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Departure date:</p>
+        <p>{{callOut.departureDate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Return date:</p>
+        <p>{{callOut.returnDate | date}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Location:</p>
+        <p>{{callOut.location}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Details:</p>
+        <p>{{callOut.details}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

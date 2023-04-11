@@ -1,0 +1,10 @@
+<h2>Call outs list</h2>
+<mat-list>
+  <mat-list-item *ngFor="let c of callOuts">
+    <h3 matLine>{{c.type}}</h3>
+    <p matLine>{{c.alarmDate | date}}</p>
+    <button mat-icon-button (click)="showDetails(c.id)">
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>

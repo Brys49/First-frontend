@@ -2,6 +2,7 @@ import { Member } from './member.model';
 import { FireTruck } from './fire-truck.model';
 
 export interface CallOut {
+  id: number;
   alarmDate: Date;
   departureDate: Date;
   returnDate: Date;
@@ -13,11 +14,11 @@ export interface CallOut {
 
 }
 
-export const enum CallOutType {
-  FIRE,
-  LOCAL_THREAT,
-  TRAINING,
-  FALSE_ALARM,
-  SECURE_REGION,
-  PRACTICE
+export enum CallOutType {
+  FIRE = "Fire",
+  LOCAL_THREAT = "Local threat",
+  TRAINING = "Training",
+  FALSE_ALARM= "False alarm",
+  SECURE_REGION = "Secure region",
+  PRACTICE = "Practice"
 }

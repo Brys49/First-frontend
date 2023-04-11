@@ -1,0 +1,58 @@
+<div id="add-call-out-dialog">
+  <h1 mat-dialog-title>{{title}}</h1>
+
+  <mat-dialog-content id="details-container" [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>Alarm date</mat-label>
+      <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="alarmDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Departure date</mat-label>
+      <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="departureDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Return date</mat-label>
+      <input matInput [max]="maxDate" [matDatepicker]="picker3" formControlName="returnDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type" required>
+        <mat-option *ngFor="let type of callOutTypes" value="{{type}}">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="location">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Details</mat-label>
+      <input matInput formControlName="details">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true" (click)="close()">
+      Close
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit"
+            [disabled]="!formGroup.valid" (click)="save()">
+      {{title}}
+    </button>
+  </mat-dialog-actions>
+</div>

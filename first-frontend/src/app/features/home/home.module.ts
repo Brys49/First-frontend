@@ -4,19 +4,18 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { StartScreenComponent } from '../start-screen/start-screen.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { CallOutsComponent } from '../call-outs/call-outs.component';
 import { DocsComponent } from '../docs/docs.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MembersModule } from '../members/members.module';
 import { EquipmentModule } from '../equipment/equipment.module';
 import { GarageModule } from '../garage/garage.module';
+import { CallOutsModule } from '../call-outs/call-outs.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
     StartScreenComponent,
     DashboardComponent,
-    CallOutsComponent,
     DocsComponent
   ],
   imports: [
@@ -25,7 +24,8 @@ import { GarageModule } from '../garage/garage.module';
     HomeRoutingModule,
     MembersModule,
     GarageModule,
-    EquipmentModule
+    EquipmentModule,
+    CallOutsModule
   ]
 })
 export class HomeModule {

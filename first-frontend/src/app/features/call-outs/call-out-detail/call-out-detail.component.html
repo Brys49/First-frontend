@@ -1,0 +1,29 @@
+<main>
+  <div class="name-container">
+    <div>
+      <button mat-icon-button color="primary" (click)="goBack()">
+        <mat-icon>
+          arrow_back
+        </mat-icon>
+      </button>
+      <h1>
+        {{callOut.type}}
+      </h1>
+    </div>
+    <div>
+      <button mat-icon-button color="primary" (click)="edit()">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="deleteCallOut(callOut.id)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="details-list-container">
+    <app-call-out-detail-list [callOut]="callOut"></app-call-out-detail-list>
+  </div>
+</main>
