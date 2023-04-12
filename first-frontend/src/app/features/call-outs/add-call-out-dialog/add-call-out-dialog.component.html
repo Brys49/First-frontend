@@ -2,29 +2,91 @@
   <h1 mat-dialog-title>{{title}}</h1>
 
   <mat-dialog-content id="details-container" [formGroup]="formGroup">
-    <mat-form-field appearance="outline">
-      <mat-label>Alarm date</mat-label>
-      <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="alarmDate">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Departure date</mat-label>
-      <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="departureDate">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Return date</mat-label>
-      <input matInput [max]="maxDate" [matDatepicker]="picker3" formControlName="returnDate">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-      <mat-datepicker #picker3></mat-datepicker>
-    </mat-form-field>
+    <div class="call-out-time-picker">
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Alarm date</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="alarmDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Hour</mat-label>
+        <mat-select formControlName="alarmHour">
+          <mat-option *ngFor="let h of hours" [value]="h">
+            {{h}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Minutes</mat-label>
+        <mat-select formControlName="alarmMinutes">
+          <mat-option *ngFor="let m of minutes" [value]="m">
+            {{m}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="call-out-time-picker">
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Departure date</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="departureDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Hour</mat-label>
+        <mat-select formControlName="departureHour">
+          <mat-option *ngFor="let h of hours" [value]="h">
+            {{h}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Minutes</mat-label>
+        <mat-select formControlName="departureMinutes">
+          <mat-option *ngFor="let m of minutes" [value]="m">
+            {{m}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="call-out-time-picker">
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Return date</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker3" formControlName="returnDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Hour</mat-label>
+        <mat-select formControlName="returnHour">
+          <mat-option *ngFor="let h of hours" [value]="h">
+            {{h}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="call-out-time-form-field">
+        <mat-label>Minutes</mat-label>
+        <mat-select formControlName="returnMinutes">
+          <mat-option *ngFor="let m of minutes" [value]="m">
+            {{m}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>

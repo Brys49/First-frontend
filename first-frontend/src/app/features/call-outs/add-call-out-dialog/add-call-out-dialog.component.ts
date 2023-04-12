@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CallOut, CallOutType } from '../../../core/models/call-out.model';
 
@@ -12,9 +11,11 @@ import { CallOut, CallOutType } from '../../../core/models/call-out.model';
 export class AddCallOutDialogComponent implements OnInit {
   public formGroup!: FormGroup;
   public maxDate: Date = new Date();
-  public editMode = false;
+  public editMode: boolean = false;
   public title!: string;
-  public callOutTypes = Object.values(CallOutType);
+  public callOutTypes: CallOutType[] = Object.values(CallOutType);
+  public hours: number[] = Array.from(Array(24).keys());
+  public minutes: number[] = Array.from(Array(60).keys());
 
   constructor(public dialogRef: MatDialogRef<AddCallOutDialogComponent>,
               private fb: NonNullableFormBuilder,
@@ -27,8 +28,14 @@ export class AddCallOutDialogComponent implements OnInit {
 
     this.formGroup = this.fb.group({
       alarmDate: [this.data.callOut.alarmDate, Validators.required],
+      alarmHour: [this.data.callOut.alarmDate.getHours(), Validators.required],
+      alarmMinutes: [this.data.callOut.alarmDate.getMinutes(), Validators.required],
       departureDate: [this.data.callOut.departureDate, Validators.required],
+      departureHour: [this.data.callOut.departureDate.getHours(), Validators.required],
+      departureMinutes: [this.data.callOut.departureDate.getMinutes(), Validators.required],
       returnDate: [this.data.callOut.returnDate, Validators.required],
+      returnHour: [this.data.callOut.returnDate.getHours(), Validators.required],
+      returnMinutes: [this.data.callOut.returnDate.getMinutes(), Validators.required],
       type: [this.data.callOut.type, Validators.required],
       location: [this.data.callOut.location, [Validators.required, Validators.maxLength(120)]],
       details: [this.data.callOut.details, [Validators.required, Validators.maxLength(120)]],
@@ -36,11 +43,27 @@ export class AddCallOutDialogComponent implements OnInit {
   }
 
   public save(): void {
+    const alarmDate = this.formGroup.getRawValue().alarmDate;
+    alarmDate.setHours(this.formGroup.getRawValue().alarmHour,
+      this.formGroup.getRawValue().alarmMinutes);
+
+    const departureDate = this.formGroup.getRawValue().departureDate;
+    departureDate.setHours(this.formGroup.getRawValue().departureHour,
+      this.formGroup.getRawValue().departureMinutes);
+
+    const returnDate = this.formGroup.getRawValue().returnDate;
+    returnDate.setHours(this.formGroup.getRawValue().returnHour,
+      this.formGroup.getRawValue().returnMinutes);
+
+    const newAlarmDate = new Date(alarmDate);
+    const newDepartureDate = new Date(departureDate);
+    const newReturnDate = new Date(returnDate);
+
     const callOut: CallOut = {
       id: this.data.callOut.id,
-      alarmDate: this.formGroup.getRawValue().alarmDate,
-      departureDate: this.formGroup.getRawValue().departureDate,
-      returnDate: this.formGroup.getRawValue().returnDate,
+      alarmDate: newAlarmDate,
+      departureDate: newDepartureDate,
+      returnDate: newReturnDate,
       type: this.formGroup.getRawValue().type,
       location: this.formGroup.getRawValue().location,
       details: this.formGroup.getRawValue().details,
