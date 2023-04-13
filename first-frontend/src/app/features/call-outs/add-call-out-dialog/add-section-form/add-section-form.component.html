@@ -1,0 +1,89 @@
+<div [formGroup]="formGroup">
+  <div formArrayName="sections">
+    <div *ngFor="let s of sections.controls; let i = index">
+      <div [formGroupName]="i" class="section-form">
+        <h3>Section: {{i + 1}}</h3>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fire Truck</mat-label>
+          <mat-select formControlName="fireTruckId">
+            <mat-option *ngFor="let ft of fireTrucks" [value]="ft.id">
+              {{ft.name}} - {{ft.operationalNumber}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="call-out-time-picker">
+          <mat-form-field appearance="outline" class="call-out-time-form-field">
+            <mat-label>Departure date</mat-label>
+            <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="departureDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="call-out-time-form-field">
+            <mat-label>Hour</mat-label>
+            <mat-select formControlName="departureHour">
+              <mat-option *ngFor="let h of hours" [value]="h">
+                {{h}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="call-out-time-form-field">
+            <mat-label>Minutes</mat-label>
+            <mat-select formControlName="departureMinutes">
+              <mat-option *ngFor="let m of minutes" [value]="m">
+                {{m}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="call-out-time-picker">
+          <mat-form-field appearance="outline" class="call-out-time-form-field">
+            <mat-label>Return date</mat-label>
+            <input matInput [max]="maxDate" [matDatepicker]="picker3" formControlName="returnDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="call-out-time-form-field">
+            <mat-label>Hour</mat-label>
+            <mat-select formControlName="returnHour">
+              <mat-option *ngFor="let h of hours" [value]="h">
+                {{h}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="call-out-time-form-field">
+            <mat-label>Minutes</mat-label>
+            <mat-select formControlName="returnMinutes">
+              <mat-option *ngFor="let m of minutes" [value]="m">
+                {{m}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Crew</mat-label>
+          <input matInput type="number" formControlName="crewIds">
+        </mat-form-field>
+
+        <button mat-icon-button color="primary" id="delete" (click)="removeSection(i)">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="addSection()">
+        Add section
+      </button>
+    </div>
+  </div>
+</div>
+

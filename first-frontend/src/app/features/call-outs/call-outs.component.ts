@@ -36,13 +36,10 @@ export class CallOutsComponent implements OnInit, OnDestroy {
     const newCallOut: CallOut = {
       id: 0,
       alarmDate: new Date(),
-      departureDate: new Date(),
-      returnDate: new Date(),
       type: CallOutType.FIRE,
       location: '',
       details: '',
-      fireTrucksInAction: [],
-      membersInAction: []
+      sections: []
     }
 
     const dialogRef = this.dialog.open(AddCallOutDialogComponent, {

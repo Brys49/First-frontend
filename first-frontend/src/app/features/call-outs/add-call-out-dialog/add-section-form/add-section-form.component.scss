@@ -1,0 +1,24 @@
+div.call-out-time-picker {
+  min-width: 500px;
+  display: flex;
+  margin: 10px 0;
+}
+
+mat-form-field.call-out-time-form-field {
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+
+div.section-form {
+  display: block;
+  position: relative;
+}
+
+button#delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+

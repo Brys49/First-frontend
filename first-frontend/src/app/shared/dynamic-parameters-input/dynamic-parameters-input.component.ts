@@ -33,8 +33,8 @@ export class DynamicParametersInputComponent implements OnInit {
     )
   }
 
-  public removeParameter(i: number) {
-    this.parameters.removeAt(i)
+  public removeParameter(i: number): void {
+    this.parameters.removeAt(i);
   }
 
 }

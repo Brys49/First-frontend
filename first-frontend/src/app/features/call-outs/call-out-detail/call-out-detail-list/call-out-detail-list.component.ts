@@ -11,13 +11,10 @@ export class CallOutDetailListComponent implements OnInit {
   @Input() public callOut: CallOut = {
     id: 0,
     alarmDate: new Date(),
-    departureDate: new Date(),
-    returnDate: new Date(),
     type: CallOutType.FIRE,
     location: '',
     details: '',
-    fireTrucksInAction: [],
-    membersInAction: []
+    sections: []
   }
 
   constructor() {
