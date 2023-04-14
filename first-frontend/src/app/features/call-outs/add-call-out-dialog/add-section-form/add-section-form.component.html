@@ -6,8 +6,8 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Fire Truck</mat-label>
-          <mat-select formControlName="fireTruckId">
-            <mat-option *ngFor="let ft of fireTrucks" [value]="ft.id">
+          <mat-select formControlName="fireTruckId" (selectionChange)="updateRemainingFireTrucks()">
+            <mat-option *ngFor="let ft of remainingFireTrucks[i]" [value]="ft.id">
               {{ft.name}} - {{ft.operationalNumber}}
             </mat-option>
           </mat-select>

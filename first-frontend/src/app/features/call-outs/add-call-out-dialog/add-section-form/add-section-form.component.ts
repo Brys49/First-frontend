@@ -1,10 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
-import {Section} from "../../../../core/models/call-out.model";
-import {FireTruck} from "../../../../core/models/fire-truck.model";
-import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
-import {FireTrucksService} from "../../../../core/services/fire-trucks.service";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { Section } from "../../../../core/models/call-out.model";
+import { FireTruck } from "../../../../core/models/fire-truck.model";
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { FireTrucksService } from "../../../../core/services/fire-trucks.service";
 
 @Component({
   selector: 'app-add-section-form',
@@ -18,9 +18,9 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
   public maxDate: Date = new Date();
   public hours: number[] = Array.from(Array(24).keys());
   public minutes: number[] = Array.from(Array(60).keys());
-  public fireTrucks: FireTruck[] = [];
-  public selectedFireTrucksId: number[] = []
+  public remainingFireTrucks: FireTruck[][] = [];
 
+  private fireTrucks: FireTruck[] = [];
   private _destroy$ = new Subject<void>();
 
   get sections() {
@@ -37,9 +37,10 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
     }
 
     this.getFireTrucks();
+    this.updateRemainingFireTrucks();
   }
 
-  public addSection(fireTruckId: number = 1,
+  public addSection(fireTruckId: number = 0,
                     departureDate: Date = new Date(),
                     returnDate: Date = new Date(),
                     crewIds: number[] = []): void {
@@ -54,11 +55,34 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
         returnMinutes: [returnDate.getMinutes(), Validators.required],
         crewIds: ["", [Validators.required]]
       })
-    )
+    );
+
+    const selectedFireTrucksId: number[] = [];
+    for (let s of this.sections.controls) {
+      selectedFireTrucksId.push(s.getRawValue().fireTruckId);
+    }
+    const fts = this.fireTrucks.filter(ft => !(selectedFireTrucksId.includes(ft.id)));
+
+    this.remainingFireTrucks.push(fts);
   }
 
   public removeSection(i: number): void {
     this.sections.removeAt(i);
+    this.remainingFireTrucks.splice(i, 1);
+    this.updateRemainingFireTrucks();
+  }
+
+  public updateRemainingFireTrucks(): void {
+    const selectedFireTrucksId: number[] = [];
+    for (let s of this.sections.controls) {
+      selectedFireTrucksId.push(s.getRawValue().fireTruckId);
+    }
+
+    for (let i = 0; i < this.remainingFireTrucks.length; i++) {
+      this.remainingFireTrucks[i] = this.fireTrucks.filter(
+        ft => !(selectedFireTrucksId.includes(ft.id))
+          || ft.id == this.sections.controls[i].getRawValue().fireTruckId);
+    }
   }
 
   ngOnDestroy(): void {
