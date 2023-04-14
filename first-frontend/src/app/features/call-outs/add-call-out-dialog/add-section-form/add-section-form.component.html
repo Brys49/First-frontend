@@ -71,7 +71,11 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Crew</mat-label>
-          <input matInput type="number" formControlName="crewIds">
+          <mat-select formControlName="crewIds" (selectionChange)="updateRemainingMembers()" multiple>
+            <mat-option *ngFor="let m of remainingMembers[i]" [value]="m.id">
+              {{m.firstname}} {{m.lastname}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <button mat-icon-button color="primary" id="delete" (click)="removeSection(i)">

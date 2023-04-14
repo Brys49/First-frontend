@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {CallOut, CallOutType, Section} from '../../../core/models/call-out.model';
+import { CallOut, CallOutType, Section } from '../../../core/models/call-out.model';
 
 @Component({
   selector: 'app-add-call-out-dialog',
@@ -55,12 +55,14 @@ export class AddCallOutDialogComponent implements OnInit {
       const newDepartureDate = new Date(departureDate);
       const newReturnDate = new Date(returnDate);
 
+      const crewIds = s.crewIds;
+
       newSections.push(
         {
           fireTruckId: fireTruckId,
           departureDate: newDepartureDate,
           returnDate: newReturnDate,
-          crewIds: []
+          crewIds: crewIds
         }
       )
     }

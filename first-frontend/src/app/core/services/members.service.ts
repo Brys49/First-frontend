@@ -13,6 +13,7 @@ export class MembersService {
   constructor() {
     this.members.push(MEMBERS[0]);
     this.members.push(MEMBERS[1]);
+    this.members.push(MEMBERS[2]);
   }
 
   getMembers(): Observable<Member[]> {

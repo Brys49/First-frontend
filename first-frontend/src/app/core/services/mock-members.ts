@@ -31,4 +31,19 @@ export const MEMBERS: Member[] = [
     isDriver: true,
     trainings: []
   },
+  {
+    id: 3,
+    firstname: 'Walter',
+    lastname: 'White',
+    birthdate: new Date('22/10/1975'),
+    birthplace: "Albuquerque",
+    idNumber: '12/M/21/2222',
+    address: 'Albuquerque Black St. 13',
+    joiningDate: new Date('08/02/2012'),
+    role: "Firefighter",
+    phoneNumber: '655 111 121',
+    periodicExaminationsExpiryDate: new Date('10/05/2023'),
+    isDriver: true,
+    trainings: []
+  },
 ]
