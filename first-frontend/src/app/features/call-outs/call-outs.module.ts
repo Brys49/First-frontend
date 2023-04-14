@@ -8,6 +8,7 @@ import { AddCallOutDialogComponent } from './add-call-out-dialog/add-call-out-di
 import { CallOutDetailComponent } from './call-out-detail/call-out-detail.component';
 import { CallOutDetailListComponent } from './call-out-detail/call-out-detail-list/call-out-detail-list.component';
 import { AddSectionFormComponent } from './add-call-out-dialog/add-section-form/add-section-form.component';
+import { CallOutDetailSectionComponent } from './call-out-detail/call-out-detail-section/call-out-detail-section.component';
 
 
 
@@ -18,7 +19,8 @@ import { AddSectionFormComponent } from './add-call-out-dialog/add-section-form/
     AddCallOutDialogComponent,
     CallOutDetailComponent,
     CallOutDetailListComponent,
-    AddSectionFormComponent
+    AddSectionFormComponent,
+    CallOutDetailSectionComponent
   ],
   imports: [
     CommonModule,

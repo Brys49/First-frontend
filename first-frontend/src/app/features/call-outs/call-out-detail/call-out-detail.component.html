@@ -26,4 +26,7 @@
   <div class="details-list-container">
     <app-call-out-detail-list [callOut]="callOut"></app-call-out-detail-list>
   </div>
+  <div class="section-list-container" *ngFor="let section of callOut.sections; let i = index">
+    <app-call-out-detail-section [section]="section" [sectionNumber] = "i"></app-call-out-detail-section>
+  </div>
 </main>
