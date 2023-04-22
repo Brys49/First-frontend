@@ -69,7 +69,7 @@
           </mat-form-field>
         </div>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="crew-form-field">
           <mat-label>Crew</mat-label>
           <mat-select formControlName="crewIds" (selectionChange)="updateRemainingMembers()" multiple>
             <mat-option *ngFor="let m of remainingMembers[i]" [value]="m.id">

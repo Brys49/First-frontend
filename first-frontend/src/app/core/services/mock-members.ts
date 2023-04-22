@@ -35,7 +35,7 @@ export const MEMBERS: Member[] = [
     id: 3,
     firstname: 'Walter',
     lastname: 'White',
-    birthdate: new Date('22/10/1975'),
+    birthdate: new Date('02/10/1974'),
     birthplace: "Albuquerque",
     idNumber: '12/M/21/2222',
     address: 'Albuquerque Black St. 13',

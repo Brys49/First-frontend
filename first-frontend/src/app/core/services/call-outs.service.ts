@@ -41,4 +41,11 @@ export class CallOutsService {
 
     this.callOuts.splice(index, 1);
   }
+
+  getMemberCallOuts(id: number): Observable<CallOut[]> {
+    const memberCallOuts = this.callOuts.filter(c => c.sections.some(
+      s => s.crewIds.includes(id)
+    ));
+    return of(memberCallOuts);
+  }
 }

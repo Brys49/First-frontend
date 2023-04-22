@@ -5,6 +5,8 @@ import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { CallOutsService } from '../../../core/services/call-outs.service';
+import { CallOut } from '../../../core/models/call-out.model';
 
 @Component({
   selector: 'app-member-detail',
@@ -15,19 +17,23 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public memberId: number = 0;
   @Output() public displaySummaryEvent = new EventEmitter<boolean>();
   public member!: Member;
+  public callOuts: CallOut[] = [];
 
   private _destroy$ = new Subject<void>();
 
   constructor(public dialog: MatDialog,
-              private membersService: MembersService) {
+              private membersService: MembersService,
+              private callOutsService: CallOutsService) {
   }
 
   ngOnInit(): void {
     this.getMember();
+    this.getCallOuts();
   }
 
   ngOnChanges(): void {
     this.getMember();
+    this.getCallOuts();
   }
 
   public goBack(): void {
@@ -68,5 +74,11 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
     this.membersService.getMember(this.memberId).pipe(
       takeUntil(this._destroy$)
     ).subscribe(member => this.member = member)
+  }
+
+  private getCallOuts(): void {
+    this.callOutsService.getMemberCallOuts(this.memberId).pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(callOuts => this.callOuts = callOuts)
   }
 }
