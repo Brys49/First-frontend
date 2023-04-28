@@ -1,5 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormGroup,
+  NonNullableFormBuilder,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import { Section } from "../../../../core/models/call-out.model";
 import { FireTruck } from "../../../../core/models/fire-truck.model";
 import { takeUntil } from "rxjs/operators";
@@ -62,7 +70,7 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
         returnHour: [returnDate.getHours(), Validators.required],
         returnMinutes: [returnDate.getMinutes(), Validators.required],
         crewIds: [crewIds, [Validators.required]]
-      })
+      }, {validators: checkIfReturnDateAfterDepartureDate})
     );
 
     const selectedFireTrucksId: number[] = [];
@@ -128,5 +136,19 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
       takeUntil(this._destroy$)
     ).subscribe(members => this.members = members);
   }
+}
 
+export const checkIfReturnDateAfterDepartureDate: ValidatorFn = (control: AbstractControl):
+  ValidationErrors | null => {
+  const departureDate = control.getRawValue().departureDate;
+  const departureHour = control.getRawValue().departureHour;
+  const departureMinutes = control.getRawValue().departureMinutes;
+  const returnDate = control.getRawValue().returnDate;
+  const returnHour = control.getRawValue().returnHour;
+  const returnMinutes = control.getRawValue().returnMinutes;
+
+  departureDate.setHours(departureHour, departureMinutes);
+  returnDate.setHours(returnHour, returnMinutes);
+
+  return returnDate < departureDate ? {returnBeforeDeparture: true} : null;
 }

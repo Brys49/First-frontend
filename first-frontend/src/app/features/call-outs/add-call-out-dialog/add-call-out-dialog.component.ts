@@ -17,7 +17,7 @@ export class AddCallOutDialogComponent implements OnInit {
   public hours: number[] = Array.from(Array(24).keys());
   public minutes: number[] = Array.from(Array(60).keys());
 
-  get sectionsData() {
+  get sectionsData(): Section[] {
     return this.data.callOut.sections;
   }
 
@@ -85,6 +85,7 @@ export class AddCallOutDialogComponent implements OnInit {
   }
 
   public close(): void {
+    console.log(this.formGroup);
     this.dialogRef.close(null);
   }
 
