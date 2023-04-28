@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-truck-dialog.component';
+import { CallOut } from '../../../core/models/call-out.model';
+import { CallOutsService } from '../../../core/services/call-outs.service';
 
 @Component({
   selector: 'app-fire-truck-detail',
@@ -16,19 +18,23 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public fireTruckId: number = 0;
   @Output() public displaySummaryEvent = new EventEmitter<boolean>();
   public fireTruck!: FireTruck;
+  public callOuts: CallOut[] = [];
 
   private _destroy$ = new Subject<void>();
 
   constructor(public dialog: MatDialog,
-              private fireTrucksService: FireTrucksService) {
+              private fireTrucksService: FireTrucksService,
+              private callOutsService: CallOutsService) {
   }
 
   ngOnInit(): void {
     this.getFireTruck();
+    this.getCallOuts();
   }
 
   ngOnChanges(): void {
     this.getFireTruck();
+    this.getCallOuts();
   }
 
   public goBack(): void {
@@ -68,7 +74,12 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   private getFireTruck(): void {
     this.fireTrucksService.getFireTruck(this.fireTruckId).pipe(
       takeUntil(this._destroy$)
-    ).subscribe(fireTruck => this.fireTruck = fireTruck
-    );
+    ).subscribe(fireTruck => this.fireTruck = fireTruck)
+  }
+
+  private getCallOuts(): void {
+    this.callOutsService.getFireTruckCallOuts(this.fireTruckId).pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(callOuts => this.callOuts = callOuts)
   }
 }

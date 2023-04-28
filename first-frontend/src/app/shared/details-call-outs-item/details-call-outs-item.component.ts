@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CallOutType } from '../../core/models/call-out.model';
+import { CallOutsService } from '../../core/services/call-outs.service';
 
 @Component({
   selector: 'app-details-call-outs-item',
@@ -12,14 +13,14 @@ export class DetailsCallOutsItemComponent implements OnInit {
   @Input() public alarmDate: Date = new Date();
   @Input() public type: CallOutType = CallOutType.FALSE_ALARM;
 
-  constructor() {
+  constructor(private callOutsService: CallOutsService) {
   }
 
   ngOnInit(): void {
   }
 
   public showDetails(): void {
-    console.log(this.id);
+    this.callOutsService.showDetails(this.id);
   }
 
 }

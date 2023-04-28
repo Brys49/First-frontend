@@ -21,6 +21,12 @@ export class CallOutsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.callOutsService.toDisplayDetailsEvent.pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(
+      id => {
+        this.showDetails(id);
+      });
   }
 
   public showDetails(id: number): void {

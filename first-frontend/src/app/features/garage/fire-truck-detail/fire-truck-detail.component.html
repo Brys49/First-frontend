@@ -62,7 +62,12 @@
               <mat-panel-description>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Available soon</p>
+            <mat-list>
+              <ng-container *ngFor="let c of callOuts">
+                <app-details-call-outs-item [id]="c.id" [alarmDate]="c.alarmDate"
+                                            [type]="c.type"></app-details-call-outs-item>
+              </ng-container>
+            </mat-list>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
