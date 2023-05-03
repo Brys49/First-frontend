@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CallOut, CallOutType, Section } from '../../../core/models/call-out.model';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {CallOut, CallOutType, Section} from '../../../core/models/call-out.model';
 
 @Component({
   selector: 'app-add-call-out-dialog',
@@ -44,34 +44,27 @@ export class AddCallOutDialogComponent implements OnInit {
   public save(): void {
     const newSections: Section[] = [];
 
-    for (const s of this.formGroup.getRawValue().sections) {
-      const fireTruckId = s.fireTruckId;
-      const departureDate = s.departureDate;
-      departureDate.setHours(s.departureHour, s.departureMinutes);
+    for (const section of this.formGroup.getRawValue().sections) {
+      section.departureDate.setHours(section.departureHour, section.departureMinutes);
+      section.returnDate.setHours(section.returnHour, section.returnMinutes);
 
-      const returnDate = s.returnDate;
-      returnDate.setHours(s.returnHour, s.returnMinutes);
-
-      const newDepartureDate = new Date(departureDate);
-      const newReturnDate = new Date(returnDate);
-
-      const crewIds = s.crewIds;
+      const newDepartureDate: Date = new Date(section.departureDate);
+      const newReturnDate: Date = new Date(section.returnDate);
 
       newSections.push(
         {
-          fireTruckId: fireTruckId,
+          fireTruckId: section.fireTruckId,
           departureDate: newDepartureDate,
           returnDate: newReturnDate,
-          crewIds: crewIds
-        }
-      )
+          crewIds: section.crewIds
+        });
     }
 
-    const alarmDate = this.formGroup.getRawValue().alarmDate;
-    alarmDate.setHours(this.formGroup.getRawValue().alarmHour,
+    this.formGroup.getRawValue().alarmDate.setHours(
+      this.formGroup.getRawValue().alarmHour,
       this.formGroup.getRawValue().alarmMinutes);
 
-    const newAlarmDate = new Date(alarmDate);
+    const newAlarmDate: Date = new Date(this.formGroup.getRawValue().alarmDate);
 
     const callOut: CallOut = {
       id: this.data.callOut.id,
@@ -85,7 +78,6 @@ export class AddCallOutDialogComponent implements OnInit {
   }
 
   public close(): void {
-    console.log(this.formGroup);
     this.dialogRef.close(null);
   }
 

@@ -1,9 +1,9 @@
 <h2>Equipment list</h2>
 <mat-list>
-  <mat-list-item *ngFor="let e of equipment">
-    <h3 matLine>{{e.name}}</h3>
-    <p matLine>{{e.serialNumber}}</p>
-    <button mat-icon-button (click)="showDetails(e.id)">
+  <mat-list-item *ngFor="let equipment of equipment$ | async">
+    <h3 matLine>{{equipment.name}}</h3>
+    <p matLine>{{equipment.serialNumber}}</p>
+    <button mat-icon-button (click)="showDetails(equipment.id)">
       <mat-icon>info</mat-icon>
     </button>
   </mat-list-item>

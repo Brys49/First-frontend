@@ -20,7 +20,7 @@ export class EquipmentService {
   }
 
   getEquipment(id: number): Observable<Equipment> {
-    const equipment = this.equipment.find(e => e.id === id)!;
+    const equipment: Equipment = this.equipment.find(equipment => equipment.id === id)!;
     return of(equipment);
   }
 
@@ -35,8 +35,8 @@ export class EquipmentService {
   }
 
   deleteEquipment(id: number): void {
-    const index = this.equipment.map(x => {
-      return x.id;
+    const index: number = this.equipment.map(equipment => {
+      return equipment.id;
     }).indexOf(id);
 
     this.equipment.splice(index, 1);

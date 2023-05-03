@@ -17,8 +17,8 @@ export class AddTrainingDialogComponent implements OnInit, OnDestroy {
   public remainingTrainingTypes: TrainingType[] = [];
 
   private memberId!: number;
-  private allTrainingTypes = Object.values(TrainingType);
-  private _destroy$ = new Subject<void>();
+  private allTrainingTypes: TrainingType[] = Object.values(TrainingType);
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialogRef: MatDialogRef<AddTrainingDialogComponent>,
               private fb: NonNullableFormBuilder,
@@ -34,8 +34,14 @@ export class AddTrainingDialogComponent implements OnInit, OnDestroy {
       trainingDate: ['', Validators.required],
       expirationDate: [''],
       type: ['', Validators.required]
-    })
+    });
+
     this.loadRemainingTrainingTypes();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public save(): void {
@@ -67,9 +73,4 @@ export class AddTrainingDialogComponent implements OnInit, OnDestroy {
 
     this.remainingTrainingTypes = this.allTrainingTypes.filter((type) => !memberTrainingTypes.includes(type));
   }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
-  }
-
 }

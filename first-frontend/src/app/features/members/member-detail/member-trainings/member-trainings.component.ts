@@ -4,7 +4,7 @@ import { AddTrainingDialogComponent } from '../add-training-dialog/add-training-
 import { takeUntil } from 'rxjs/operators';
 import { TrainingType } from '../../../../core/models/training.model';
 import { MembersService } from '../../../../core/services/members.service';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
 export class MemberTrainingsComponent implements OnInit, OnDestroy {
   @Input() public member!: Member;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private membersService: MembersService) { }
@@ -24,8 +24,13 @@ export class MemberTrainingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public openDialog(id: number): void {
-    const dialogRef = this.dialog.open(AddTrainingDialogComponent, {
+    const dialogRef: MatDialogRef<AddTrainingDialogComponent> = this.dialog.open(AddTrainingDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-training-dialog-panel',
@@ -43,9 +48,5 @@ export class MemberTrainingsComponent implements OnInit, OnDestroy {
 
   public deleteTraining(type: TrainingType): void {
     this.membersService.deleteTraining(this.member.id, type);
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 }

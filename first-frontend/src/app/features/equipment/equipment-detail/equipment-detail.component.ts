@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, OnDestroy, Output, EventEmitter } 
 import { Equipment } from 'src/app/core/models/equipment.model';
 import { EquipmentService } from 'src/app/core/services/equipment.service';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { AddEquipmentDialogComponent } from '../add-equipment-dialog/add-equipment-dialog.component';
 import { takeUntil } from 'rxjs/operators';
 
@@ -14,10 +14,10 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public equipmentId!: number;
-  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
+  @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public equipment!: Equipment;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private equipmentService: EquipmentService) {
@@ -31,6 +31,11 @@ export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
     this.getEquipment()
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public goBack(): void {
     this.displaySummaryEvent.emit(true)
   }
@@ -41,7 +46,7 @@ export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public edit(): void {
-    const dialogRef = this.dialog.open(AddEquipmentDialogComponent, {
+    const dialogRef: MatDialogRef<AddEquipmentDialogComponent> = this.dialog.open(AddEquipmentDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-equipment-dialog-panel',
@@ -61,14 +66,9 @@ export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this._destroy$.next();
-  }
-
   private getEquipment(): void {
     this.equipmentService.getEquipment(this.equipmentId).pipe(
       takeUntil(this._destroy$)
     ).subscribe(equipment => this.equipment = equipment)
   }
-
 }

@@ -22,7 +22,7 @@ export class FireTrucksService {
   }
 
   getFireTruck(id: number): Observable<FireTruck> {
-    const fireTruck = this.fireTrucks.find(ft => ft.id === id)!;
+    const fireTruck: FireTruck = this.fireTrucks.find(fireTruck => fireTruck.id === id)!;
     return of(fireTruck);
   }
 
@@ -37,18 +37,18 @@ export class FireTrucksService {
   }
 
   deleteFireTruck(id: number): void {
-    const index = this.fireTrucks.map(x => {
-      return x.id;
+    const index: number = this.fireTrucks.map(fireTruck => {
+      return fireTruck.id;
     }).indexOf(id);
 
     this.fireTrucks.splice(index, 1);
   }
 
   getFireTruckEquipment(id: number): Observable<number[]> {
-    const fireTruckEquipmentIds = []
-    for (const [ftId, eId] of this.fireTrucksEquipment) {
-      if (ftId == id) {
-        fireTruckEquipmentIds.push(eId)
+    const fireTruckEquipmentIds: number[] = [];
+    for (const [fireTruckId, equipmentId] of this.fireTrucksEquipment) {
+      if (fireTruckId == id) {
+        fireTruckEquipmentIds.push(equipmentId)
       }
     }
     return of(fireTruckEquipmentIds);

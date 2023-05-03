@@ -4,7 +4,7 @@ import { Member } from '../../../core/models/member.model';
 import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { CallOutsService } from '../../../core/services/call-outs.service';
 import { CallOut } from '../../../core/models/call-out.model';
 
@@ -15,11 +15,11 @@ import { CallOut } from '../../../core/models/call-out.model';
 })
 export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public memberId: number = 0;
-  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
+  @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public member!: Member;
   public callOuts: CallOut[] = [];
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private membersService: MembersService,
@@ -36,6 +36,11 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
     this.getCallOuts();
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public goBack(): void {
     this.displaySummaryEvent.emit(true)
   }
@@ -46,7 +51,7 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public edit(): void {
-    const dialogRef = this.dialog.open(AddMemberDialogComponent, {
+    const dialogRef: MatDialogRef<AddMemberDialogComponent> = this.dialog.open(AddMemberDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-member-dialog-panel',
@@ -64,10 +69,6 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
           this.getMember();
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 
   private getMember(): void {

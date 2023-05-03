@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Member } from '../models/member.model';
-import { Observable, of } from 'rxjs';
-import { MEMBERS } from './mock-members';
-import { Training, TrainingType } from '../models/training.model';
+import {Injectable} from '@angular/core';
+import {Member} from '../models/member.model';
+import {Observable, of} from 'rxjs';
+import {MEMBERS} from './mock-members';
+import {Training, TrainingType} from '../models/training.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class MembersService {
   }
 
   getMember(id: number): Observable<Member> {
-    const member = this.members.find(m => m.id === id)!;
+    const member: Member = this.members.find(member => member.id === id)!;
     return of(member);
   }
 
@@ -36,8 +36,8 @@ export class MembersService {
   }
 
   deleteMember(id: number): void {
-    const index = this.members.map(x => {
-      return x.id;
+    const index: number = this.members.map(member => {
+      return member.id;
     }).indexOf(id);
 
     this.members.splice(index, 1);
@@ -49,7 +49,7 @@ export class MembersService {
 
   deleteTraining(id: number, type: TrainingType): void {
     this.getMember(id).subscribe(
-      member => member.trainings.splice(member.trainings.findIndex(i => i.type === type), 1)
+      member => member.trainings.splice(member.trainings.findIndex(training => training.type === type), 1)
     )
   };
 }

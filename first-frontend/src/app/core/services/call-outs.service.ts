@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { CallOut } from '../models/call-out.model';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { CALL_OUTS } from './mock-call-outs';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {CallOut} from '../models/call-out.model';
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {CALL_OUTS} from './mock-call-outs';
+import {Router} from '@angular/router';
+import {Call} from "@angular/compiler";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class CallOutsService {
   }
 
   getCallOut(id: number): Observable<CallOut> {
-    const callOut = this.callOuts.find(c => c.id === id)!;
+    const callOut: CallOut = this.callOuts.find(callOut => callOut.id === id)!;
     return of(callOut);
   }
 
@@ -42,21 +43,20 @@ export class CallOutsService {
   }
 
   deleteCallOut(id: number): void {
-    const index = this.callOuts.map(x => x.id).indexOf(id);
-
+    const index: number = this.callOuts.map(callOut => callOut.id).indexOf(id);
     this.callOuts.splice(index, 1);
   }
 
   getMemberCallOuts(id: number): Observable<CallOut[]> {
-    const memberCallOuts = this.callOuts.filter(c => c.sections.some(
-      s => s.crewIds.includes(id)
+    const memberCallOuts: CallOut[] = this.callOuts.filter(callOut => callOut.sections.some(
+      section => section.crewIds.includes(id)
     ));
     return of(memberCallOuts);
   }
 
   getFireTruckCallOuts(id: number): Observable<CallOut[]> {
-    const fireTruckCallOuts = this.callOuts.filter(c => c.sections.some(
-      s => s.fireTruckId == id
+    const fireTruckCallOuts: CallOut[] = this.callOuts.filter(callOut => callOut.sections.some(
+      section => section.fireTruckId == id
     ));
     return of(fireTruckCallOuts);
   }

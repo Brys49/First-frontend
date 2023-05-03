@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
-import { Equipment } from '../../../../core/models/equipment.model';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {FormControl, FormGroup, NonNullableFormBuilder} from '@angular/forms';
+import {Equipment} from '../../../../core/models/equipment.model';
 
 @Component({
   selector: 'app-add-equipment-to-fire-truck-dialog',
@@ -17,26 +17,25 @@ export class AddEquipmentToFireTruckDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formGroup = this.fb.group({})
-    for (let e of this.data.remainingEquipment) {
-      this.formGroup.addControl(
-        String(e.id), new FormControl(false)
-      )
-    }
+    this.formGroup = this.fb.group({});
+    this.data.remainingEquipment.forEach(
+      equipment => this.formGroup.addControl(
+        String(equipment.id), new FormControl(false)
+      ));
   }
 
   public save(): void {
-    const result = [];
-    for (let e of this.data.remainingEquipment) {
-      if (this.formGroup.controls[e.id].value) {
-        result.push(e.id)
-      }
-    }
+    const result: number[] = [];
+    this.data.remainingEquipment.forEach(
+      equipment => {
+        if (this.formGroup.controls[equipment.id].value) {
+          result.push(equipment.id)
+        }
+      });
     this.dialogRef.close(result);
   }
 
   public close(): void {
     this.dialogRef.close([]);
   }
-
 }

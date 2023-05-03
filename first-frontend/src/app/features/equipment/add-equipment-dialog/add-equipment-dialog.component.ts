@@ -11,7 +11,7 @@ import { Equipment } from 'src/app/core/models/equipment.model';
 })
 export class AddEquipmentDialogComponent implements OnInit {
   public formGroup!: FormGroup;
-  public editMode = false;
+  public editMode: boolean = false;
   public title!: string;
 
   get parametersData() {
@@ -36,7 +36,7 @@ export class AddEquipmentDialogComponent implements OnInit {
   }
 
   public save(): void {
-    const parameters = new Map<string, string>(
+    const parameters: Map<string, string> = new Map<string, string>(
       this.formGroup.getRawValue().parameters
         .map((i: { pName: string; pValue: string; }) => [i.pName, i.pValue]))
 

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
 import { Member } from '../../core/models/member.model';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class MembersComponent implements OnInit, OnDestroy {
   public selectedMemberId!: number;
   public displaySummary: boolean = true;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog, private membersService: MembersService) {
   }
@@ -23,13 +23,18 @@ export class MembersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public showDetails(id: number): void {
     this.displaySummary = false;
     this.selectedMemberId = id;
   }
 
-  public displaySummaryToggle(v: boolean): void {
-    this.displaySummary = v;
+  public displaySummaryToggle(displaySummaryFlag: boolean): void {
+    this.displaySummary = displaySummaryFlag;
   }
 
   public openDialog(): void {
@@ -49,7 +54,7 @@ export class MembersComponent implements OnInit, OnDestroy {
       trainings: []
     }
 
-    const dialogRef = this.dialog.open(AddMemberDialogComponent, {
+    const dialogRef: MatDialogRef<AddMemberDialogComponent> = this.dialog.open(AddMemberDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-member-dialog-panel',
@@ -67,9 +72,4 @@ export class MembersComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
-  }
-
 }

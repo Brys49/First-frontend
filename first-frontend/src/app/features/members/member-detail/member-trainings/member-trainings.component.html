@@ -8,13 +8,13 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item *ngFor="let t of member.trainings">
-        <p>{{t.type}}</p>
-        <p>{{t.id}}</p>
-        <p>Date: {{t.trainingDate | date: 'dd.MM.YYYY'}}</p>
-        <p [style.visibility]="t.expirationDate? 'visible': 'hidden'">Exp.
-          date: {{t.expirationDate | date: 'dd.MM.YYYY'}}</p>
-        <button mat-icon-button class="deleteButton" (click)="deleteTraining(t.type)">
+      <mat-list-item *ngFor="let training of member.trainings">
+        <p>{{training.type}}</p>
+        <p>{{training.id}}</p>
+        <p>Date: {{training.trainingDate | date: 'dd.MM.YYYY'}}</p>
+        <p [style.visibility]="training.expirationDate? 'visible': 'hidden'">Exp.
+          date: {{training.expirationDate | date: 'dd.MM.YYYY'}}</p>
+        <button mat-icon-button class="deleteButton" (click)="deleteTraining(training.type)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-list-item>

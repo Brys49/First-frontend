@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FireTruck } from '../../core/models/fire-truck.model';
 import { FireTrucksService } from '../../core/services/fire-trucks.service';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { AddFireTruckDialogComponent } from './add-fire-truck-dialog/add-fire-truck-dialog.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {AddEquipmentDialogComponent} from "../equipment/add-equipment-dialog/add-equipment-dialog.component";
 
 @Component({
   selector: 'app-garage',
@@ -15,7 +16,7 @@ export class GarageComponent implements OnInit, OnDestroy {
   public selectedFireTruckId!: number;
   public displaySummary: boolean = true;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private fireTrucksService: FireTrucksService) {
@@ -24,13 +25,18 @@ export class GarageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public showDetails(id: number): void {
     this.displaySummary = false;
     this.selectedFireTruckId = id;
   }
 
-  public displaySummaryToggle(v: boolean): void {
-    this.displaySummary = v;
+  public displaySummaryToggle(displaySummaryFlag: boolean): void {
+    this.displaySummary = displaySummaryFlag;
   }
 
   public openDialog(): void {
@@ -54,7 +60,7 @@ export class GarageComponent implements OnInit, OnDestroy {
       imgUrl: ''
     }
 
-    const dialogRef = this.dialog.open(AddFireTruckDialogComponent, {
+    const dialogRef: MatDialogRef<AddFireTruckDialogComponent> = this.dialog.open(AddFireTruckDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-fire-truck-dialog-panel',
@@ -71,9 +77,5 @@ export class GarageComponent implements OnInit, OnDestroy {
           this.fireTrucksService.addFireTruck(fireTruck)
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { CallOutsService } from '../../core/services/call-outs.service';
 import { CallOut, CallOutType } from '../../core/models/call-out.model';
 import { AddCallOutDialogComponent } from './add-call-out-dialog/add-call-out-dialog.component';
@@ -15,7 +15,7 @@ export class CallOutsComponent implements OnInit, OnDestroy {
   public selectedCallOutId!: number;
   public displaySummary: boolean = true;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog, private callOutsService: CallOutsService) {
   }
@@ -29,13 +29,18 @@ export class CallOutsComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public showDetails(id: number): void {
     this.displaySummary = false;
     this.selectedCallOutId = id;
   }
 
-  public displaySummaryToggle(v: boolean): void {
-    this.displaySummary = v;
+  public displaySummaryToggle(displaySummaryFlag: boolean): void {
+    this.displaySummary = displaySummaryFlag;
   }
 
   public openDialog(): void {
@@ -48,7 +53,7 @@ export class CallOutsComponent implements OnInit, OnDestroy {
       sections: []
     }
 
-    const dialogRef = this.dialog.open(AddCallOutDialogComponent, {
+    const dialogRef: MatDialogRef<AddCallOutDialogComponent> = this.dialog.open(AddCallOutDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-call-out-dialog-panel',
@@ -65,9 +70,5 @@ export class CallOutsComponent implements OnInit, OnDestroy {
           this.callOutsService.addCallOut(callOut)
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 }

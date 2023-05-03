@@ -1,10 +1,8 @@
 <div id="add-call-out-dialog">
   <h1 mat-dialog-title>{{title}}</h1>
-
   <mat-dialog-content id="details-container" [formGroup]="formGroup">
-
-
     <div class="call-out-time-picker">
+
       <mat-form-field appearance="outline" class="call-out-time-form-field">
         <mat-label>Alarm date</mat-label>
         <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="alarmDate">
@@ -16,8 +14,8 @@
       <mat-form-field appearance="outline" class="call-out-time-form-field">
         <mat-label>Hour</mat-label>
         <mat-select formControlName="alarmHour">
-          <mat-option *ngFor="let h of hours" [value]="h">
-            {{h}}
+          <mat-option *ngFor="let hour of hours" [value]="hour">
+            {{hour}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -25,8 +23,8 @@
       <mat-form-field appearance="outline" class="call-out-time-form-field">
         <mat-label>Minutes</mat-label>
         <mat-select formControlName="alarmMinutes">
-          <mat-option *ngFor="let m of minutes" [value]="m">
-            {{m}}
+          <mat-option *ngFor="let minute of minutes" [value]="minute">
+            {{minute}}
           </mat-option>
         </mat-select>
       </mat-form-field>

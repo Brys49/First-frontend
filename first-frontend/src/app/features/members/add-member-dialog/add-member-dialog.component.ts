@@ -11,7 +11,7 @@ import { Member } from '../../../core/models/member.model';
 export class AddMemberDialogComponent implements OnInit {
   public formGroup!: FormGroup;
   public maxDate: Date = new Date();
-  public editMode = false;
+  public editMode: boolean = false;
   public title!: string;
 
   constructor(public dialogRef: MatDialogRef<AddMemberDialogComponent>,
@@ -60,5 +60,4 @@ export class AddMemberDialogComponent implements OnInit {
   public close(): void {
     this.dialogRef.close(null);
   }
-
 }

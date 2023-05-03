@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } 
 import { FireTruck } from 'src/app/core/models/fire-truck.model';
 import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-truck-dialog.component';
 import { CallOut } from '../../../core/models/call-out.model';
@@ -16,11 +16,11 @@ import { CallOutsService } from '../../../core/services/call-outs.service';
 })
 export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public fireTruckId: number = 0;
-  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
+  @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public fireTruck!: FireTruck;
   public callOuts: CallOut[] = [];
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private fireTrucksService: FireTrucksService,
@@ -37,6 +37,11 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
     this.getCallOuts();
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public goBack(): void {
     this.displaySummaryEvent.emit(true)
   }
@@ -47,7 +52,7 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public edit(): void {
-    const dialogRef = this.dialog.open(AddFireTruckDialogComponent, {
+    const dialogRef: MatDialogRef<AddFireTruckDialogComponent> = this.dialog.open(AddFireTruckDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-fire-truck-dialog-panel',
@@ -65,10 +70,6 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
           this.getFireTruck()
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 
   private getFireTruck(): void {

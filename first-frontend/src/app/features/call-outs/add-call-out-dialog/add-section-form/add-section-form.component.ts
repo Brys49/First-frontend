@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -8,13 +8,13 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import { Section } from "../../../../core/models/call-out.model";
-import { FireTruck } from "../../../../core/models/fire-truck.model";
-import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
-import { FireTrucksService } from "../../../../core/services/fire-trucks.service";
-import { MembersService } from '../../../../core/services/members.service';
-import { Member } from '../../../../core/models/member.model';
+import {Section} from "../../../../core/models/call-out.model";
+import {FireTruck} from "../../../../core/models/fire-truck.model";
+import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
+import {FireTrucksService} from "../../../../core/services/fire-trucks.service";
+import {MembersService} from '../../../../core/services/members.service';
+import {Member} from '../../../../core/models/member.model';
 
 @Component({
   selector: 'app-add-section-form',
@@ -33,7 +33,7 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
 
   private fireTrucks: FireTruck[] = [];
   private members: Member[] = [];
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   get sections() {
     return this.formGroup.get('sections') as FormArray;
@@ -45,15 +45,20 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    for (const s of this.sectionsData) {
-      this.addSection(s.fireTruckId, s.departureDate, s.returnDate, s.crewIds)
-    }
+    this.sectionsData.forEach(section => {
+      this.addSection(section.fireTruckId, section.departureDate, section.returnDate, section.crewIds)
+    })
 
     this.getFireTrucks();
     this.updateRemainingFireTrucks();
 
     this.getMembers();
     this.updateRemainingMembers();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public addSection(fireTruckId: number = 0,
@@ -76,12 +81,13 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
     const selectedFireTrucksId: number[] = [];
     const selectedMembersId: number[] = [];
 
-    for (let s of this.sections.controls) {
-      selectedFireTrucksId.push(s.getRawValue().fireTruckId);
+    this.sections.controls.forEach(s => {
+      selectedFireTrucksId.push(s.getRawValue().fireTruckId)
       selectedMembersId.push(...s.getRawValue().crewIds);
-    }
-    const freeFireTrucks = this.fireTrucks.filter(ft => !(selectedFireTrucksId.includes(ft.id)));
-    const freeMembers = this.members.filter(m => !(selectedMembersId.includes(m.id)));
+    });
+
+    const freeFireTrucks: FireTruck[] = this.fireTrucks.filter(fireTruck => !(selectedFireTrucksId.includes(fireTruck.id)));
+    const freeMembers: Member[] = this.members.filter(member => !(selectedMembersId.includes(member.id)));
 
     this.remainingFireTrucks.push(freeFireTrucks);
     this.remainingMembers.push(freeMembers);
@@ -97,32 +103,28 @@ export class AddSectionFormComponent implements OnInit, OnDestroy {
 
   public updateRemainingFireTrucks(): void {
     const selectedFireTrucksId: number[] = [];
-    for (let s of this.sections.controls) {
+    this.sections.controls.forEach(s => {
       selectedFireTrucksId.push(s.getRawValue().fireTruckId);
-    }
+    })
 
-    for (let i = 0; i < this.remainingFireTrucks.length; i++) {
+    for (let i: number = 0; i < this.remainingFireTrucks.length; i++) {
       this.remainingFireTrucks[i] = this.fireTrucks.filter(
-        ft => !(selectedFireTrucksId.includes(ft.id))
-          || ft.id == this.sections.controls[i].getRawValue().fireTruckId);
+        fireTruck => !(selectedFireTrucksId.includes(fireTruck.id))
+          || fireTruck.id == this.sections.controls[i].getRawValue().fireTruckId);
     }
   }
 
   public updateRemainingMembers(): void {
     const selectedMembersId: number[] = [];
-    for (let s of this.sections.controls) {
+    this.sections.controls.forEach(s => {
       selectedMembersId.push(...s.getRawValue().crewIds);
-    }
+    });
 
     for (let i = 0; i < this.remainingMembers.length; i++) {
       this.remainingMembers[i] = this.members.filter(
-        m => !(selectedMembersId.includes(m.id))
-          || this.sections.controls[i].getRawValue().crewIds.includes(m.id));
+        member => !(selectedMembersId.includes(member.id))
+          || this.sections.controls[i].getRawValue().crewIds.includes(member.id));
     }
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 
   private getFireTrucks(): void {

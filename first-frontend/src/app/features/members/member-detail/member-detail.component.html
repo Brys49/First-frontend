@@ -40,9 +40,9 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
-          <ng-container *ngFor="let c of callOuts">
-            <app-details-call-outs-item [id]="c.id" [alarmDate]="c.alarmDate"
-                                        [type]="c.type"></app-details-call-outs-item>
+          <ng-container *ngFor="let callout of callOuts">
+            <app-details-call-outs-item [id]="callout.id" [alarmDate]="callout.alarmDate"
+                                        [type]="callout.type"></app-details-call-outs-item>
           </ng-container>
         </mat-list>
       </mat-expansion-panel>

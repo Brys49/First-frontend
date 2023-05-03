@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { CallOut } from '../../../core/models/call-out.model';
 import { CallOutsService } from '../../../core/services/call-outs.service';
@@ -14,10 +14,10 @@ import { AddCallOutDialogComponent } from '../add-call-out-dialog/add-call-out-d
 })
 export class CallOutDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public callOutId!: number;
-  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
+  @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public callOut!: CallOut;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private callOutsService: CallOutsService) {
@@ -31,6 +31,11 @@ export class CallOutDetailComponent implements OnInit, OnChanges, OnDestroy {
     this.getCallOut()
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public goBack(): void {
     this.displaySummaryEvent.emit(true)
   }
@@ -41,7 +46,7 @@ export class CallOutDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public edit(): void {
-    const dialogRef = this.dialog.open(AddCallOutDialogComponent, {
+    const dialogRef: MatDialogRef<AddCallOutDialogComponent> = this.dialog.open(AddCallOutDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-call-out-dialog-panel',
@@ -59,10 +64,6 @@ export class CallOutDetailComponent implements OnInit, OnChanges, OnDestroy {
           this.getCallOut()
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 
   private getCallOut(): void {
