@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { CallOutsService } from '../../core/services/call-outs.service';
-import { CallOut, CallOutType } from '../../core/models/call-out.model';
-import { AddCallOutDialogComponent } from './add-call-out-dialog/add-call-out-dialog.component';
-import { takeUntil } from 'rxjs/operators';
+import {CallOutsService} from '../../core/services/call-outs.service';
+import {CallOut, CallOutType} from '../../core/models/call-out.model';
+import {AddCallOutDialogComponent} from './add-call-out-dialog/add-call-out-dialog.component';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-call-outs',
@@ -25,7 +25,9 @@ export class CallOutsComponent implements OnInit, OnDestroy {
       takeUntil(this._destroy$)
     ).subscribe(
       id => {
-        this.showDetails(id);
+        if (id) {
+          this.showDetails(id);
+        }
       });
   }
 

@@ -30,10 +30,10 @@ export class AddTrainingDialogComponent implements OnInit, OnDestroy {
     this.memberId = Number(Object.values(this.data));
 
     this.formGroup = this.fb.group({
+      type: ['', Validators.required],
       id: ['', Validators.required],
       trainingDate: ['', Validators.required],
-      expirationDate: [''],
-      type: ['', Validators.required]
+      expirationDate: ['']
     });
 
     this.loadRemainingTrainingTypes();
@@ -46,10 +46,10 @@ export class AddTrainingDialogComponent implements OnInit, OnDestroy {
 
   public save(): void {
     const training: Training = {
+      type: this.formGroup.getRawValue().type,
       id: this.formGroup.getRawValue().id,
       trainingDate: this.formGroup.getRawValue().trainingDate,
-      expirationDate: this.formGroup.getRawValue().expirationDate,
-      type: this.formGroup.getRawValue().type
+      expirationDate: this.formGroup.getRawValue().expirationDate
     };
 
     this.membersService.addTraining(this.memberId, training);

@@ -1,9 +1,8 @@
 export interface Training {
+  type: TrainingType;
   id: string;
   trainingDate: Date;
   expirationDate: Date;
-  type: TrainingType;
-
 }
 
 export enum TrainingType {
