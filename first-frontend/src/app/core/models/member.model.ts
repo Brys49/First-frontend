@@ -11,7 +11,7 @@ export interface Member {
   joiningDate: Date;
   role: string;
   phoneNumber: string;
-  periodicExaminationsExpiryDate: Date;
+  periodicMedicalExaminationExpiryDate: Date;
   isDriver: boolean;
   trainings: Training[];
 

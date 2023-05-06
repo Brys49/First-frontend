@@ -19,7 +19,7 @@ export const CALLOUTS: Callout[] = [
   {
     id: 2,
     alarmDate: new Date(2023, 2, 23, 19, 16),
-    type: CalloutType.LOCAL_THREAT,
+    type: CalloutType.RESCUE,
     location: "Poznan, Szkolna 11c",
     details: "3 cars, 1 dead, 1 injured",
     sections: [

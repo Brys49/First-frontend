@@ -19,7 +19,7 @@ export class MemberDetailListComponent implements OnInit {
     joiningDate: new Date(),
     role: '',
     phoneNumber: '',
-    periodicExaminationsExpiryDate: new Date(),
+    periodicMedicalExaminationExpiryDate: new Date(),
     isDriver: false,
     trainings: []
   };

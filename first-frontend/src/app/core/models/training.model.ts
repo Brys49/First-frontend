@@ -8,7 +8,7 @@ export interface Training {
 export enum TrainingType {
   BASIC = "Basic",
   QUALIFIED_FIRST_AID = "Qualified first aid",
-  LEADER = "Leader",
-  HEADER = "Header",
-  COMMUNE_COMMANDER = "Commune commander",
+  OFFICER = "Officer",
+  CHIEF = "Chief",
+  MUNICIPAL_CHIEF= "Municipal fire chief",
 }

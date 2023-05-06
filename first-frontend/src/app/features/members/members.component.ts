@@ -49,7 +49,7 @@ export class MembersComponent implements OnInit, OnDestroy {
       joiningDate: new Date(),
       role: '',
       phoneNumber: '',
-      periodicExaminationsExpiryDate: new Date(),
+      periodicMedicalExaminationExpiryDate: new Date(),
       isDriver: false,
       trainings: []
     }

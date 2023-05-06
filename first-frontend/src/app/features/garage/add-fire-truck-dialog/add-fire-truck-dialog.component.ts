@@ -49,7 +49,7 @@ export class AddFireTruckDialogComponent implements OnInit {
       horsepower: [this.data.fireTruck.horsepower, [Validators.required, Validators.min(1)]],
       numberOfSeats: [this.data.fireTruck.numberOfSeats, [Validators.required, Validators.min(1)]],
       mileage: [this.data.fireTruck.mileage, [Validators.required, Validators.min(0)]],
-      technicalReviewExpiryDate: [this.data.fireTruck.technicalReviewExpiryDate, Validators.required],
+      vehicleInspectionExpiryDate: [this.data.fireTruck.vehicleInspectionExpiryDate, Validators.required],
       insuranceExpiryDate: [this.data.fireTruck.insuranceExpiryDate, Validators.required],
       parameters: this.fb.array([])
     })
@@ -73,7 +73,7 @@ export class AddFireTruckDialogComponent implements OnInit {
       horsepower: this.formGroup.getRawValue().horsepower,
       numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
       mileage: this.formGroup.getRawValue().mileage,
-      technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
+      vehicleInspectionExpiryDate: this.formGroup.getRawValue().vehicleInspectionExpiryDate,
       insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
       parameters: parameters,
       equipment: this.data.fireTruck.equipment,

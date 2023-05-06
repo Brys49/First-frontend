@@ -52,7 +52,7 @@ export class GarageComponent implements OnInit, OnDestroy {
       horsepower: 0,
       numberOfSeats: 0,
       mileage: 0,
-      technicalReviewExpiryDate: new Date(),
+      vehicleInspectionExpiryDate: new Date(),
       insuranceExpiryDate: new Date(),
       parameters: new Map<string, string>(),
       equipment: [],

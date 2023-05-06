@@ -11,7 +11,7 @@ export interface FireTruck {
   horsepower: number;
   numberOfSeats: number;
   mileage: number;
-  technicalReviewExpiryDate: Date;
+  vehicleInspectionExpiryDate: Date;
   insuranceExpiryDate: Date;
   parameters: Map<string, string>;
   equipment: number[];

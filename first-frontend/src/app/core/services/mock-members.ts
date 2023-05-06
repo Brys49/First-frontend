@@ -12,7 +12,7 @@ export const MEMBERS: Member[] = [
     joiningDate: new Date('12/11/2000'),
     role: "Firefighter",
     phoneNumber: '666 333 111',
-    periodicExaminationsExpiryDate: new Date('10/05/2023'),
+    periodicMedicalExaminationExpiryDate: new Date('10/05/2023'),
     isDriver: true,
     trainings: []
   },
@@ -27,7 +27,7 @@ export const MEMBERS: Member[] = [
     joiningDate: new Date('08/12/2019'),
     role: "Firefighter",
     phoneNumber: '655 311 121',
-    periodicExaminationsExpiryDate: new Date('10/05/2023'),
+    periodicMedicalExaminationExpiryDate: new Date('10/05/2023'),
     isDriver: true,
     trainings: []
   },
@@ -42,7 +42,7 @@ export const MEMBERS: Member[] = [
     joiningDate: new Date('08/02/2012'),
     role: "Firefighter",
     phoneNumber: '655 111 121',
-    periodicExaminationsExpiryDate: new Date('10/05/2023'),
+    periodicMedicalExaminationExpiryDate: new Date('10/05/2023'),
     isDriver: true,
     trainings: []
   },

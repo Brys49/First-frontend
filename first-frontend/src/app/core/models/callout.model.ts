@@ -16,9 +16,8 @@ export interface Section {
 
 export enum CalloutType {
   FIRE = "Fire",
-  LOCAL_THREAT = "Local threat",
+  RESCUE = "Rescue",
   TRAINING = "Training",
   FALSE_ALARM = "False alarm",
-  SECURE_REGION = "Secure region",
-  PRACTICE = "Practice"
+  REGION_COVER = "Region cover",
 }
