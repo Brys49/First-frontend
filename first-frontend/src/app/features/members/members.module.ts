@@ -11,7 +11,6 @@ import { MemberDetailListComponent } from './member-detail/member-detail-list/me
 import { MemberTrainingsComponent } from './member-detail/member-trainings/member-trainings.component';
 
 
-
 @NgModule({
   declarations: [
     MembersComponent,
@@ -28,4 +27,5 @@ import { MemberTrainingsComponent } from './member-detail/member-trainings/membe
     RouterModule
   ]
 })
-export class MembersModule { }
+export class MembersModule {
+}

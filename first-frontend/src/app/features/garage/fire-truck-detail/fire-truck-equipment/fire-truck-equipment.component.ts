@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FireTrucksService } from '../../../../core/services/fire-trucks.service';
 import { Equipment } from '../../../../core/models/equipment.model';
 import { EquipmentService } from '../../../../core/services/equipment.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   AddEquipmentToFireTruckDialogComponent
 } from '../add-equipment-to-fire-truck-dialog/add-equipment-to-fire-truck-dialog.component';
@@ -22,12 +22,11 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
 
   private fireTruckEquipmentIds: number[] = []
   private remainingEquipment: Equipment[] = []
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private fireTruckService: FireTrucksService,
-              private equipmentService: EquipmentService
-  ) {
+              private equipmentService: EquipmentService) {
   }
 
   ngOnInit(): void {
@@ -40,8 +39,13 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
     this.getFireTruckEquipment();
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public openDialog(): void {
-    const dialogRef = this.dialog.open(AddEquipmentToFireTruckDialogComponent, {
+    const dialogRef: MatDialogRef<AddEquipmentToFireTruckDialogComponent> = this.dialog.open(AddEquipmentToFireTruckDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-equipment-to-fire-truck-dialog-panel',
@@ -55,15 +59,15 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
     dialogRef.afterClosed().pipe(
       takeUntil(this._destroy$)
     ).subscribe(result => {
-      for (let eId of result) {
-        this.fireTruckService.addEquipmentToFireTruck(this.fireTruckId, eId)
+      for (let equipmentId of result) {
+        this.fireTruckService.addEquipmentToFireTruck(this.fireTruckId, equipmentId)
       }
       this.getFireTruckEquipment()
     });
   }
 
-  public removeEquipment(eid: number): void {
-    this.fireTruckService.removeEquipmentFromFireTruck(this.fireTruckId, eid)
+  public removeEquipment(equipmentId: number): void {
+    this.fireTruckService.removeEquipmentFromFireTruck(this.fireTruckId, equipmentId)
     this.ngOnInit()
   }
 
@@ -78,11 +82,7 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
       takeUntil(this._destroy$)
     ).subscribe(fireTruckEquipmentIds => this.fireTruckEquipmentIds = fireTruckEquipmentIds)
 
-    this.fireTruckEquipment = this.equipment.filter(e => this.fireTruckEquipmentIds.includes(e.id))
-    this.remainingEquipment = this.equipment.filter(e => !this.fireTruckEquipmentIds.includes(e.id))
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
+    this.fireTruckEquipment = this.equipment.filter(equipment => this.fireTruckEquipmentIds.includes(equipment.id))
+    this.remainingEquipment = this.equipment.filter(equipment => !this.fireTruckEquipmentIds.includes(equipment.id))
   }
 }

@@ -39,9 +39,9 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
-              <mat-list-item *ngFor="let p of fireTruck.parameters | keyvalue">
-                <p>{{p.key}}:</p>
-                <p>{{p.value}}</p>
+              <mat-list-item *ngFor="let parameter of fireTruck.parameters | keyvalue">
+                <p>{{parameter.key}}:</p>
+                <p>{{parameter.value}}</p>
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
@@ -52,17 +52,22 @@
       <div id="equipment-container">
         <app-fire-truck-equipment [fireTruckId]="fireTruckId"></app-fire-truck-equipment>
       </div>
-      <div class="call-outs-container">
+      <div class="callouts-container">
         <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Call Outs:
+                Callouts:
               </mat-panel-title>
               <mat-panel-description>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Available soon</p>
+            <mat-list>
+              <ng-container *ngFor="let callout of callouts">
+                <app-details-callouts-item [id]="callout.id" [alarmDate]="callout.alarmDate"
+                                           [type]="callout.type"></app-details-callouts-item>
+              </ng-container>
+            </mat-list>
           </mat-expansion-panel>
         </mat-accordion>
       </div>

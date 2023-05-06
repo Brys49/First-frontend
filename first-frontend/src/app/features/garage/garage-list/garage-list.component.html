@@ -1,13 +1,13 @@
 <div id="garage-list">
-  <div class="fire-truck" *ngFor="let ft of fireTrucks">
+  <div class="fire-truck" *ngFor="let fireTruck of fireTrucks$ | async">
     <h2>
-      <a (click)="showDetails(ft.id)">
-        {{ft.name}} - {{ft.operationalNumber}}
+      <a (click)="showDetails(fireTruck.id)">
+        {{fireTruck.name}} - {{fireTruck.operationalNumber}}
         <mat-icon color="primary">navigate_next</mat-icon>
       </a>
     </h2>
     <div class="fire-truck-img">
-      <img [src]="ft.imgUrl" alt="fire-truck">
+      <img [src]="fireTruck.imgUrl" alt="fire-truck">
     </div>
   </div>
 </div>

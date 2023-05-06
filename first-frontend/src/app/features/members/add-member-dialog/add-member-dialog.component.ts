@@ -11,7 +11,7 @@ import { Member } from '../../../core/models/member.model';
 export class AddMemberDialogComponent implements OnInit {
   public formGroup!: FormGroup;
   public maxDate: Date = new Date();
-  public editMode = false;
+  public editMode: boolean = false;
   public title!: string;
 
   constructor(public dialogRef: MatDialogRef<AddMemberDialogComponent>,
@@ -33,7 +33,7 @@ export class AddMemberDialogComponent implements OnInit {
       joiningDate: [this.data.member.joiningDate, Validators.required],
       role: [this.data.member.role, [Validators.required, Validators.maxLength(120)]],
       phoneNumber: [this.data.member.phoneNumber, [Validators.required, Validators.pattern('(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)')]],
-      periodicExaminationsExpiryDate: [this.data.member.periodicExaminationsExpiryDate, Validators.required],
+      periodicMedicalExaminationExpiryDate: [this.data.member.periodicMedicalExaminationExpiryDate, Validators.required],
       isDriver: [this.data.member.isDriver, Validators.required],
     })
   }
@@ -50,7 +50,7 @@ export class AddMemberDialogComponent implements OnInit {
       joiningDate: this.formGroup.getRawValue().joiningDate,
       role: this.formGroup.getRawValue().role,
       phoneNumber: this.formGroup.getRawValue().phoneNumber,
-      periodicExaminationsExpiryDate: this.formGroup.getRawValue().periodicExaminationsExpiryDate,
+      periodicMedicalExaminationExpiryDate: this.formGroup.getRawValue().periodicMedicalExaminationExpiryDate,
       isDriver: this.formGroup.getRawValue().isDriver,
       trainings: this.data.member.trainings
     };
@@ -60,5 +60,4 @@ export class AddMemberDialogComponent implements OnInit {
   public close(): void {
     this.dialogRef.close(null);
   }
-
 }

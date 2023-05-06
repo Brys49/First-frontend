@@ -37,9 +37,9 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
-          <mat-list-item *ngFor="let p of equipment.parameters | keyvalue">
-            <p>{{p.key}}:</p>
-            <p>{{p.value}}</p>
+          <mat-list-item *ngFor="let parameter of equipment.parameters | keyvalue">
+            <p>{{parameter.key}}:</p>
+            <p>{{parameter.value}}</p>
           </mat-list-item>
         </mat-list>
       </mat-expansion-panel>

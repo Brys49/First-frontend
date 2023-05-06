@@ -8,9 +8,9 @@ describe('AddFireTruckDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddFireTruckDialogComponent ]
+      declarations: [AddFireTruckDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddFireTruckDialogComponent);
     component = fixture.componentInstance;

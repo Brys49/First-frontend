@@ -5,8 +5,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { GarageComponent } from '../garage/garage.component';
 import { MembersComponent } from '../members/members.component';
 import { EquipmentComponent } from '../equipment/equipment.component';
-import { DocsComponent } from '../docs/docs.component';
-import { CallOutsComponent } from '../call-outs/call-outs.component';
+import { CalloutsComponent } from '../callouts/callouts.component';
 
 const routes: Routes = [
   {
@@ -35,12 +34,8 @@ const routes: Routes = [
         component: EquipmentComponent
       },
       {
-        path: 'call-outs',
-        component: CallOutsComponent
-      },
-      {
-        path: 'docs',
-        component: DocsComponent
+        path: 'callouts',
+        component: CalloutsComponent
       },
     ]
   },

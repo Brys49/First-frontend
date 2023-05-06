@@ -1,0 +1,32 @@
+<main>
+  <div class="name-container">
+    <div>
+      <button mat-icon-button color="primary" (click)="goBack()">
+        <mat-icon>
+          arrow_back
+        </mat-icon>
+      </button>
+      <h1>
+        {{callout.type}}
+      </h1>
+    </div>
+    <div>
+      <button mat-icon-button color="primary" (click)="edit()">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="deleteCallout(callout.id)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="details-list-container">
+    <app-callout-detail-list [callout]="callout"></app-callout-detail-list>
+  </div>
+  <div class="section-list-container" *ngFor="let section of callout.sections; let i = index">
+    <app-callout-detail-section [section]="section" [sectionNumber]="i"></app-callout-detail-section>
+  </div>
+</main>

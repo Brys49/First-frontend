@@ -2,9 +2,11 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } 
 import { FireTruck } from 'src/app/core/models/fire-truck.model';
 import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-truck-dialog.component';
+import { Callout } from '../../../core/models/callout.model';
+import { CalloutsService } from '../../../core/services/callouts.service';
 
 @Component({
   selector: 'app-fire-truck-detail',
@@ -14,21 +16,30 @@ import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-t
 })
 export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public fireTruckId: number = 0;
-  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
+  @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public fireTruck!: FireTruck;
+  public callouts: Callout[] = [];
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
-              private fireTrucksService: FireTrucksService) {
+              private fireTrucksService: FireTrucksService,
+              private calloutsService: CalloutsService) {
   }
 
   ngOnInit(): void {
     this.getFireTruck();
+    this.getCallouts();
   }
 
   ngOnChanges(): void {
     this.getFireTruck();
+    this.getCallouts();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public goBack(): void {
@@ -41,7 +52,7 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public edit(): void {
-    const dialogRef = this.dialog.open(AddFireTruckDialogComponent, {
+    const dialogRef: MatDialogRef<AddFireTruckDialogComponent> = this.dialog.open(AddFireTruckDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-fire-truck-dialog-panel',
@@ -61,14 +72,15 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this._destroy$.next();
-  }
-
   private getFireTruck(): void {
     this.fireTrucksService.getFireTruck(this.fireTruckId).pipe(
       takeUntil(this._destroy$)
-    ).subscribe(fireTruck => this.fireTruck = fireTruck
-    );
+    ).subscribe(fireTruck => this.fireTruck = fireTruck)
+  }
+
+  private getCallouts(): void {
+    this.calloutsService.getFireTruckCallouts(this.fireTruckId).pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(callouts => this.callouts = callouts)
   }
 }

@@ -4,7 +4,9 @@ import { Member } from '../../../core/models/member.model';
 import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CalloutsService } from '../../../core/services/callouts.service';
+import { Callout } from '../../../core/models/callout.model';
 
 @Component({
   selector: 'app-member-detail',
@@ -13,21 +15,30 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public memberId: number = 0;
-  @Output() public displaySummaryEvent = new EventEmitter<boolean>();
+  @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public member!: Member;
+  public callouts: Callout[] = [];
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
-              private membersService: MembersService) {
+              private membersService: MembersService,
+              private calloutsService: CalloutsService) {
   }
 
   ngOnInit(): void {
     this.getMember();
+    this.getCallouts();
   }
 
   ngOnChanges(): void {
     this.getMember();
+    this.getCallouts();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public goBack(): void {
@@ -40,7 +51,7 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public edit(): void {
-    const dialogRef = this.dialog.open(AddMemberDialogComponent, {
+    const dialogRef: MatDialogRef<AddMemberDialogComponent> = this.dialog.open(AddMemberDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-member-dialog-panel',
@@ -60,13 +71,15 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this._destroy$.next();
-  }
-
   private getMember(): void {
     this.membersService.getMember(this.memberId).pipe(
       takeUntil(this._destroy$)
     ).subscribe(member => this.member = member)
+  }
+
+  private getCallouts(): void {
+    this.calloutsService.getMemberCallouts(this.memberId).pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(callouts => this.callouts = callouts)
   }
 }

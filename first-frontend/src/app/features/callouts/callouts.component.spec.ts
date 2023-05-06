@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CallOutsComponent } from './call-outs.component';
+import { CalloutsComponent } from './callouts.component';
 
-describe('CallOutsComponent', () => {
-  let component: CallOutsComponent;
-  let fixture: ComponentFixture<CallOutsComponent>;
+describe('CalloutsComponent', () => {
+  let component: CalloutsComponent;
+  let fixture: ComponentFixture<CalloutsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CallOutsComponent ]
+      declarations: [CalloutsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CallOutsComponent);
+    fixture = TestBed.createComponent(CalloutsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

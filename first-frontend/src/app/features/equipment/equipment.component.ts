@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Equipment } from 'src/app/core/models/equipment.model';
 import { EquipmentService } from 'src/app/core/services/equipment.service';
 import { AddEquipmentDialogComponent } from './add-equipment-dialog/add-equipment-dialog.component';
@@ -15,7 +15,7 @@ export class EquipmentComponent implements OnInit, OnDestroy {
   public selectedEquipmentId!: number;
   public displaySummary: boolean = true;
 
-  private _destroy$ = new Subject<void>();
+  private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog, private equipmentService: EquipmentService) {
   }
@@ -23,13 +23,18 @@ export class EquipmentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
   public showDetails(id: number): void {
     this.displaySummary = false;
     this.selectedEquipmentId = id;
   }
 
-  public displaySummaryToggle(v: boolean): void {
-    this.displaySummary = v;
+  public displaySummaryToggle(displaySummaryFlag: boolean): void {
+    this.displaySummary = displaySummaryFlag;
   }
 
   public openDialog(): void {
@@ -41,7 +46,7 @@ export class EquipmentComponent implements OnInit, OnDestroy {
       parameters: new Map<string, string>()
     }
 
-    const dialogRef = this.dialog.open(AddEquipmentDialogComponent, {
+    const dialogRef: MatDialogRef<AddEquipmentDialogComponent> = this.dialog.open(AddEquipmentDialogComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'add-equipment-dialog-panel',
@@ -58,9 +63,5 @@ export class EquipmentComponent implements OnInit, OnDestroy {
           this.equipmentService.addEquipment(equipment)
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
   }
 }

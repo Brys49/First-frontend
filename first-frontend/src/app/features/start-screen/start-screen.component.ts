@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class StartScreenComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   goToDashboard() {
     this.router.navigateByUrl('/home/dashboard')

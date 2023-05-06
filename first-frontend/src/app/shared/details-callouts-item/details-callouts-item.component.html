@@ -1,0 +1,7 @@
+<mat-list-item>
+  <h3 matLine>{{id}}/{{alarmDate | date:'yyyy'}} - {{type}}</h3>
+  <p matLine>{{alarmDate | date:'d.LL.yyyy - HH:mm'}}</p>
+  <button mat-icon-button (click)="showDetails()">
+    <mat-icon>info</mat-icon>
+  </button>
+</mat-list-item>

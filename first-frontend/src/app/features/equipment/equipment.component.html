@@ -1,6 +1,6 @@
 <main>
   <div class="list-container">
-    <app-equipment-list (equipmentIdToDisplayEvent)="showDetails($event)" ></app-equipment-list>
+    <app-equipment-list (equipmentIdToDisplayEvent)="showDetails($event)"></app-equipment-list>
   </div>
   <div class="details-container">
     <div *ngIf="displaySummary; else equipmentDetail">
@@ -9,8 +9,8 @@
     </div>
     <ng-template #equipmentDetail>
       <app-equipment-detail *ngIf="selectedEquipmentId"
-                         (displaySummaryEvent)="displaySummaryToggle($event)"
-                         [equipmentId]="selectedEquipmentId">
+                            (displaySummaryEvent)="displaySummaryToggle($event)"
+                            [equipmentId]="selectedEquipmentId">
       </app-equipment-detail>
     </ng-template>
   </div>

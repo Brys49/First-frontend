@@ -19,12 +19,12 @@ export class DynamicParametersInputComponent implements OnInit {
 
   ngOnInit(): void {
     for (const pName of this.parametersData.keys()) {
-      const pValue = this.parametersData.get(pName);
+      const pValue: string | undefined = this.parametersData.get(pName);
       this.addParameter(pName, pValue)
     }
   }
 
-  public addParameter(name = "", value = ""): void {
+  public addParameter(name: string = "", value: string = ""): void {
     this.parameters.push(
       this.fb.group({
         pName: [name, [Validators.required]],
@@ -33,8 +33,7 @@ export class DynamicParametersInputComponent implements OnInit {
     )
   }
 
-  public removeParameter(i: number) {
-    this.parameters.removeAt(i)
+  public removeParameter(i: number): void {
+    this.parameters.removeAt(i);
   }
-
 }

@@ -1,0 +1,25 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Details:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <p>Alarm date:</p>
+        <p>{{callout.alarmDate | date:'d.LL.yyyy - HH:mm'}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Location:</p>
+        <p>{{callout.location}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Details:</p>
+        <p>{{callout.details}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

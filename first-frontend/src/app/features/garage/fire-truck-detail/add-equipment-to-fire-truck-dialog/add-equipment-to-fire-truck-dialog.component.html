@@ -3,11 +3,11 @@
 
   <mat-dialog-content id="equipment-select-list" [formGroup]="formGroup">
     <mat-list>
-      <mat-list-item *ngFor="let e of this.data.remainingEquipment">
-        <mat-checkbox formControlName="{{e.id}}" color="primary">
-          {{e.name}}
+      <mat-list-item *ngFor="let equipment of this.data.remainingEquipment">
+        <mat-checkbox formControlName="{{equipment.id}}" color="primary">
+          {{equipment.name}}
         </mat-checkbox>
-        <div>{{e.serialNumber}}</div>
+        <div>{{equipment.serialNumber}}</div>
       </mat-list-item>
     </mat-list>
   </mat-dialog-content>

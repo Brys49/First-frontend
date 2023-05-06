@@ -1,6 +1,6 @@
 <h2>Members list</h2>
 <mat-list>
-  <mat-list-item *ngFor="let member of members">
+  <mat-list-item *ngFor="let member of members$ | async">
     <h3 matLine>{{member.firstname}} {{member.lastname}}</h3>
     <div id="member-trainings-icons">
       <mat-icon *ngIf="checkTrainingIcon(member.trainings, trainingTypes[0])">local_fire_department</mat-icon>

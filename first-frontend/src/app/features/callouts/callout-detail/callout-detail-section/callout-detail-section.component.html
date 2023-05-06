@@ -1,0 +1,31 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="{{isFirst}}">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Section {{sectionNumber + 1}}:
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <p>Fire truck:</p>
+        <p>{{fireTruck.name}} - {{fireTruck.operationalNumber}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Departure date:</p>
+        <p>{{section.departureDate | date:'d.LL.yyyy - HH:mm'}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Return date:</p>
+        <p>{{section.returnDate | date:'d.LL.yyyy - HH:mm'}}</p>
+      </mat-list-item>
+    </mat-list>
+    <h2>Crew: </h2>
+    <div class="crew-list">
+      <div class="crew-member" *ngFor="let member of crew">
+        <h3>{{member.firstname}} {{member.lastname}}</h3>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

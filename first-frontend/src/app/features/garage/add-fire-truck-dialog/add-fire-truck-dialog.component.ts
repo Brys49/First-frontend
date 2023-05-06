@@ -11,7 +11,7 @@ import { requiredFileType } from 'src/app/shared/file-upload-input/file-upload-i
 })
 export class AddFireTruckDialogComponent implements OnInit {
   public formGroup!: FormGroup;
-  public editMode = false;
+  public editMode: boolean = false;
   public title!: string;
   public selectableYears: number[] = [];
   public maxDate!: Date;
@@ -33,7 +33,7 @@ export class AddFireTruckDialogComponent implements OnInit {
     this.maxDate = new Date();
     this.maxYear = this.maxDate.getFullYear();
 
-    for (let i = this.maxDate.getFullYear(); i >= 1900; i--) {
+    for (let i: number = this.maxDate.getFullYear(); i >= 1900; i--) {
       this.selectableYears.push(i);
     }
 
@@ -49,14 +49,14 @@ export class AddFireTruckDialogComponent implements OnInit {
       horsepower: [this.data.fireTruck.horsepower, [Validators.required, Validators.min(1)]],
       numberOfSeats: [this.data.fireTruck.numberOfSeats, [Validators.required, Validators.min(1)]],
       mileage: [this.data.fireTruck.mileage, [Validators.required, Validators.min(0)]],
-      technicalReviewExpiryDate: [this.data.fireTruck.technicalReviewExpiryDate, Validators.required],
+      vehicleInspectionExpiryDate: [this.data.fireTruck.vehicleInspectionExpiryDate, Validators.required],
       insuranceExpiryDate: [this.data.fireTruck.insuranceExpiryDate, Validators.required],
       parameters: this.fb.array([])
     })
   }
 
   public save(): void {
-    const parameters = new Map<string, string>(
+    const parameters: Map<string, string> = new Map<string, string>(
       this.formGroup.getRawValue().parameters
         .map((i: { pName: string; pValue: string; }) => [i.pName, i.pValue]))
 
@@ -73,7 +73,7 @@ export class AddFireTruckDialogComponent implements OnInit {
       horsepower: this.formGroup.getRawValue().horsepower,
       numberOfSeats: this.formGroup.getRawValue().numberOfSeats,
       mileage: this.formGroup.getRawValue().mileage,
-      technicalReviewExpiryDate: this.formGroup.getRawValue().technicalReviewExpiryDate,
+      vehicleInspectionExpiryDate: this.formGroup.getRawValue().vehicleInspectionExpiryDate,
       insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
       parameters: parameters,
       equipment: this.data.fireTruck.equipment,
@@ -81,7 +81,7 @@ export class AddFireTruckDialogComponent implements OnInit {
     };
 
     if (this.formGroup.getRawValue().image) {
-      const reader = new FileReader();
+      const reader: FileReader = new FileReader();
       reader.readAsDataURL(this.formGroup.getRawValue().image);
       reader.onload = (_event) => {
         fireTruck.image = this.formGroup.getRawValue().image;

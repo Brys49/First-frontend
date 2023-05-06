@@ -1,0 +1,20 @@
+<main>
+  <div class="list-container">
+    <app-callouts-list (calloutIdToDisplayEvent)="showDetails($event)"></app-callouts-list>
+  </div>
+  <div class="details-container">
+    <div *ngIf="displaySummary; else calloutDetail">
+      <h2>Summary:</h2>
+      <p>Available soon</p>
+    </div>
+    <ng-template #calloutDetail>
+      <app-callout-detail *ngIf="selectedCalloutId"
+                          (displaySummaryEvent)="displaySummaryToggle($event)"
+                          [calloutId]="selectedCalloutId">
+      </app-callout-detail>
+    </ng-template>
+  </div>
+</main>
+<div class="button-container">
+  <button mat-raised-button color="primary" (click)="openDialog()">Add callout</button>
+</div>

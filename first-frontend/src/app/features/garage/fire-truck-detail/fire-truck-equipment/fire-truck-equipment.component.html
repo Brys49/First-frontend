@@ -8,10 +8,10 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item *ngFor="let e of fireTruckEquipment">
-        <p>{{e.name}}</p>
-        <p>{{e.serialNumber}}</p>
-        <button mat-icon-button class="deleteButton" (click)="removeEquipment(e.id)">
+      <mat-list-item *ngFor="let equipment of fireTruckEquipment">
+        <p>{{equipment.name}}</p>
+        <p>{{equipment.serialNumber}}</p>
+        <button mat-icon-button class="deleteButton" (click)="removeEquipment(equipment.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-list-item>

@@ -8,9 +8,9 @@ describe('GarageListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GarageListComponent ]
+      declarations: [GarageListComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(GarageListComponent);
     component = fixture.componentInstance;
