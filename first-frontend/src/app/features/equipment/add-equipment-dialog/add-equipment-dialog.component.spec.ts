@@ -8,9 +8,9 @@ describe('AddEquipmentDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddEquipmentDialogComponent ]
+      declarations: [AddEquipmentDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddEquipmentDialogComponent);
     component = fixture.componentInstance;

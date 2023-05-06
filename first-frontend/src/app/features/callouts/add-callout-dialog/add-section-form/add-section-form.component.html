@@ -1,0 +1,97 @@
+<div [formGroup]="formGroup">
+  <div formArrayName="sections">
+    <div *ngFor="let s of sections.controls; let i = index">
+      <div [formGroupName]="i" class="section-form">
+        <h3>Section: {{i + 1}}</h3>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fire Truck</mat-label>
+          <mat-select formControlName="fireTruckId" (selectionChange)="updateRemainingFireTrucks()">
+            <mat-option *ngFor="let ft of remainingFireTrucks[i]" [value]="ft.id">
+              {{ft.name}} - {{ft.operationalNumber}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="callout-time-picker">
+          <mat-form-field appearance="outline" class="callout-time-form-field">
+            <mat-label>Departure date</mat-label>
+            <input matInput [max]="maxDate" [matDatepicker]="picker2" formControlName="departureDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="callout-time-form-field">
+            <mat-label>Hour</mat-label>
+            <mat-select formControlName="departureHour">
+              <mat-option *ngFor="let h of hours" [value]="h">
+                {{h}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="callout-time-form-field">
+            <mat-label>Minutes</mat-label>
+            <mat-select formControlName="departureMinutes">
+              <mat-option *ngFor="let m of minutes" [value]="m">
+                {{m}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="callout-time-picker">
+          <mat-form-field appearance="outline" class="callout-time-form-field">
+            <mat-label>Return date</mat-label>
+            <input matInput [max]="maxDate" [matDatepicker]="picker3" formControlName="returnDate">
+            <mat-hint *ngIf="sections.get(i.toString())?.errors?.['returnBeforeDeparture']
+        && (sections.get(i.toString())?.touched || sections.get(i.toString())?.dirty)"
+                      class="date-validation-error-message">
+              Return cannot be before departure!
+            </mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="callout-time-form-field">
+            <mat-label>Hour</mat-label>
+            <mat-select formControlName="returnHour">
+              <mat-option *ngFor="let h of hours" [value]="h">
+                {{h}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="callout-time-form-field">
+            <mat-label>Minutes</mat-label>
+            <mat-select formControlName="returnMinutes">
+              <mat-option *ngFor="let m of minutes" [value]="m">
+                {{m}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="crew-form-field">
+          <mat-label>Crew</mat-label>
+          <mat-select formControlName="crewIds" (selectionChange)="updateRemainingMembers()" multiple>
+            <mat-option *ngFor="let m of remainingMembers[i]" [value]="m.id">
+              {{m.firstname}} {{m.lastname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-icon-button color="primary" id="delete" (click)="removeSection(i)">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="addSection()">
+        Add section
+      </button>
+    </div>
+  </div>
+</div>
+

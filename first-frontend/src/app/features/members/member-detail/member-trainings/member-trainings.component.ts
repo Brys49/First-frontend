@@ -4,7 +4,7 @@ import { AddTrainingDialogComponent } from '../add-training-dialog/add-training-
 import { takeUntil } from 'rxjs/operators';
 import { TrainingType } from '../../../../core/models/training.model';
 import { MembersService } from '../../../../core/services/members.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -19,7 +19,8 @@ export class MemberTrainingsComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
-              private membersService: MembersService) { }
+              private membersService: MembersService) {
+  }
 
   ngOnInit(): void {
   }

@@ -1,13 +1,13 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {FireTrucksService} from '../../../../core/services/fire-trucks.service';
-import {Equipment} from '../../../../core/models/equipment.model';
-import {EquipmentService} from '../../../../core/services/equipment.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { FireTrucksService } from '../../../../core/services/fire-trucks.service';
+import { Equipment } from '../../../../core/models/equipment.model';
+import { EquipmentService } from '../../../../core/services/equipment.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   AddEquipmentToFireTruckDialogComponent
 } from '../add-equipment-to-fire-truck-dialog/add-equipment-to-fire-truck-dialog.component';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fire-truck-equipment',

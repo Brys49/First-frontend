@@ -1,0 +1,10 @@
+<h2>Callouts list</h2>
+<mat-list>
+  <mat-list-item *ngFor="let c of callouts$ | async">
+    <h3 matLine>{{c.id}}/{{c.alarmDate | date:'yyyy'}} - {{c.type}}</h3>
+    <p matLine>{{c.alarmDate | date:'d.LL.yyyy - HH:mm'}}</p>
+    <button mat-icon-button (click)="showDetails(c.id)">
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>

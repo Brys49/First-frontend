@@ -28,7 +28,8 @@ export class FireTruckDetailListComponent implements OnInit {
     imgUrl: ''
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

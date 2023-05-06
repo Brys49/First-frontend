@@ -52,20 +52,20 @@
       <div id="equipment-container">
         <app-fire-truck-equipment [fireTruckId]="fireTruckId"></app-fire-truck-equipment>
       </div>
-      <div class="call-outs-container">
+      <div class="callouts-container">
         <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Call Outs:
+                Callouts:
               </mat-panel-title>
               <mat-panel-description>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
-              <ng-container *ngFor="let callOut of callOuts">
-                <app-details-call-outs-item [id]="callOut.id" [alarmDate]="callOut.alarmDate"
-                                            [type]="callOut.type"></app-details-call-outs-item>
+              <ng-container *ngFor="let callout of callouts">
+                <app-details-callouts-item [id]="callout.id" [alarmDate]="callout.alarmDate"
+                                           [type]="callout.type"></app-details-callouts-item>
               </ng-container>
             </mat-list>
           </mat-expansion-panel>

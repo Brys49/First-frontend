@@ -10,7 +10,9 @@ import {
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { GarageListComponent } from './garage-list/garage-list.component';
-import { FireTruckDetailListComponent } from './fire-truck-detail/fire-truck-detail-list/fire-truck-detail-list.component';
+import {
+  FireTruckDetailListComponent
+} from './fire-truck-detail/fire-truck-detail-list/fire-truck-detail-list.component';
 
 
 @NgModule({

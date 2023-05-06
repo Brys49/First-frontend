@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FireTruck } from '../../core/models/fire-truck.model';
 import { FireTrucksService } from '../../core/services/fire-trucks.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddFireTruckDialogComponent } from './add-fire-truck-dialog/add-fire-truck-dialog.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import {AddEquipmentDialogComponent} from "../equipment/add-equipment-dialog/add-equipment-dialog.component";
 
 @Component({
   selector: 'app-garage',

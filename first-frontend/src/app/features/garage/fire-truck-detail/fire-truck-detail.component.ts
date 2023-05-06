@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } 
 import { FireTruck } from 'src/app/core/models/fire-truck.model';
 import { FireTrucksService } from 'src/app/core/services/fire-trucks.service';
 import { Subject } from 'rxjs';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-truck-dialog.component';
-import { CallOut } from '../../../core/models/call-out.model';
-import { CallOutsService } from '../../../core/services/call-outs.service';
+import { Callout } from '../../../core/models/callout.model';
+import { CalloutsService } from '../../../core/services/callouts.service';
 
 @Component({
   selector: 'app-fire-truck-detail',
@@ -18,23 +18,23 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public fireTruckId: number = 0;
   @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public fireTruck!: FireTruck;
-  public callOuts: CallOut[] = [];
+  public callouts: Callout[] = [];
 
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private fireTrucksService: FireTrucksService,
-              private callOutsService: CallOutsService) {
+              private calloutsService: CalloutsService) {
   }
 
   ngOnInit(): void {
     this.getFireTruck();
-    this.getCallOuts();
+    this.getCallouts();
   }
 
   ngOnChanges(): void {
     this.getFireTruck();
-    this.getCallOuts();
+    this.getCallouts();
   }
 
   ngOnDestroy(): void {
@@ -78,9 +78,9 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
     ).subscribe(fireTruck => this.fireTruck = fireTruck)
   }
 
-  private getCallOuts(): void {
-    this.callOutsService.getFireTruckCallOuts(this.fireTruckId).pipe(
+  private getCallouts(): void {
+    this.calloutsService.getFireTruckCallouts(this.fireTruckId).pipe(
       takeUntil(this._destroy$)
-    ).subscribe(callOuts => this.callOuts = callOuts)
+    ).subscribe(callouts => this.callouts = callouts)
   }
 }

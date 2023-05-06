@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {Equipment} from 'src/app/core/models/equipment.model';
-import {EquipmentService} from 'src/app/core/services/equipment.service';
-import {AddEquipmentDialogComponent} from './add-equipment-dialog/add-equipment-dialog.component';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Equipment } from 'src/app/core/models/equipment.model';
+import { EquipmentService } from 'src/app/core/services/equipment.service';
+import { AddEquipmentDialogComponent } from './add-equipment-dialog/add-equipment-dialog.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-equipment',

@@ -1,9 +1,8 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Member } from '../../../core/models/member.model';
 import { Training, TrainingType } from '../../../core/models/training.model';
 import { MembersService } from '../../../core/services/members.service';
-import {Observable, Subject} from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-members-list',

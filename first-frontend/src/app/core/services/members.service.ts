@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Member} from '../models/member.model';
-import {Observable, of} from 'rxjs';
-import {MEMBERS} from './mock-members';
-import {Training, TrainingType} from '../models/training.model';
+import { Injectable } from '@angular/core';
+import { Member } from '../models/member.model';
+import { Observable, of } from 'rxjs';
+import { MEMBERS } from './mock-members';
+import { Training, TrainingType } from '../models/training.model';
 
 @Injectable({
   providedIn: 'root'

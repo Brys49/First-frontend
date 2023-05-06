@@ -4,9 +4,9 @@ import { Member } from '../../../core/models/member.model';
 import { AddMemberDialogComponent } from '../add-member-dialog/add-member-dialog.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { CallOutsService } from '../../../core/services/call-outs.service';
-import { CallOut } from '../../../core/models/call-out.model';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CalloutsService } from '../../../core/services/callouts.service';
+import { Callout } from '../../../core/models/callout.model';
 
 @Component({
   selector: 'app-member-detail',
@@ -17,23 +17,23 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public memberId: number = 0;
   @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public member!: Member;
-  public callOuts: CallOut[] = [];
+  public callouts: Callout[] = [];
 
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
               private membersService: MembersService,
-              private callOutsService: CallOutsService) {
+              private calloutsService: CalloutsService) {
   }
 
   ngOnInit(): void {
     this.getMember();
-    this.getCallOuts();
+    this.getCallouts();
   }
 
   ngOnChanges(): void {
     this.getMember();
-    this.getCallOuts();
+    this.getCallouts();
   }
 
   ngOnDestroy(): void {
@@ -77,9 +77,9 @@ export class MemberDetailComponent implements OnInit, OnChanges, OnDestroy {
     ).subscribe(member => this.member = member)
   }
 
-  private getCallOuts(): void {
-    this.callOutsService.getMemberCallOuts(this.memberId).pipe(
+  private getCallouts(): void {
+    this.calloutsService.getMemberCallouts(this.memberId).pipe(
       takeUntil(this._destroy$)
-    ).subscribe(callOuts => this.callOuts = callOuts)
+    ).subscribe(callouts => this.callouts = callouts)
   }
 }

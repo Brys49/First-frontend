@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Equipment } from 'src/app/core/models/equipment.model';
 import { EquipmentService } from 'src/app/core/services/equipment.service';
 import { Subject } from 'rxjs';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddEquipmentDialogComponent } from '../add-equipment-dialog/add-equipment-dialog.component';
 import { takeUntil } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'app-equipment-detail',
   templateUrl: './equipment-detail.component.html',
   styleUrls: ['./equipment-detail.component.scss', '../../../shared/styles/feature-details.scss',
-  '../../../shared/styles/lists.scss']
+    '../../../shared/styles/lists.scss']
 })
 export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public equipmentId!: number;

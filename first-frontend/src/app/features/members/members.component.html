@@ -1,6 +1,6 @@
 <main>
   <div class="list-container">
-    <app-members-list (memberIdToDisplayEvent)="showDetails($event)" ></app-members-list>
+    <app-members-list (memberIdToDisplayEvent)="showDetails($event)"></app-members-list>
   </div>
   <div class="details-container">
     <div *ngIf="displaySummary; else memberDetail">

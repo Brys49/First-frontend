@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Equipment } from '../../../core/models/equipment.model';
 import { EquipmentService } from '../../../core/services/equipment.service';
 

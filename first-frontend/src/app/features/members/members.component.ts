@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
 import { Member } from '../../core/models/member.model';
 import { takeUntil } from 'rxjs/operators';

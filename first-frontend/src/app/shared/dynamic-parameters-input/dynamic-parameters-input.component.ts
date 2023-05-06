@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-parameters-input',

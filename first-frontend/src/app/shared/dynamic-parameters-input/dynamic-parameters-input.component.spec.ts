@@ -8,9 +8,9 @@ describe('DynamicParametersInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DynamicParametersInputComponent ]
+      declarations: [DynamicParametersInputComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DynamicParametersInputComponent);
     component = fixture.componentInstance;

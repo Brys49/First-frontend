@@ -4,14 +4,14 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadInputComponent } from './file-upload-input/file-upload-input.component';
 import { DynamicParametersInputComponent } from './dynamic-parameters-input/dynamic-parameters-input.component';
-import { DetailsCallOutsItemComponent } from './details-call-outs-item/details-call-outs-item.component';
+import { DetailsCalloutsItemComponent } from './details-callouts-item/details-callouts-item.component';
 
 
 @NgModule({
   declarations: [
     FileUploadInputComponent,
     DynamicParametersInputComponent,
-    DetailsCallOutsItemComponent
+    DetailsCalloutsItemComponent
   ],
   imports: [
     CommonModule,
@@ -19,14 +19,14 @@ import { DetailsCallOutsItemComponent } from './details-call-outs-item/details-c
     FormsModule,
     ReactiveFormsModule,
   ],
-    exports: [
-        MaterialModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FileUploadInputComponent,
-        DynamicParametersInputComponent,
-        DetailsCallOutsItemComponent
-    ]
+  exports: [
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FileUploadInputComponent,
+    DynamicParametersInputComponent,
+    DetailsCalloutsItemComponent
+  ]
 })
 export class SharedModule {
 }

@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FireTruck } from '../../../core/models/fire-truck.model';
 import { FireTrucksService } from '../../../core/services/fire-trucks.service';
-import {Observable, Subject} from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-garage-list',

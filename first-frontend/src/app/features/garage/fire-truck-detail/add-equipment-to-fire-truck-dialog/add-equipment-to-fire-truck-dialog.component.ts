@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormControl, FormGroup, NonNullableFormBuilder} from '@angular/forms';
-import {Equipment} from '../../../../core/models/equipment.model';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import { Equipment } from '../../../../core/models/equipment.model';
 
 @Component({
   selector: 'app-add-equipment-to-fire-truck-dialog',
