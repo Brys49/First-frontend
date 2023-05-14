@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StorageLocation } from "../../../../core/models/storage-location.model";
 import { FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { EquipmentService } from "../../../../core/services/equipment.service";
@@ -14,6 +14,7 @@ export class StorageLocationsDialogItemComponent implements OnInit {
     default: false,
     onFireTruck: false
   };
+  @Output() public inEditModeEvent: EventEmitter<number> = new EventEmitter<number>();
   public formGroup!: FormGroup;
   public editMode: boolean = false;
 
@@ -34,6 +35,7 @@ export class StorageLocationsDialogItemComponent implements OnInit {
 
   public toggleEditMode(): void {
     this.editMode = !this.editMode;
+    this.editMode ? this.inEditModeEvent.emit(1) : this.inEditModeEvent.emit(-1);
   }
 
   public save(): void {

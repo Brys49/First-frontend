@@ -3,7 +3,8 @@
 
   <mat-dialog-content>
     <div *ngFor="let storageLocation of storageLocationsData">
-      <app-storage-locations-dialog-item [storageLocation]="storageLocation"></app-storage-locations-dialog-item>
+      <app-storage-locations-dialog-item [storageLocation]="storageLocation"
+                                         (inEditModeEvent)="inEditModeEvent($event)"></app-storage-locations-dialog-item>
     </div>
     <button mat-icon-button color="primary" (click)="addStorageLocation()">
       <mat-icon>
@@ -12,7 +13,7 @@
     </button>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button [mat-dialog-close]="true" (click)="close()">
+    <button mat-raised-button [disabled]="disableClose" [mat-dialog-close]="true" (click)="close()">
       Close
     </button>
   </mat-dialog-actions>
