@@ -14,7 +14,7 @@ export class EquipmentDetailListComponent implements OnInit {
     serialNumber: '',
     quantity: 0,
     category: '',
-    storageLocation: {id: 0, name: '', default: false, onFireTruck: false},
+    storageLocation: {name: '', default: false, onFireTruck: false},
     parameters: new Map<string, string>()
   };
 

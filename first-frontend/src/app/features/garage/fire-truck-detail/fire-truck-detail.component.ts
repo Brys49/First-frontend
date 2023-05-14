@@ -70,8 +70,13 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
     ).subscribe(
       fireTruck => {
         if (fireTruck) {
+          if (fireTruck.name !== this.fireTruck.name || fireTruck.operationalNumber !== this.fireTruck.operationalNumber) {
+            const oldStorageLocationName: string = this.fireTruck.name + " - " + this.fireTruck.operationalNumber;
+            const newStorageLocationName: string = fireTruck.name + " - " + fireTruck.operationalNumber;
+            this.equipmentService.editStorageLocation(oldStorageLocationName, newStorageLocationName);
+          }
           this.fireTrucksService.updateFireTruck(fireTruck);
-          this.getFireTruck()
+          this.getFireTruck();
         }
       });
   }

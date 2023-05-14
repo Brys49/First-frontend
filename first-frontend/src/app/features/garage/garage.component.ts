@@ -76,7 +76,6 @@ export class GarageComponent implements OnInit, OnDestroy {
       fireTruck => {
         if (fireTruck) {
           const newStorageLocation: StorageLocation = {
-            id: 0,
             name: fireTruck.name + " - " + fireTruck.operationalNumber,
             default: false,
             onFireTruck: true

@@ -17,10 +17,10 @@ export class EquipmentService {
     this.equipment.push(EQUIPMENT[1]);
     this.equipment.push(EQUIPMENT[2]);
 
-    this.storageLocations.push({id: 1, name: 'Garage', default: true, onFireTruck: false});
-    this.storageLocations.push({id: 2, name: 'Iveco Daily - 597P07', default: false, onFireTruck: true});
-    this.storageLocations.push({id: 3, name: 'Jelcz 442 - 597P11', default: false, onFireTruck: true});
-    this.storageLocations.push({id: 4, name: 'Iveco Magirus - 597P13', default: false, onFireTruck: true});
+    this.storageLocations.push({name: 'Garage', default: true, onFireTruck: false});
+    this.storageLocations.push({name: 'Iveco Daily - 597P07', default: false, onFireTruck: true});
+    this.storageLocations.push({name: 'Jelcz 442 - 597P11', default: false, onFireTruck: true});
+    this.storageLocations.push({name: 'Iveco Magirus - 597P13', default: false, onFireTruck: true});
 
     this.storageLocations.sort((x, y) => Number(y.default) - Number(x.default));
     this.defaultStorageLocation = this.storageLocations[0];
@@ -61,20 +61,18 @@ export class EquipmentService {
   }
 
   addStorageLocation(storageLocation: StorageLocation): void {
-    storageLocation.id = this.storageLocations.length + 1;
     this.storageLocations.push(storageLocation);
   }
 
-  editStorageLocation(storageLocationId: number, storageLocationNewName: string): void {
+  editStorageLocation(storageLocationOldName: string, storageLocationNewName: string): void {
     const index: number = this.storageLocations
-      .map(storageLocation => storageLocation.id)
-      .indexOf(storageLocationId);
+      .map(storageLocation => storageLocation.name)
+      .indexOf(storageLocationOldName);
 
-    if (index) {
+    if (index !== undefined) {
       this.storageLocations[index].name = storageLocationNewName;
     } else {
       const newStorageLocation: StorageLocation = {
-        id: 0,
         name: storageLocationNewName,
         default: false,
         onFireTruck: false
@@ -83,12 +81,11 @@ export class EquipmentService {
     }
   }
 
-  deleteStorageLocation(storageLocationId: number): void {
+  deleteStorageLocation(storageLocationName: string): void {
     const index: number = this.storageLocations
-      .map(storageLocation => storageLocation.id)
-      .indexOf(storageLocationId);
-    const name: string = this.storageLocations[index].name;
-    this.moveEquipmentToDefaultStorageLocation(name);
+      .map(storageLocation => storageLocation.name)
+      .indexOf(storageLocationName);
+    this.moveEquipmentToDefaultStorageLocation(storageLocationName);
     this.storageLocations.splice(index, 1);
   }
 

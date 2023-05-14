@@ -34,7 +34,7 @@ export class AddEquipmentDialogComponent implements OnInit {
       serialNumber: [this.data.equipment.serialNumber, [Validators.maxLength(120)]],
       quantity: [this.data.equipment.quantity, [Validators.required]],
       category: [this.data.equipment.category, [Validators.required, Validators.maxLength(120)]],
-      storageLocation: [this.data.equipment.storageLocation.id, [Validators.required, Validators.maxLength(120)]],
+      storageLocation: [this.data.equipment.storageLocation.name, [Validators.required, Validators.maxLength(120)]],
       parameters: this.fb.array([])
     })
   }
@@ -45,7 +45,7 @@ export class AddEquipmentDialogComponent implements OnInit {
         .map((i: { pName: string; pValue: string; }) => [i.pName, i.pValue]))
 
     const storageLocation: StorageLocation | undefined = this.storageLocations.find(storageLocation =>
-      storageLocation.id == this.formGroup.getRawValue().storageLocation);
+      storageLocation.name == this.formGroup.getRawValue().storageLocation);
 
     const equipment: Equipment = {
       id: this.data.equipment.id,

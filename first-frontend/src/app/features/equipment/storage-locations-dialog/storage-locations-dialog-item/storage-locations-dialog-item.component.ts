@@ -10,7 +10,6 @@ import { EquipmentService } from "../../../../core/services/equipment.service";
 })
 export class StorageLocationsDialogItemComponent implements OnInit {
   @Input() public storageLocation: StorageLocation = {
-    id: 0,
     name: '',
     default: false,
     onFireTruck: false
@@ -39,7 +38,7 @@ export class StorageLocationsDialogItemComponent implements OnInit {
 
   public save(): void {
     const newName = this.formGroup.getRawValue().name;
-    this.equipmentService.editStorageLocation(this.storageLocation.id, newName);
+    this.equipmentService.editStorageLocation(this.storageLocation.name, newName);
     this.toggleEditMode();
   }
 
@@ -49,7 +48,11 @@ export class StorageLocationsDialogItemComponent implements OnInit {
   }
 
   public deleteStorageLocation(): void {
-    this.equipmentService.deleteStorageLocation(this.storageLocation.id);
+    this.equipmentService.deleteStorageLocation(this.storageLocation.name);
+  }
+
+  public setAsDefault(): void {
+    this.equipmentService.changeDefaultStorageLocation(this.storageLocation);
   }
 
 }

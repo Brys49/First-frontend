@@ -23,7 +23,6 @@ export class StorageLocationsDialogComponent implements OnInit {
 
   public addStorageLocation(): void {
     this.storageLocationsData.push({
-      id: this.storageLocationsData.length + 1,
       name: '',
       default: false,
       onFireTruck: false
