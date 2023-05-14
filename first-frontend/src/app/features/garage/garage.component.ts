@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddFireTruckDialogComponent } from './add-fire-truck-dialog/add-fire-truck-dialog.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { EquipmentService } from "../../core/services/equipment.service";
+import { StorageLocation } from "../../core/models/storage-location.model";
 
 @Component({
   selector: 'app-garage',
@@ -18,7 +20,8 @@ export class GarageComponent implements OnInit, OnDestroy {
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
-              private fireTrucksService: FireTrucksService) {
+              private fireTrucksService: FireTrucksService,
+              private equipmentService: EquipmentService) {
   }
 
   ngOnInit(): void {
@@ -72,7 +75,14 @@ export class GarageComponent implements OnInit, OnDestroy {
     ).subscribe(
       fireTruck => {
         if (fireTruck) {
-          this.fireTrucksService.addFireTruck(fireTruck)
+          const newStorageLocation: StorageLocation = {
+            id: 0,
+            name: fireTruck.name + " - " + fireTruck.operationalNumber,
+            default: false,
+            onFireTruck: true
+          };
+          this.equipmentService.addStorageLocation(newStorageLocation);
+          this.fireTrucksService.addFireTruck(fireTruck);
         }
       });
   }

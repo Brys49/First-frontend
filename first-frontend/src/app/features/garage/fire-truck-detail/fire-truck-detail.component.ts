@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AddFireTruckDialogComponent } from '../add-fire-truck-dialog/add-fire-truck-dialog.component';
 import { Callout } from '../../../core/models/callout.model';
 import { CalloutsService } from '../../../core/services/callouts.service';
+import { EquipmentService } from "../../../core/services/equipment.service";
 
 @Component({
   selector: 'app-fire-truck-detail',
@@ -24,7 +25,8 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(public dialog: MatDialog,
               private fireTrucksService: FireTrucksService,
-              private calloutsService: CalloutsService) {
+              private calloutsService: CalloutsService,
+              private equipmentService: EquipmentService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +49,8 @@ export class FireTruckDetailComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public deleteFireTruck(id: number): void {
+    const fireTruckStorageName: string = this.fireTruck.name + " - " + this.fireTruck.operationalNumber;
+    this.equipmentService.moveEquipmentToDefaultStorageLocation(fireTruckStorageName);
     this.fireTrucksService.deleteFireTruck(id);
     this.goBack();
   }

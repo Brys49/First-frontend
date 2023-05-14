@@ -50,7 +50,7 @@ export class EquipmentComponent implements OnInit, OnDestroy {
       serialNumber: '',
       quantity: 1,
       category: '',
-      storageLocation: this.storageLocations[0],
+      storageLocation: this.equipmentService.getDefaultStorageLocation(),
       parameters: new Map<string, string>()
     }
 

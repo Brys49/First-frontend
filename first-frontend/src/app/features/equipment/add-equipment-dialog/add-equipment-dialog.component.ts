@@ -34,7 +34,7 @@ export class AddEquipmentDialogComponent implements OnInit {
       serialNumber: [this.data.equipment.serialNumber, [Validators.maxLength(120)]],
       quantity: [this.data.equipment.quantity, [Validators.required]],
       category: [this.data.equipment.category, [Validators.required, Validators.maxLength(120)]],
-      storageLocation: [this.data.equipment.storageLocation, [Validators.required, Validators.maxLength(120)]],
+      storageLocation: [this.data.equipment.storageLocation.id, [Validators.required, Validators.maxLength(120)]],
       parameters: this.fb.array([])
     })
   }

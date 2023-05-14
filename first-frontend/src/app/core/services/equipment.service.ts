@@ -10,6 +10,7 @@ import { StorageLocation } from "../models/storage-location.model";
 export class EquipmentService {
   equipment: Equipment[] = [];
   storageLocations: StorageLocation[] = [];
+  defaultStorageLocation: StorageLocation;
 
   constructor() {
     this.equipment.push(EQUIPMENT[0]);
@@ -21,7 +22,8 @@ export class EquipmentService {
     this.storageLocations.push({id: 3, name: 'Jelcz 442 - 597P11', default: false, onFireTruck: true});
     this.storageLocations.push({id: 4, name: 'Iveco Magirus - 597P13', default: false, onFireTruck: true});
 
-    this.storageLocations.sort((x, y) => Number(x.default) - Number(y.default));
+    this.storageLocations.sort((x, y) => Number(y.default) - Number(x.default));
+    this.defaultStorageLocation = this.storageLocations[0];
   }
 
   getAllEquipment(): Observable<Equipment[]> {
@@ -54,7 +56,12 @@ export class EquipmentService {
     return of(this.storageLocations);
   }
 
+  getDefaultStorageLocation(): StorageLocation {
+    return this.defaultStorageLocation;
+  }
+
   addStorageLocation(storageLocation: StorageLocation): void {
+    storageLocation.id = this.storageLocations.length + 1;
     this.storageLocations.push(storageLocation);
   }
 
@@ -67,7 +74,7 @@ export class EquipmentService {
       this.storageLocations[index].name = storageLocationNewName;
     } else {
       const newStorageLocation: StorageLocation = {
-        id: this.storageLocations.length + 1,
+        id: 0,
         name: storageLocationNewName,
         default: false,
         onFireTruck: false
@@ -80,6 +87,8 @@ export class EquipmentService {
     const index: number = this.storageLocations
       .map(storageLocation => storageLocation.id)
       .indexOf(storageLocationId);
+    const name: string = this.storageLocations[index].name;
+    this.moveEquipmentToDefaultStorageLocation(name);
     this.storageLocations.splice(index, 1);
   }
 
@@ -96,6 +105,29 @@ export class EquipmentService {
   }
 
   removeEquipmentFromFireTruck(equipment: Equipment): void {
-    equipment.storageLocation = this.storageLocations[0];
+    equipment.storageLocation = this.defaultStorageLocation;
+  }
+
+  changeEquipmentStorageLocation(equipment: Equipment, newStorageLocationName: string): void {
+    const newStorageLocation: StorageLocation | undefined = this.storageLocations.find(storageLocation =>
+      storageLocation.name == newStorageLocationName);
+    if (newStorageLocation) {
+      equipment.storageLocation = newStorageLocation
+    }
+  }
+
+  moveEquipmentToDefaultStorageLocation(oldStorageLocationName: string): void {
+    this.equipment.forEach(equipment => {
+      if (equipment.storageLocation.name == oldStorageLocationName) {
+        equipment.storageLocation = this.defaultStorageLocation;
+      }
+    });
+  }
+
+  changeDefaultStorageLocation(newDefaultStorageLocation: StorageLocation): void {
+    this.defaultStorageLocation.default = false;
+    newDefaultStorageLocation.default = true;
+    this.storageLocations.sort((x, y) => Number(y.default) - Number(x.default));
+    this.defaultStorageLocation = this.storageLocations[0];
   }
 }

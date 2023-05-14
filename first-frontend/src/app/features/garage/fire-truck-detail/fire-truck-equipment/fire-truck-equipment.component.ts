@@ -74,7 +74,8 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
       takeUntil(this._destroy$)
     ).subscribe(result => {
       for (let equipment of result) {
-        equipment.storageLocation = this.fireTruck.name + " - " + this.fireTruck.operationalNumber;
+        this.equipmentService.changeEquipmentStorageLocation(equipment,
+          this.fireTruck.name + " - " + this.fireTruck.operationalNumber)
       }
       this.getFireTruckEquipment()
     });
