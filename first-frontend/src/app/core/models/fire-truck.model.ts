@@ -14,6 +14,5 @@ export interface FireTruck {
   vehicleInspectionExpiryDate: Date;
   insuranceExpiryDate: Date;
   parameters: Map<string, string>;
-  equipment: number[];
   imgUrl: string;
 }

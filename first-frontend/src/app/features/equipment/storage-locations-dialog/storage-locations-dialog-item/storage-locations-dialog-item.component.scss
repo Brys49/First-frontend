@@ -1,0 +1,24 @@
+div.storage-location-list-item-container {
+  min-width: 500px;
+  border-bottom: 0.1rem solid black;
+}
+
+.storage-location-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div.storage-location-list-buttons {
+    display: flex;
+    visibility: hidden;
+  }
+
+  mat-form-field, p {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.storage-location-list-item:hover .storage-location-list-buttons, .storage-location-list-buttons:hover {
+  visibility: visible;
+}

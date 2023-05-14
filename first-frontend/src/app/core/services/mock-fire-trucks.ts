@@ -17,7 +17,6 @@ export const FIRE_TRUCKS: FireTruck[] = [
     vehicleInspectionExpiryDate: new Date('01/11/2001'),
     insuranceExpiryDate: new Date('12/12/1994'),
     parameters: new Map<string, string>([["Water tank: ", "800L"], ["Rapid intervention fire hose length:", "40m"]]),
-    equipment: [],
     imgUrl: "assets/mock-images/iveco.jpg"
   },
   {
@@ -36,7 +35,6 @@ export const FIRE_TRUCKS: FireTruck[] = [
     vehicleInspectionExpiryDate: new Date('11/10/2012'),
     insuranceExpiryDate: new Date('12/15/2013'),
     parameters: new Map<string, string>(),
-    equipment: [],
     imgUrl: "assets/mock-images/jelcz.jpg"
   },
   {
@@ -55,7 +53,6 @@ export const FIRE_TRUCKS: FireTruck[] = [
     vehicleInspectionExpiryDate: new Date('11/09/2022'),
     insuranceExpiryDate: new Date('12/05/2023'),
     parameters: new Map<string, string>(),
-    equipment: [],
     imgUrl: "assets/mock-images/magirus.jpg"
   }
 ]

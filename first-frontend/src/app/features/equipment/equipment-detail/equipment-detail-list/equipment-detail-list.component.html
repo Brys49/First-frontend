@@ -8,13 +8,21 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item>
+      <mat-list-item *ngIf="equipment.serialNumber">
         <p>Serial number:</p>
         <p>{{equipment.serialNumber}}</p>
       </mat-list-item>
       <mat-list-item>
+        <p>Quantity:</p>
+        <p>{{equipment.quantity}}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p>Category:</p>
+        <p>{{equipment.category}}</p>
+      </mat-list-item>
+      <mat-list-item>
         <p>Storage location:</p>
-        <p>{{equipment.storageLocation}}</p>
+        <p>{{equipment.storageLocation.name}}</p>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>

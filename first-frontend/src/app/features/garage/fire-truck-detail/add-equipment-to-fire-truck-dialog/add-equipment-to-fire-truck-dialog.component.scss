@@ -5,9 +5,19 @@ mat-list-item {
   justify-content: space-between;
   border-bottom: 0.1rem solid black;
 
+  mat-checkbox {
+     width: 50%;
+   }
+
   div {
-    text-align: end;
-    width: 100%;
+    display: flex;
+    width: 50%;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+    }
   }
 }
 

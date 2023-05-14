@@ -25,11 +25,11 @@ export class AddEquipmentToFireTruckDialogComponent implements OnInit {
   }
 
   public save(): void {
-    const result: number[] = [];
+    const result: Equipment[] = [];
     this.data.remainingEquipment.forEach(
       equipment => {
         if (this.formGroup.controls[equipment.id].value) {
-          result.push(equipment.id)
+          result.push(equipment)
         }
       });
     this.dialogRef.close(result);

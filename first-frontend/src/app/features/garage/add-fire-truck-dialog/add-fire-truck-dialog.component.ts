@@ -76,7 +76,6 @@ export class AddFireTruckDialogComponent implements OnInit {
       vehicleInspectionExpiryDate: this.formGroup.getRawValue().vehicleInspectionExpiryDate,
       insuranceExpiryDate: this.formGroup.getRawValue().insuranceExpiryDate,
       parameters: parameters,
-      equipment: this.data.fireTruck.equipment,
       imgUrl: this.data.fireTruck.imgUrl
     };
 

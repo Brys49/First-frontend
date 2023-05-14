@@ -2,7 +2,7 @@
 <mat-list>
   <mat-list-item *ngFor="let equipment of equipment$ | async">
     <h3 matLine>{{equipment.name}}</h3>
-    <p matLine>{{equipment.serialNumber}}</p>
+    <p matLine>{{equipment.category}} | {{equipment.storageLocation.name}}</p>
     <button mat-icon-button (click)="showDetails(equipment.id)">
       <mat-icon>info</mat-icon>
     </button>

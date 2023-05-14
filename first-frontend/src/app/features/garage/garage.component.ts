@@ -55,7 +55,6 @@ export class GarageComponent implements OnInit, OnDestroy {
       vehicleInspectionExpiryDate: new Date(),
       insuranceExpiryDate: new Date(),
       parameters: new Map<string, string>(),
-      equipment: [],
       imgUrl: ''
     }
 

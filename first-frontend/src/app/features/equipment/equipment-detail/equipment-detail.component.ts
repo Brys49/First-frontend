@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddEquipmentDialogComponent } from '../add-equipment-dialog/add-equipment-dialog.component';
 import { takeUntil } from 'rxjs/operators';
+import { StorageLocation } from "../../../core/models/storage-location.model";
 
 @Component({
   selector: 'app-equipment-detail',
@@ -17,6 +18,7 @@ export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Output() public displaySummaryEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   public equipment!: Equipment;
 
+  private storageLocations: StorageLocation[] = []
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(public dialog: MatDialog,
@@ -25,6 +27,10 @@ export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.getEquipment();
+
+    this.equipmentService.getStorageLocations().pipe(
+      takeUntil(this._destroy$))
+      .subscribe(storageLocations => this.storageLocations = storageLocations)
   }
 
   ngOnChanges(): void {
@@ -52,7 +58,10 @@ export class EquipmentDetailComponent implements OnInit, OnChanges, OnDestroy {
       panelClass: 'add-equipment-dialog-panel',
       autoFocus: true,
       disableClose: true,
-      data: {equipment: this.equipment}
+      data: {
+        equipment: this.equipment,
+        storageLocations: this.storageLocations
+      }
     });
 
     dialogRef.afterClosed().pipe(

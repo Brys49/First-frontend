@@ -7,6 +7,8 @@ import { EquipmentDetailComponent } from './equipment-detail/equipment-detail.co
 import { AddEquipmentDialogComponent } from './add-equipment-dialog/add-equipment-dialog.component';
 import { EquipmentListComponent } from './equipment-list/equipment-list.component';
 import { EquipmentDetailListComponent } from './equipment-detail/equipment-detail-list/equipment-detail-list.component';
+import { StorageLocationsDialogComponent } from './storage-locations-dialog/storage-locations-dialog.component';
+import { StorageLocationsDialogItemComponent } from './storage-locations-dialog/storage-locations-dialog-item/storage-locations-dialog-item.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { EquipmentDetailListComponent } from './equipment-detail/equipment-detai
     AddEquipmentDialogComponent,
     EquipmentListComponent,
     EquipmentDetailListComponent,
+    StorageLocationsDialogComponent,
+    StorageLocationsDialogItemComponent,
   ],
   imports: [
     CommonModule,
