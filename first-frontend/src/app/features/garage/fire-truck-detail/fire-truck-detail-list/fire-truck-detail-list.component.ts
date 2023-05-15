@@ -24,7 +24,6 @@ export class FireTruckDetailListComponent implements OnInit {
     vehicleInspectionExpiryDate: new Date(),
     insuranceExpiryDate: new Date(),
     parameters: new Map<string, string>(),
-    equipment: [],
     imgUrl: ''
   }
 

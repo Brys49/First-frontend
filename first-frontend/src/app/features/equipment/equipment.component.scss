@@ -1,0 +1,14 @@
+div.list-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  app-equipment-list {
+    width: 100%;
+  }
+
+  button#open-storage-locations-button {
+    position: absolute;
+    right: 16px;
+  }
+}

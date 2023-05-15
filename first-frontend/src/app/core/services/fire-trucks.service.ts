@@ -8,13 +8,11 @@ import { FIRE_TRUCKS } from './mock-fire-trucks';
 })
 export class FireTrucksService {
   fireTrucks: FireTruck[] = [];
-  fireTrucksEquipment: [number, number][] = [];
 
   constructor() {
     this.fireTrucks.push(FIRE_TRUCKS[0]);
     this.fireTrucks.push(FIRE_TRUCKS[1]);
     this.fireTrucks.push(FIRE_TRUCKS[2]);
-    this.fireTrucksEquipment.push([1, 1]);
   }
 
   getFireTrucks(): Observable<FireTruck[]> {
@@ -42,24 +40,6 @@ export class FireTrucksService {
     }).indexOf(id);
 
     this.fireTrucks.splice(index, 1);
-  }
-
-  getFireTruckEquipment(id: number): Observable<number[]> {
-    const fireTruckEquipmentIds: number[] = [];
-    for (const [fireTruckId, equipmentId] of this.fireTrucksEquipment) {
-      if (fireTruckId == id) {
-        fireTruckEquipmentIds.push(equipmentId)
-      }
-    }
-    return of(fireTruckEquipmentIds);
-  }
-
-  addEquipmentToFireTruck(fireTruckId: number, equipmentId: number): void {
-    this.fireTrucksEquipment.push([fireTruckId, equipmentId])
-  }
-
-  removeEquipmentFromFireTruck(fireTruckId: number, equipmentId: number): void {
-    this.fireTrucksEquipment = this.fireTrucksEquipment.filter(pair => (pair[0] !== fireTruckId || pair[1] !== equipmentId))
   }
 
 }

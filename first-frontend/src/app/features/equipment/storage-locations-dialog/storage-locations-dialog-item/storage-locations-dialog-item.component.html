@@ -1,0 +1,45 @@
+<div class="storage-location-list-item-container">
+  <div class="storage-location-list-item" *ngIf="!editMode; else editForm">
+    <p [class.default-storage-location-name]="storageLocation.default">{{storageLocation.name}}</p>
+    <div class="storage-location-list-buttons">
+      <button mat-icon-button (click)="toggleEditMode()" [disabled]="storageLocation.onFireTruck">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteStorageLocation()"
+              [disabled]="storageLocation.default || storageLocation.onFireTruck">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="setAsDefault()"
+              [disabled]="storageLocation.default">
+        <mat-icon>
+          star
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template #editForm>
+    <div class="storage-location-list-item" [formGroup]="formGroup">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <div class="storage-location-list-buttons">
+        <button mat-icon-button [disabled]="!formGroup.valid" (click)="save()"
+                type="submit">
+          <mat-icon>
+            done
+          </mat-icon>
+        </button>
+        <button mat-icon-button (click)="cancel()">
+          <mat-icon>
+            close
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>

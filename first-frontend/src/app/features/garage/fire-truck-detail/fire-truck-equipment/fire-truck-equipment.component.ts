@@ -8,6 +8,7 @@ import {
 } from '../add-equipment-to-fire-truck-dialog/add-equipment-to-fire-truck-dialog.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FireTruck } from "../../../../core/models/fire-truck.model";
 
 @Component({
   selector: 'app-fire-truck-equipment',
@@ -16,11 +17,26 @@ import { takeUntil } from 'rxjs/operators';
     '../../../../shared/styles/lists.scss']
 })
 export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() public fireTruckId: number = 0;
-  public equipment: Equipment[] = []
+  @Input() public fireTruck: FireTruck = {
+    id: 0,
+    name: '',
+    image: null,
+    vin: '',
+    productionYear: 0,
+    licensePlate: '',
+    operationalNumber: '',
+    type: '',
+    totalWeight: 0,
+    horsepower: 0,
+    numberOfSeats: 0,
+    mileage: 0,
+    vehicleInspectionExpiryDate: new Date(),
+    insuranceExpiryDate: new Date(),
+    parameters: new Map<string, string>(),
+    imgUrl: ''
+  };
   public fireTruckEquipment: Equipment[] = []
 
-  private fireTruckEquipmentIds: number[] = []
   private remainingEquipment: Equipment[] = []
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -30,12 +46,10 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
   }
 
   ngOnInit(): void {
-    this.getEquipment();
     this.getFireTruckEquipment();
   }
 
   ngOnChanges(): void {
-    this.getEquipment();
     this.getFireTruckEquipment();
   }
 
@@ -59,30 +73,26 @@ export class FireTruckEquipmentComponent implements OnInit, OnChanges, OnDestroy
     dialogRef.afterClosed().pipe(
       takeUntil(this._destroy$)
     ).subscribe(result => {
-      for (let equipmentId of result) {
-        this.fireTruckService.addEquipmentToFireTruck(this.fireTruckId, equipmentId)
+      for (let equipment of result) {
+        this.equipmentService.changeEquipmentStorageLocation(equipment,
+          this.fireTruck.name + " - " + this.fireTruck.operationalNumber)
       }
       this.getFireTruckEquipment()
     });
   }
 
-  public removeEquipment(equipmentId: number): void {
-    this.fireTruckService.removeEquipmentFromFireTruck(this.fireTruckId, equipmentId)
+  public removeEquipment(equipment: Equipment): void {
+    this.equipmentService.removeEquipmentFromFireTruck(equipment)
     this.ngOnInit()
   }
 
-  private getEquipment(): void {
-    this.equipmentService.getAllEquipment().pipe(
-      takeUntil(this._destroy$)
-    ).subscribe(equipment => this.equipment = equipment);
-  }
-
   private getFireTruckEquipment(): void {
-    this.fireTruckService.getFireTruckEquipment(this.fireTruckId).pipe(
+    this.equipmentService.getFireTruckEquipment(this.fireTruck.name, this.fireTruck.operationalNumber).pipe(
       takeUntil(this._destroy$)
-    ).subscribe(fireTruckEquipmentIds => this.fireTruckEquipmentIds = fireTruckEquipmentIds)
+    ).subscribe(fireTruckEquipment => this.fireTruckEquipment = fireTruckEquipment)
 
-    this.fireTruckEquipment = this.equipment.filter(equipment => this.fireTruckEquipmentIds.includes(equipment.id))
-    this.remainingEquipment = this.equipment.filter(equipment => !this.fireTruckEquipmentIds.includes(equipment.id))
+    this.equipmentService.getRemainingEquipment(this.fireTruck.name, this.fireTruck.operationalNumber).pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(remainingEquipment => this.remainingEquipment = remainingEquipment)
   }
 }

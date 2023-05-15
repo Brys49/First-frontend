@@ -12,7 +12,9 @@ export class EquipmentDetailListComponent implements OnInit {
     id: 0,
     name: '',
     serialNumber: '',
-    storageLocation: '',
+    quantity: 0,
+    category: '',
+    storageLocation: {name: '', default: false, onFireTruck: false},
     parameters: new Map<string, string>()
   };
 

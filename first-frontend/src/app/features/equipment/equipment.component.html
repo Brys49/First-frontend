@@ -1,6 +1,9 @@
 <main>
   <div class="list-container">
     <app-equipment-list (equipmentIdToDisplayEvent)="showDetails($event)"></app-equipment-list>
+    <button mat-icon-button id="open-storage-locations-button" (click)="openStorageLocationsDialog()">
+      <mat-icon>warehouse</mat-icon>
+    </button>
   </div>
   <div class="details-container">
     <div *ngIf="displaySummary; else equipmentDetail">
